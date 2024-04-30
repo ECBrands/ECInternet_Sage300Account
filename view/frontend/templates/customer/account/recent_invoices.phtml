@@ -1,0 +1,70 @@
+<?php
+/**
+ * Copyright (C) EC Brands Corporation - All Rights Reserved
+ * Contact Licensing@ECInternet.com for use guidelines
+ */
+declare(strict_types=1);
+?>
+
+<?php /** @var \ECInternet\Sage300Account\Block\Invoice\History $block */ ?>
+<?php /** @var \Magento\Framework\Escaper $escaper */ ?>
+
+<?php /** @var \ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\Collection $invoices */?>
+<?php $invoices = $block->getInvoices(); ?>
+<?php if ($invoices && $invoices->getSize()) { ?>
+    <div class="block block-dashboard-sage-invoices">
+        <div class="block-title">
+            <strong><?= $escaper->escapeHtml(__('Sage Invoices')) ?></strong>
+            <a class="action view" href="<?= $escaper->escapeUrl($block->getUrl('accounting/invoice/history')) ?>">
+                <span><?= $escaper->escapeHtml(__('View All')) ?></span>
+            </a>
+        </div>
+        <div class="block-content">
+            <div class="table-wrapper orders-recent">
+                <table class="data table table-order-items">
+                    <caption class="table-caption"><?= $escaper->escapeHtml(__('Sage Invoices')) ?></caption>
+                    <thead>
+                        <tr>
+                            <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Invoice Number')) ?></th>
+                            <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Order Number')) ?></th>
+                            <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Invoice Date')) ?></th>
+                            <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Bill To')) ?></th>
+                            <th scope="col" class="col a-right"><?= $escaper->escapeHtml(__('Invoice Total')) ?></th>
+                            <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Actions')) ?></th>
+                        </tr>
+                    </thead>
+
+                    <?php // Limit to 5 records ?>
+                    <?php $invoices = $invoices->setPageSize(5); ?>
+
+                    <?php /** @var \ECInternet\Sage300Account\Model\Data\Oeinvh $invoice */ ?>
+                    <?php foreach ($invoices as $invoice) { ?>
+                        <tr>
+                            <td data-th="Invoice Number" class="col a-center">
+                                <a href="<?= $escaper->escapeUrl($block->getViewUrl($invoice)) ?>">
+                                    <?= $escaper->escapeHtml($invoice->getInvoiceNumber()) ?>
+                                </a>
+                            </td>
+                            <td data-th="Order Number" class="col a-center">
+                                <?= $escaper->escapeHtml($invoice->getOrderNumber()) ?>
+                            </td>
+                            <td data-th="Invoice Date" class="col a-center">
+                                <?= $escaper->escapeHtml($block->getInvoiceDateFormatted($invoice)) ?>
+                            </td>
+                            <td data-th="Bill To" class="col a-center">
+                                <?= $escaper->escapeHtml($invoice->getBillToName()) . '<br />' ?>
+                                <?= $escaper->escapeHtml($invoice->getBillToCity() . ', ' . $invoice->getBillToState()) ?>
+                            </td>
+                            <td data-th="Invoice Total" class="col a-right">
+                                <?= $block->getInvoiceTotalWithTaxHtml($invoice) ?>
+                            </td>
+                            <td data-th="Actions" class="col a-center">
+                                <a href="<?= $escaper->escapeUrl($block->getViewUrl($invoice)) ?>">View</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </table>
+            </div>
+        </div>
+    </div>
+<?php } ?>

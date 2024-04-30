@@ -1,0 +1,126 @@
+<?php
+/**
+ * Copyright (C) EC Brands Corporation - All Rights Reserved
+ * Contact Licensing@ECInternet.com for use guidelines
+ */
+declare(strict_types=1);
+?>
+
+<?php /** @var \ECInternet\Sage300Account\Block\Invoice\Open $block */ ?>
+<?php /** @var \Magento\Framework\Escaper $escaper */ ?>
+
+<?php $allowed = $block->allowInvoicePayments(); ?>
+
+<?php /** @var \ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\Collection $invoices */?>
+<?php $invoices = $block->getOpenInvoices(); ?>
+<?php if ($invoices && $invoices->getSize()) { ?>
+    <div class="table-wrapper orders-history">
+        <form action="<?= /* @noEscape */ $block->getFormAction() ?>" method="post">
+            <table id="my-orders-table" class="data table table-order-items history">
+                <caption class="table-caption"><?= $escaper->escapeHtml(__('Invoices')) ?></caption>
+                <thead>
+                <tr>
+                    <?php if ($allowed) { ?>
+                        <th scope="col" class="a-center"><?= $escaper->escapeHtml(__('Pay')) ?></th>
+                    <?php } ?>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Invoice Number')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Order Number')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Invoice Date')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('PO Number')) ?></th>
+                    <th scope="col" class="col a-right"><?= $escaper->escapeHtml(__('Total Due')) ?></th>
+                    <?php if ($allowed) { ?>
+                        <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Amount')) ?></th>
+                    <?php } ?>
+                </tr>
+                </thead>
+                <tbody>
+                <?php /** @var \ECInternet\Sage300Account\Model\Data\Oeinvh $invoice */?>
+                <?php foreach ($invoices as $invoice) { ?>
+                    <?php $invoiceId = $invoice->getId(); ?>
+                    <tr>
+                        <?php if ($allowed) { ?>
+                            <td data-th="<?= $escaper->escapeHtml(__('Pay')) ?>" class="col pay a-center">
+                                <?php if ($block->isInvoicePaymentAllowed($invoice->getInvoiceNumber())) { ?>
+                                    <input type="checkbox"
+                                           title="Pay Invoice"
+                                           <?= /** @noEscape */ "name=\"pay[$invoiceId]\"" ?> />
+                                <?php } else { ?>
+                                    <input type="checkbox"
+                                           title="There is a pending payment for this invoice, please try again later."
+                                           disabled="disabled" />
+                                <?php } ?>
+                            </td>
+                        <?php } ?>
+                        <td data-th="<?= $escaper->escapeHtml(__('Invoice Number')) ?>" class="col invoice_number a-center">
+                            <a href="<?= $escaper->escapeUrl($block->getViewUrl($invoice)) ?>" class="action view"
+                               title="<?= $escaper->escapeHtml($invoice->getInvoiceNumber()) ?>">
+                                <?= $escaper->escapeHtml($invoice->getInvoiceNumber()) ?>
+                            </a>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Order Number')) ?>" class="col order_number a-center">
+                            <?= $escaper->escapeHtml($invoice->getOrderNumber()) ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Invoice Date')) ?>" class="col invoice_date a-center">
+                            <?= $escaper->escapeHtml($block->getInvoiceDateFormatted($invoice)) ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('PO Number')) ?>" class="col po_number a-center">
+                            <?= $escaper->escapeHtml($invoice->getPurchaseOrderNumber()) ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Total Due')) ?>" class="col total_due a-right">
+                            <?= $block->getTotalDueHtml($invoice) ?>
+                        </td>
+                        <?php if ($allowed) { ?>
+                            <td data-th="<?= $escaper->escapeHtml(__('Amount')) ?>" class="col amount a-center">
+                                <input type="text"
+                                       title="Amount"
+                                       class="a-right validate-currency-dollar"
+                                    <?= /** @noEscape */ "name=\"amount[$invoiceId]\"" ?> />
+                            </td>
+                        <?php } ?>
+                    </tr>
+                <?php } ?>
+
+                <?php $colspan = $allowed ? 6 : 4; ?>
+
+                <tr>
+                    <td colspan="<?= $escaper->escapeHtmlAttr($colspan) ?>" class="total_due_header a-right">
+                        <?= $escaper->escapeHtml(__('Total Invoice Balance')) ?>
+                    </td>
+                    <td colspan="1" class="total_text a-right">
+                        <?= $block->getTotalHtml() ?>
+                    </td>
+                </tr>
+                <?php if ($allowed) { ?>
+                    <tr>
+                        <td colspan="<?= $escaper->escapeHtmlAttr($colspan) ?>" class="total_header a-right">
+                            <?= $escaper->escapeHtml(__('Pay Today')) ?>
+                        </td>
+                        <td colspan="1" class="total_value a-right">$0.00</td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+            <?php if ($allowed) { ?>
+                <input type="submit" class="btn btn-invoice-pay" value="Pay Invoices" />
+            <?php } ?>
+        </form>
+    </div>
+
+    <?php if ($block->getPagerHtml()) { ?>
+        <div class="order-products-toolbar toolbar bottom">
+            <?= $block->getPagerHtml() ?>
+        </div>
+    <?php } ?>
+<?php } else { ?>
+    <div class="message info empty">
+        <span><?= $escaper->escapeHtml(__('You have no open invoices.')) ?></span>
+    </div>
+<?php } ?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "invoice_payments": {}
+        }
+    }
+</script>

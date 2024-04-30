@@ -1,0 +1,225 @@
+<?php
+/**
+ * Copyright (C) EC Brands Corporation - All Rights Reserved
+ * Contact Licensing@ECInternet.com for use guidelines
+ */
+declare(strict_types=1);
+?>
+
+<?php /** @var \ECInternet\Sage300Account\Block\Invoice\View $block */?>
+<?php /** @var \Magento\Framework\Escaper $escaper */ ?>
+
+<?php /** @var \ECInternet\Sage300Account\Model\Data\Oeinvh $invoice */?>
+<?php if ($invoice = $block->getInvoice()) { ?>
+    <div class="invoice-head">
+        <div class="pull-right">
+            <table class="table-invoice-head">
+                <tr>
+                    <td class="invoice-head-title">
+                        <?= $escaper->escapeHtml(__('Invoice #:')) ?>
+                    </td>
+                    <td class="invoice-head-label">
+                        <?= $escaper->escapeHtml($invoice->getInvoiceNumber()) ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="invoice-head-title">
+                        <?= $escaper->escapeHtml(__('Date:')) ?>
+                    </td>
+                    <td class="invoice-head-label">
+                        <?= $escaper->escapeHtml($block->getInvoiceDateHtml($invoice)) ?>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="col2-set">
+        <div class="box">
+            <div class="box-content">
+                <div class="col-1 invoice-sold-to">
+                    <div class="box-title">
+                        <h3><?= $escaper->escapeHtml(__('Sold To:')) ?></h3>
+                    </div>
+                    <div class="box-content">
+                        <address>
+                            <p><?= $escaper->escapeHtml($invoice->getBillToName()) ?></p>
+                            <p><?= $escaper->escapeHtml($invoice->getBillToAddressLine1()) ?></p>
+                            <p><?= $escaper->escapeHtml($invoice->getBillToAddressLine2()) ?></p>
+                            <p><?= $escaper->escapeHtml($invoice->getBillingAddressDisplayLineHtml()) ?></p>
+                            <p><?= $escaper->escapeHtml($invoice->getBillToCountry()) ?></p>
+                        </address>
+                    </div>
+                </div>
+                <div class="col-1 invoice-ship-to">
+                    <div class="box-title">
+                        <h3><?= $escaper->escapeHtml(__('Ship To:')) ?></h3>
+                    </div>
+                    <div class="box-content">
+                        <address>
+                            <p><?= $escaper->escapeHtml($invoice->getShipToName()) ?></p>
+                            <p><?= $escaper->escapeHtml($invoice->getShipToAddressLine1()) ?></p>
+                            <p><?= $escaper->escapeHtml($invoice->getShipToAddressLine2()) ?></p>
+                            <p><?= $escaper->escapeHtml($invoice->getShippingAddressDisplayLineHtml()) ?></p>
+                            <p><?= $escaper->escapeHtml($invoice->getShipToCountry()) ?></p>
+                        </address>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <table class="data-table invoice-details">
+            <thead>
+                <tr>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Order Number')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Order Date')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Customer Number')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Salesperson')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('PO Number')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Ship Via')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Terms')) ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-th="<?= $escaper->escapeHtml(__('Order Number')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($invoice->getOrderNumber()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Order Date')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($block->getInvoiceDateHtml($invoice)) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Customer Number')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($invoice->getCustomerNumber()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Salesperson')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($invoice->getSalesperson1()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('PO Number')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($invoice->getPurchaseOrderNumber()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Ship Via')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($invoice->getShipViaCode()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Terms')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($invoice->getTermsCode()) ?>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Invoice Details -->
+    <div>
+        <?php $invoiceDetails = $invoice->getInvoiceDetails(); ?>
+        <?php if (count($invoiceDetails)) { ?>
+            <table class="data-table invoice-details">
+                <thead>
+                    <tr>
+                        <th scope="col" class="col a-center"><?= $escaper->escapeHtml('Qty Ordered') ?></th>
+                        <th scope="col" class="col a-center"><?= $escaper->escapeHtml('Qty Shipped') ?></th>
+                        <th scope="col" class="col a-center"><?= $escaper->escapeHtml('Qty Backordered') ?></th>
+                        <th scope="col" class="col a-center"><?= $escaper->escapeHtml('Item Number') ?></th>
+                        <th scope="col" class="col a-center"><?= $escaper->escapeHtml('Description') ?></th>
+                        <th scope="col" class="col a-right"><?= $escaper->escapeHtml('Unit Price') ?></th>
+                        <th scope="col" class="col a-center"><?= $escaper->escapeHtml('UOM') ?></th>
+                        <th scope="col" class="col a-right"><?= $escaper->escapeHtml('Extended Price') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php /** @var \ECInternet\Sage300Account\Model\Data\Oeinvd $invoiceDetail */?>
+                <?php foreach ($invoiceDetails as $invoiceDetail) { ?>
+                    <tr>
+                        <td data-th="<?= $escaper->escapeHtml(__('Qty Ordered')) ?>" class="col a-center">
+                            <?= (int)$invoiceDetail->getCurrentQuantityOutstanding() ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Qty Shipped')) ?>" class="col a-center">
+                            <?= (int)$invoiceDetail->getQuantityShipped() ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Qty Backordered')) ?>" class="col a-center">
+                            <?= (int)$invoiceDetail->getQuantityBackordered() ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Item Number')) ?>" class="col a-center">
+                            <?= $escaper->escapeHtml($invoiceDetail->getItem()) ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Description')) ?>" class="col a-center">
+                            <?= $escaper->escapeHtml($invoiceDetail->getDescription()) ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Unit Price')) ?>" class="col a-right">
+                            <?= $block->getUnitPriceHtml($invoiceDetail) ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('UOM')) ?>" class="col a-center">
+                            <?= $escaper->escapeHtml($invoiceDetail->getInvoiceUnitOfMeasure()) ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Extended Price')) ?>" class="col a-right">
+                            <?= $block->getExtendedPriceHtml($invoiceDetail) ?>
+                        </td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        <?php } else { ?>
+            <h2>No Invoice Detail Information available.</h2>
+        <?php } ?>
+    </div>
+
+    <div>
+        <table class="data-table invoice-details">
+            <thead>
+                <tr>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Due Date')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Discount Date')) ?></th>
+                    <th scope="col" class="col a-right"><?= $escaper->escapeHtml(__('Amount Due')) ?></th>
+                    <th scope="col" class="col a-right"><?= $escaper->escapeHtml(__('Discount Amount')) ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-th="<?= $escaper->escapeHtml(__('Due Date')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($block->getInvoicePaymentScheduleDueDateHtml($invoice)) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Discount Date')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($block->getInvoicePaymentScheduleDiscountDateHtml($invoice)) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Amount Due')) ?>" class="col a-right">
+                        <?= $block->getTotalDueHtml($invoice) ?>
+                        <?= $escaper->escapeHtml($block->getInvoiceSourceCurrencyHtml($invoice)) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Discount Amount')) ?>" class="col a-right">
+                        <?= $block->getInvoicePaymentScheduleDiscountAmountHtml($invoice) ?>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Totals -->
+    <div>
+        <table>
+            <tr>
+                <td class="a-right"><strong><?= $escaper->escapeHtml(__('Subtotal')) ?></strong></td>
+                <td class="a-right"><?= $block->getInvoiceTotalBeforeTaxHtml($invoice) ?></td>
+            </tr>
+            <tr>
+                <td class="a-right"><strong><?= $escaper->escapeHtml(__('Total Amount')) ?></strong></td>
+                <td class="a-right"><?= $block->getInvoiceTotalWithTaxHtml($invoice) ?></td>
+            </tr>
+            <tr>
+                <td class="a-right"><strong><?= $escaper->escapeHtml(__('Less Payment')) ?></strong></td>
+                <td class="a-right"><?= $block->getMaxPaymentHtml($invoice) ?></td>
+            </tr>
+            <tr>
+                <td class="a-right"><strong><?= $escaper->escapeHtml(__('Less Retainage')) ?></strong></td>
+                <td class="a-right"><?= $block->getRetainageAmountHtml($invoice) ?></td>
+            </tr>
+            <tr>
+                <td class="a-right"><strong><?= $escaper->escapeHtml(__('Amount Due')) ?></strong></td>
+                <td class="a-right">
+                    <?= $block->getTotalDueHtml($invoice) ?>
+                    <?= $escaper->escapeHtml($block->getInvoiceSourceCurrencyHtml($invoice)) ?>
+                </td>
+            </tr>
+        </table>
+    </div>
+<?php } ?>

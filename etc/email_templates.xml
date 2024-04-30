@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+	<template id="sales_email_invoice_payment_invoice_payment_template"
+	          label=" ECInternet Invoice Payment"
+	          file="InvoicePayment.html"
+	          type="html"
+	          module="ECInternet_Sage300Account"
+	          area="frontend" />
+</config>

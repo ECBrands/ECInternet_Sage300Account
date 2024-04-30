@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<!-- afterGetProductPrice() - Add UOM to product list without breaking theme compatibility -->
+	<type name="Magento\Catalog\Block\Product\ListProduct">
+		<plugin name="ecinternet-sage300account-catalog-block-product-listproduct-plugin"
+		        type="ECInternet\Sage300Account\Plugin\Catalog\Block\Product\ListProductPlugin" />
+	</type>
+
+	<!-- afterGetResultCount() - Redirect to reorder page if necessary -->
+	<type name="Magento\CatalogSearch\Block\Result">
+		<plugin name="ecinternet-sage300account-catalogsearch-block-resultplugin"
+		        type="ECInternet\Sage300Account\Plugin\CatalogSearch\Block\ResultPlugin" />
+	</type>
+
+	<!-- beforeRenderResult() - Empty cart if invoice payment is in Cart and the user is not in the Cart page -->
+	<type name="Magento\Framework\View\Result\Layout">
+		<plugin name="ecinternet_sage300account-framework_view_result_layout_plugin"
+		        type="ECInternet\Sage300Account\Plugin\Framework\ViewResultLayoutPlugin" />
+	</type>
+</config>

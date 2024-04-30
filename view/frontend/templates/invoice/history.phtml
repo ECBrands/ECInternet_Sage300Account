@@ -1,0 +1,69 @@
+<?php
+/**
+ * Copyright (C) EC Brands Corporation - All Rights Reserved
+ * Contact Licensing@ECInternet.com for use guidelines
+ */
+declare(strict_types=1);
+?>
+
+<?php /** @var \ECInternet\Sage300Account\Block\Invoice\History $block */ ?>
+<?php /** @var \Magento\Framework\Escaper $escaper */ ?>
+
+<?php /** @var \ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\Collection $invoices */?>
+<?php $invoices = $block->getInvoices(); ?>
+<?php if ($invoices && $invoices->getSize()) { ?>
+    <div class="table-wrapper orders-history">
+        <table id="my-orders-table" class="data table table-order-items history">
+            <caption class="table-caption"><?= $escaper->escapeHtml(__('Invoices')) ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Invoice Number')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Order Number')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Invoice Date')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Bill To')) ?></th>
+                    <th scope="col" class="col a-right"><?= $escaper->escapeHtml(__('Invoice Total')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Actions')) ?></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php /** @var \ECInternet\Sage300Account\Model\Data\Oeinvh $invoice */?>
+            <?php foreach ($invoices as $invoice) { ?>
+                <tr>
+                    <td data-th="<?= $escaper->escapeHtml(__('Invoice Number')) ?>" class="col a-center">
+                        <a href="<?= $escaper->escapeUrl($block->getViewUrl($invoice)) ?>" class="action view">
+                            <?= $escaper->escapeHtml($invoice->getInvoiceNumber()) ?>
+                        </a>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Order Number')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($invoice->getOrderNumber()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Invoice Date')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($block->getInvoiceDateFormatted($invoice)) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Bill To')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($invoice->getBillToName()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Invoice Total')) ?>" class="col a-right">
+                        <?= $block->getInvoiceTotalWithTaxHtml($invoice) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Actions')) ?>" class="col a-center">
+                        <a href="<?= $escaper->escapeUrl($block->getViewUrl($invoice)) ?>" class="col action view">
+                            <span><?= $escaper->escapeHtml(__('View')) ?></span>
+                        </a>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
+    <?php if ($block->getPagerHtml()) { ?>
+        <div class="order-products-toolbar toolbar bottom">
+            <?= $block->getPagerHtml() ?>
+        </div>
+    <?php } ?>
+<?php } else { ?>
+    <div class="message info empty">
+        <span><?= $escaper->escapeHtml(__('You have no invoices.')) ?></span>
+    </div>
+<?php } ?>

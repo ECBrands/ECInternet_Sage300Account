@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="ECInternet_Sage300Account::menu"
+		     title="Sage 300 Account"
+		     module="ECInternet_Sage300Account"
+		     sortOrder="210"
+		     parent="ECInternet_Base::base"
+		     resource="ECInternet_Sage300Account::menu"
+		/>
+
+		<add id="ECInternet_Sage300Account::settings"
+		     title="Settings"
+		     module="ECInternet_Sage300Account"
+		     sortOrder="1"
+		     parent="ECInternet_Sage300Account::menu"
+		     action="adminhtml/system_config/edit/section/sage300account"
+		     resource="ECInternet_Sage300Account::settings"
+		/>
+
+		<add id="ECInternet_Sage300Account::reorder"
+		     title="Reorder"
+		     module="ECInternet_Sage300Account"
+		     sortOrder="2"
+		     parent="ECInternet_Sage300Account::menu"
+		     action="accounting/reorder/index"
+		     resource="ECInternet_Sage300Account::reorder"
+		/>
+
+		<add id="ECInternet_Sage300Account::poporh"
+		     title="POPORH"
+		     module="ECInternet_Sage300Account"
+		     sortOrder="3"
+		     parent="ECInternet_Sage300Account::menu"
+		     action="accounting/poporh/index"
+		     resource="ECInternet_Sage300Account::poporh"
+		/>
+
+		<add id="ECInternet_Sage300Account::poporl"
+		     title="POPORL"
+		     module="ECInternet_Sage300Account"
+		     sortOrder="4"
+		     parent="ECInternet_Sage300Account::menu"
+		     action="accounting/poporl/index"
+		     resource="ECInternet_Sage300Account::poporl"
+		/>
+
+		<add id="ECInternet_Sage300Account::poporlo"
+		     title="POPORLO"
+		     module="ECInternet_Sage300Account"
+		     sortOrder="5"
+		     parent="ECInternet_Sage300Account::menu"
+		     action="accounting/poporlo/index"
+		     resource="ECInternet_Sage300Account::poporlo"
+		/>
+	</menu>
+</config>

@@ -1,0 +1,417 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<!-- AROBL -->
+	<route url="/V1/sage300account/arobl/save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\AroblRepositoryInterface" method="save" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/arobl/bulk-save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\AroblRepositoryInterface" method="bulkSave" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/arobl/:aroblId" method="GET">
+		<service class="ECInternet\Sage300Account\Api\AroblRepositoryInterface" method="getById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/arobl/search" method="GET">
+		<service class="ECInternet\Sage300Account\Api\AroblRepositoryInterface" method="getList" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/arobl/:aroblId" method="DELETE">
+		<service class="ECInternet\Sage300Account\Api\AroblRepositoryInterface" method="deleteById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+
+	<!-- ARTCP -->
+	<route url="/V1/sage300account/artcp/save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\ArtcpRepositoryInterface" method="save" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/artcp/bulk-save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\ArtcpRepositoryInterface" method="bulkSave" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/artcp/:artcpId" method="GET">
+		<service class="ECInternet\Sage300Account\Api\ArtcpRepositoryInterface" method="getById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/artcp/search" method="GET">
+		<service class="ECInternet\Sage300Account\Api\ArtcpRepositoryInterface" method="getList" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/artcp/:artcpId" method="DELETE">
+		<service class="ECInternet\Sage300Account\Api\ArtcpRepositoryInterface" method="deleteById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+
+	<!-- OEINVH -->
+	<route url="/V1/sage300account/oeinvh/save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\OeinvhRepositoryInterface" method="save" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeinvh/bulk-save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\OeinvhRepositoryInterface" method="bulkSave" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeinvh/:oeinvhId" method="GET">
+		<service class="ECInternet\Sage300Account\Api\OeinvhRepositoryInterface" method="getById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeinvh/search" method="GET">
+		<service class="ECInternet\Sage300Account\Api\OeinvhRepositoryInterface" method="getList" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeinvh/:oeinvhId" method="DELETE">
+		<service class="ECInternet\Sage300Account\Api\OeinvhRepositoryInterface" method="deleteById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+
+	<!-- OEINVD -->
+	<route url="/V1/sage300account/oeinvd/save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\OeinvdRepositoryInterface" method="save" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeinvd/bulk-save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\OeinvdRepositoryInterface" method="bulkSave" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeinvd/:oeinvdId" method="GET">
+		<service class="ECInternet\Sage300Account\Api\OeinvdRepositoryInterface" method="getById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeinvd/search" method="GET">
+		<service class="ECInternet\Sage300Account\Api\OeinvdRepositoryInterface" method="getList" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeinvd/:oeinvdId" method="DELETE">
+		<service class="ECInternet\Sage300Account\Api\OeinvdRepositoryInterface" method="deleteById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+
+	<!-- OEORDH -->
+	<route url="/V1/sage300account/oeordh/save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\OeordhRepositoryInterface" method="save" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeordh/bulk-save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\OeordhRepositoryInterface" method="bulkSave" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeordh/:oeordhId" method="GET">
+		<service class="ECInternet\Sage300Account\Api\OeordhRepositoryInterface" method="getById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeordh/search" method="GET">
+		<service class="ECInternet\Sage300Account\Api\OeordhRepositoryInterface" method="getList" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeordh/:oeordhId" method="DELETE">
+		<service class="ECInternet\Sage300Account\Api\OeordhRepositoryInterface" method="deleteById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+
+	<!-- OEORDD -->
+	<route url="/V1/sage300account/oeordd/save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\OeorddRepositoryInterface" method="save" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeordd/bulk-save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\OeorddRepositoryInterface" method="bulkSave" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeordd/:oeorddId" method="GET">
+		<service class="ECInternet\Sage300Account\Api\OeorddRepositoryInterface" method="getById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeordd/search" method="GET">
+		<service class="ECInternet\Sage300Account\Api\OeorddRepositoryInterface" method="getList" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeordd/:oeorddId" method="DELETE">
+		<service class="ECInternet\Sage300Account\Api\OeorddRepositoryInterface" method="deleteById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+
+	<!-- OEPPRE -->
+	<route url="/V1/sage300account/oeppre/save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\OeppreRepositoryInterface" method="save" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeppre/bulk-save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\OeppreRepositoryInterface" method="bulkSave" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeppre/:oeppreId" method="GET">
+		<service class="ECInternet\Sage300Account\Api\OeppreRepositoryInterface" method="getById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeppre/search" method="GET">
+		<service class="ECInternet\Sage300Account\Api\OeppreRepositoryInterface" method="getList" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeppre/:oeppreId" method="DELETE">
+		<service class="ECInternet\Sage300Account\Api\OeppreRepositoryInterface" method="deleteById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+
+	<!-- OESHDT -->
+	<route url="/V1/sage300account/oeshdt/save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\OeshdtRepositoryInterface" method="save" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeshdt/bulk-save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\OeshdtRepositoryInterface" method="bulkSave" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeshdt/get" method="GET">
+		<service class="ECInternet\Sage300Account\Api\OeshdtRepositoryInterface" method="get" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeshdt/:oeshdtId" method="GET">
+		<service class="ECInternet\Sage300Account\Api\OeshdtRepositoryInterface" method="getById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeshdt/search" method="GET">
+		<service class="ECInternet\Sage300Account\Api\OeshdtRepositoryInterface" method="getList" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oeshdt/:oeshdtId" method="DELETE">
+		<service class="ECInternet\Sage300Account\Api\OeshdtRepositoryInterface" method="deleteById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+
+	<!-- OETERMI -->
+	<route url="/V1/sage300account/oetermi/save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\OetermiRepositoryInterface" method="save" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oetermi/bulk-save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\OetermiRepositoryInterface" method="bulkSave" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oetermi/get" method="GET">
+		<service class="ECInternet\Sage300Account\Api\OetermiRepositoryInterface" method="get" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oetermi/:oetermiId" method="GET">
+		<service class="ECInternet\Sage300Account\Api\OetermiRepositoryInterface" method="getById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oetermi/search" method="GET">
+		<service class="ECInternet\Sage300Account\Api\OetermiRepositoryInterface" method="getList" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/oetermi/:oetermiId" method="DELETE">
+		<service class="ECInternet\Sage300Account\Api\OetermiRepositoryInterface" method="deleteById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+
+	<!-- POPORH -->
+	<route url="/V1/sage300account/poporh/save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\PoporhRepositoryInterface" method="save" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/poporh/bulk-save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\PoporhRepositoryInterface" method="bulkSave" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/poporh/get/:sequenceKey" method="GET">
+		<service class="ECInternet\Sage300Account\Api\PoporhRepositoryInterface" method="get" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/poporh/:poporhhId" method="GET">
+		<service class="ECInternet\Sage300Account\Api\PoporhRepositoryInterface" method="getById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/poporh/search" method="GET">
+		<service class="ECInternet\Sage300Account\Api\PoporhRepositoryInterface" method="getList" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/poporh/:poporhhId" method="DELETE">
+		<service class="ECInternet\Sage300Account\Api\PoporhRepositoryInterface" method="deleteById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+
+	<!-- POPORL -->
+	<route url="/V1/sage300account/poporl/save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\PoporlRepositoryInterface" method="save" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/poporl/bulk-save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\PoporlRepositoryInterface" method="bulkSave" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/poporl/get/:sequenceKey/:lineNumber" method="GET">
+		<service class="ECInternet\Sage300Account\Api\PoporlRepositoryInterface" method="get" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/poporl/:poporlId" method="GET">
+		<service class="ECInternet\Sage300Account\Api\PoporlRepositoryInterface" method="getById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/poporl/search" method="GET">
+		<service class="ECInternet\Sage300Account\Api\PoporlRepositoryInterface" method="getList" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/poporl/:poporlId" method="DELETE">
+		<service class="ECInternet\Sage300Account\Api\PoporlRepositoryInterface" method="deleteById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/poporl/deactivate/:poporlId" method="POST">
+		<service class="ECInternet\Sage300Account\Api\PoporlRepositoryInterface" method="deactivateById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+
+	<!-- POPORLO -->
+	<route url="/V1/sage300account/poporlo/save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\PoporloRepositoryInterface" method="save" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/poporlo/bulk-save" method="POST">
+		<service class="ECInternet\Sage300Account\Api\PoporloRepositoryInterface" method="bulkSave" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/poporlo/:poporloId" method="GET">
+		<service class="ECInternet\Sage300Account\Api\PoporloRepositoryInterface" method="getById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/poporlo/search" method="GET">
+		<service class="ECInternet\Sage300Account\Api\PoporloRepositoryInterface" method="getList" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+	<route url="/V1/sage300account/poporlo/:poporloId" method="DELETE">
+		<service class="ECInternet\Sage300Account\Api\PoporloRepositoryInterface" method="deleteById" />
+		<resources>
+			<resource ref="anonymous" />
+		</resources>
+	</route>
+</routes>

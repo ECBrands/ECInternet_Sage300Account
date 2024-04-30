@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+		<css src="ECInternet_Sage300Account/css/styles.css" />
+		<css src="ECInternet_Sage300Account/css/sage300account.css" />
+	</head>
+	<body>
+		<referenceBlock name="customer_account_navigation">
+			<!-- Delimeter -->
+			<block class="Magento\Customer\Block\Account\Delimiter"
+			       name="customer_account-sage300account-delimiter-1"
+			       template="Magento_Customer::account/navigation-delimiter.phtml"
+			       before="-">
+				<arguments>
+					<argument name="sortOrder" xsi:type="number">20</argument>
+				</arguments>
+			</block>
+
+			<!-- My Order History -->
+			<block class="Magento\Customer\Block\Account\SortLinkInterface"
+			       name="customer_account_index-sage300account-my_order_history"
+			       after="customer_account-sage300account-delimiter-1">
+				<arguments>
+					<argument name="label" xsi:type="string" translate="true">My Order History</argument>
+					<argument name="path" xsi:type="string">accounting/order/history</argument>
+					<argument name="sortOrder" xsi:type="number">19</argument>
+				</arguments>
+			</block>
+
+			<!-- My Invoice History -->
+			<block class="Magento\Customer\Block\Account\SortLinkInterface"
+			       name="customer_account_index-sage300account-my_invoice_history"
+			       after="customer_account_index-sage300account-my_order_history">
+				<arguments>
+					<argument name="label" xsi:type="string" translate="true">My Invoice History</argument>
+					<argument name="path" xsi:type="string">accounting/invoice/history</argument>
+					<argument name="sortOrder" xsi:type="number">18</argument>
+				</arguments>
+			</block>
+
+			<!-- My Open Invoices -->
+			<block class="Magento\Customer\Block\Account\SortLinkInterface"
+			       name="customer_account_index-sage300account-my_open_invoices"
+			       after="customer_account_index-sage300account-my_invoice_history">
+				<arguments>
+					<argument name="label" xsi:type="string" translate="true">My Open Invoices</argument>
+					<argument name="path" xsi:type="string">accounting/invoice/open</argument>
+					<argument name="sortOrder" xsi:type="number">17</argument>
+				</arguments>
+			</block>
+
+			<!-- Reorder -->
+			<block class="Magento\Customer\Block\Account\SortLinkInterface"
+			       name="customer_account_index-sage300account-reorder"
+			       after="customer_account_index-sage300account-my_open_invoices"
+			       ifconfig="sage300account/reorder/enable">
+				<arguments>
+					<argument name="label" xsi:type="string" translate="true">Reorder</argument>
+					<argument name="path" xsi:type="string">accounting/reorder/index</argument>
+					<argument name="sortOrder" xsi:type="number">16</argument>
+				</arguments>
+			</block>
+		</referenceBlock>
+	</body>
+</page>

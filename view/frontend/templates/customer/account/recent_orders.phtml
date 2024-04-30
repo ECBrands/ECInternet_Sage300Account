@@ -1,0 +1,67 @@
+<?php
+/**
+ * Copyright (C) EC Brands Corporation - All Rights Reserved
+ * Contact Licensing@ECInternet.com for use guidelines
+ */
+declare(strict_types=1);
+?>
+
+<?php /** @var \ECInternet\Sage300Account\Block\Order\History $block */ ?>
+<?php /** @var \Magento\Framework\Escaper $escaper */ ?>
+
+<?php /** @var \ECInternet\Sage300Account\Model\ResourceModel\Oeordh\Collection $orders */?>
+<?php $orders = $block->getOrders(); ?>
+<?php if ($orders && $orders->getSize()) { ?>
+    <div class="block block-dashboard-sage-orders">
+        <div class="block-title">
+            <strong><?= $escaper->escapeHtml(__('Sage Orders')) ?></strong>
+            <a class="action view" href="<?= $escaper->escapeUrl($block->getUrl('accounting/order/history')) ?>">
+                <span><?= $escaper->escapeHtml(__('View All')) ?></span>
+            </a>
+        </div>
+        <div class="block-content">
+            <div class="table-wrapper orders-recent">
+                <table class="data table table-order-items">
+                    <caption class="table-caption"><?= $escaper->escapeHtml(__('Sage Orders')) ?></caption>
+                    <thead>
+                        <tr>
+                            <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Order Number')) ?></th>
+                            <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Order Date')) ?></th>
+                            <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Ship To')) ?></th>
+                            <th scope="col" class="col a-right"><?= $escaper->escapeHtml(__('Total Un-shipped')) ?></th>
+                            <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Actions')) ?></th>
+                        </tr>
+                    </thead>
+
+                    <?php // Limit to 5 records ?>
+                    <?php $orders = $orders->setPageSize(5); ?>
+
+                    <?php /** @var \ECInternet\Sage300Account\Model\Data\Oeordh $order */ ?>
+                    <?php foreach ($orders as $order) { ?>
+                        <tr>
+                            <td data-th="Order Number" class="col a-center">
+                                <a href="<?= $escaper->escapeUrl($block->getViewUrl($order)) ?>">
+                                    <?= $escaper->escapeHtml($order->getOrderNumber()) ?>
+                                </a>
+                            </td>
+                            <td data-th="Data" class="col a-center">
+                                <?= $escaper->escapeHtml($block->getOrderDateFormatted($order)) ?>
+                            </td>
+                            <td data-th="Ship To" class="col a-center">
+                                <?= $escaper->escapeHtml($order->getShipToName()) ?>
+                            </td>
+                            <td data-th="Total Un-shipped" class="col a-right">
+                                <?= $block->getOrderTotalHtml($order) ?>
+                            </td>
+                            <td data-th="Actions" class="col a-center">
+                                <a href="<?= $escaper->escapeUrl($block->getViewUrl($order)) ?>">View Order</a>
+                                &nbsp;|&nbsp;
+                                <a href="<?= $escaper->escapeUrl($block->getReorderUrl($order)) ?>">Reorder</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </table>
+            </div>
+        </div>
+    </div>
+<?php } ?>

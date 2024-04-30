@@ -1,0 +1,262 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<!-- AROBL -->
+	<preference for="ECInternet\Sage300Account\Api\AroblRepositoryInterface"
+	            type="ECInternet\Sage300Account\Model\AroblRepository" />
+	<preference for="ECInternet\Sage300Account\Api\Data\AroblInterface"
+	            type="ECInternet\Sage300Account\Model\Data\Arobl" />
+	<preference for="ECInternet\Sage300Account\Api\Data\AroblSearchResultsInterface"
+	            type="ECInternet\Sage300Account\Model\Data\AroblSearchResults" />
+
+	<!-- ARTCP -->
+	<preference for="ECInternet\Sage300Account\Api\ArtcpRepositoryInterface"
+	            type="ECInternet\Sage300Account\Model\ArtcpRepository" />
+	<preference for="ECInternet\Sage300Account\Api\Data\ArtcpInterface"
+	            type="ECInternet\Sage300Account\Model\Data\Artcp" />
+	<preference for="ECInternet\Sage300Account\Api\Data\ArtcpSearchResultsInterface"
+	            type="ECInternet\Sage300Account\Model\Data\ArtcpSearchResults" />
+
+	<!-- OEINVH -->
+	<preference for="ECInternet\Sage300Account\Api\OeinvhRepositoryInterface"
+	            type="ECInternet\Sage300Account\Model\OeinvhRepository" />
+	<preference for="ECInternet\Sage300Account\Api\Data\OeinvhInterface"
+	            type="ECInternet\Sage300Account\Model\Data\Oeinvh" />
+	<preference for="ECInternet\Sage300Account\Api\Data\OeinvhSearchResultsInterface"
+	            type="ECInternet\Sage300Account\Model\Data\OeinvhSearchResults" />
+
+	<!-- OEINVD -->
+	<preference for="ECInternet\Sage300Account\Api\OeinvdRepositoryInterface"
+	            type="ECInternet\Sage300Account\Model\OeinvdRepository" />
+	<preference for="ECInternet\Sage300Account\Api\Data\OeinvdInterface"
+	            type="ECInternet\Sage300Account\Model\Data\Oeinvd" />
+	<preference for="ECInternet\Sage300Account\Api\Data\OeinvdSearchResultsInterface"
+	            type="ECInternet\Sage300Account\Model\Data\OeinvdSearchResults" />
+
+	<!-- OEORDH -->
+	<preference for="ECInternet\Sage300Account\Api\OeordhRepositoryInterface"
+	            type="ECInternet\Sage300Account\Model\OeordhRepository" />
+	<preference for="ECInternet\Sage300Account\Api\Data\OeordhInterface"
+	            type="ECInternet\Sage300Account\Model\Data\Oeordh" />
+	<preference for="ECInternet\Sage300Account\Api\Data\OeordhSearchResultsInterface"
+	            type="ECInternet\Sage300Account\Model\Data\OeordhSearchResults" />
+
+	<!-- OEORDD -->
+	<preference for="ECInternet\Sage300Account\Api\OeorddRepositoryInterface"
+	            type="ECInternet\Sage300Account\Model\OeorddRepository" />
+	<preference for="ECInternet\Sage300Account\Api\Data\OeorddInterface"
+	            type="ECInternet\Sage300Account\Model\Data\Oeordd" />
+	<preference for="ECInternet\Sage300Account\Api\Data\OeorddSearchResultsInterface"
+	            type="ECInternet\Sage300Account\Model\Data\OeorddSearchResults" />
+
+	<!-- OEPPRE -->
+	<preference for="ECInternet\Sage300Account\Api\OeppreRepositoryInterface"
+	            type="ECInternet\Sage300Account\Model\OeppreRepository" />
+	<preference for="ECInternet\Sage300Account\Api\Data\OeppreInterface"
+	            type="ECInternet\Sage300Account\Model\Data\Oeppre" />
+	<preference for="ECInternet\Sage300Account\Api\Data\OeppreSearchResultsInterface"
+	            type="ECInternet\Sage300Account\Model\Data\OeppreSearchResults" />
+
+	<!-- OESHDT -->
+	<preference for="ECInternet\Sage300Account\Api\OeshdtRepositoryInterface"
+	            type="ECInternet\Sage300Account\Model\OeshdtRepository" />
+	<preference for="ECInternet\Sage300Account\Api\Data\OeshdtInterface"
+	            type="ECInternet\Sage300Account\Model\Data\Oeshdt" />
+	<preference for="ECInternet\Sage300Account\Api\Data\OeshdtSearchResultsInterface"
+	            type="ECInternet\Sage300Account\Model\Data\OeshdtSearchResults" />
+
+	<!-- OETERMI -->
+	<preference for="ECInternet\Sage300Account\Api\OetermiRepositoryInterface"
+	            type="ECInternet\Sage300Account\Model\OetermiRepository" />
+	<preference for="ECInternet\Sage300Account\Api\Data\OetermiInterface"
+	            type="ECInternet\Sage300Account\Model\Data\Oetermi" />
+	<preference for="ECInternet\Sage300Account\Api\Data\OetermiSearchResultsInterface"
+	            type="ECInternet\Sage300Account\Model\Data\OetermiSearchResults" />
+
+	<!-- POPORH -->
+	<preference for="ECInternet\Sage300Account\Api\PoporhRepositoryInterface"
+	            type="ECInternet\Sage300Account\Model\PoporhRepository" />
+	<preference for="ECInternet\Sage300Account\Api\Data\PoporhInterface"
+	            type="ECInternet\Sage300Account\Model\Data\Poporh" />
+	<preference for="ECInternet\Sage300Account\Api\Data\PoporhSearchResultsInterface"
+	            type="ECInternet\Sage300Account\Model\Data\PoporhSearchResults" />
+
+	<!-- POPORL -->
+	<preference for="ECInternet\Sage300Account\Api\PoporlRepositoryInterface"
+	            type="ECInternet\Sage300Account\Model\PoporlRepository" />
+	<preference for="ECInternet\Sage300Account\Api\Data\PoporlInterface"
+	            type="ECInternet\Sage300Account\Model\Data\Poporl" />
+	<preference for="ECInternet\Sage300Account\Api\Data\PoporlSearchResultsInterface"
+	            type="ECInternet\Sage300Account\Model\Data\PoporlSearchResults" />
+
+	<!-- POPORLO -->
+	<preference for="ECInternet\Sage300Account\Api\PoporloRepositoryInterface"
+	            type="ECInternet\Sage300Account\Model\PoporloRepository" />
+	<preference for="ECInternet\Sage300Account\Api\Data\PoporloInterface"
+	            type="ECInternet\Sage300Account\Model\Data\Poporlo" />
+	<preference for="ECInternet\Sage300Account\Api\Data\PoporloSearchResultsInterface"
+	            type="ECInternet\Sage300Account\Model\Data\PoporloSearchResults" />
+
+	<!-- UOM -->
+	<preference for="ECInternet\Sage300Account\Api\Data\UomInterface"
+	            type="ECInternet\Sage300Account\Model\Data\Uom" />
+
+	<!-- aroundConvert() - Set 'invoice_number' and 'uom' on OrderItem -->
+	<type name="Magento\Quote\Model\Quote\Item\ToOrderItem">
+		<plugin name="ecinternet_sage300account-quote_item_toorderitem"
+		        type="ECInternet\Sage300Account\Plugin\Quote\Item\ToOrderItemPlugin" />
+	</type>
+
+	<!-- Add fields to Order API response -->
+	<type name="Magento\Sales\Api\OrderRepositoryInterface">
+		<plugin name="ecinternet_sage300account-sales_api_orderrepositoryinterface"
+		        type="ECInternet\Sage300Account\Plugin\Sales\Api\OrderRepositoryInterfacePlugin" />
+	</type>
+
+	<!-- Add reorder collection as 'reorder_listing_data_source -->
+	<!-- Add Poporh collection as 'poporh_listing_data_source' -->
+	<!-- Add Poporl collection as 'poporl_listing_data_source' -->
+	<!-- Add Poporlo collection as 'poporlo_listing_data_source' -->
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="reorder_listing_data_source" xsi:type="string">ReorderCollection</item>
+				<item name="poporh_listing_data_source" xsi:type="string">PoporhCollection</item>
+				<item name="poporl_listing_data_source" xsi:type="string">PoporlCollection</item>
+				<item name="poporlo_listing_data_source" xsi:type="string">PoporloCollection</item>
+			</argument>
+		</arguments>
+	</type>
+
+	<!-- Custom Logger -->
+	<type name="ECInternet\Sage300Account\Logger\Logger">
+		<arguments>
+			<argument name="name" xsi:type="string">Sage300Account</argument>
+			<argument name="handlers" xsi:type="array">
+				<item name="system" xsi:type="object">ECInternet\Sage300Account\Logger\Handler</item>
+			</argument>
+		</arguments>
+	</type>
+
+	<!-- Oeshdt grid collection -->
+	<virtualType name="ReorderCollection"
+	             type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">ecinternet_sage300account_oeshdt</argument>
+			<argument name="resourceModel" xsi:type="string">ECInternet\Sage300Account\Model\ResourceModel\Oeshdt</argument>
+		</arguments>
+	</virtualType>
+
+	<!-- Oeshdt grid data provider -->
+	<virtualType name="ReorderGridDataProvider"
+	             type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+		<arguments>
+			<argument name="collection" xsi:type="object" shared="false">ECInternet\Sage300Account\Model\ResourceModel\Oeshdt\Collection</argument>
+			<argument name="filterPool" xsi:type="object" shared="false">ReorderGridFilterPool</argument>
+		</arguments>
+	</virtualType>
+
+	<!-- Oeshdt grid filter pool -->
+	<virtualType name="ReorderGridFilterPool"
+	             type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+		<arguments>
+			<argument name="appliers" xsi:type="array">
+				<item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+				<item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+			</argument>
+		</arguments>
+	</virtualType>
+
+
+
+	<!-- Poporh grid collection -->
+	<virtualType name="PoporhCollection"
+	             type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">ecinternet_sage300account_poporh</argument>
+			<argument name="resourceModel" xsi:type="string">ECInternet\Sage300Account\Model\ResourceModel\Poporh</argument>
+		</arguments>
+	</virtualType>
+
+	<!-- Poporh grid data provider -->
+	<virtualType name="PoporhGridDataProvider"
+	             type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+		<arguments>
+			<argument name="collection" xsi:type="object" shared="false">ECInternet\Sage300Account\Model\ResourceModel\Poporh\Collection</argument>
+			<argument name="filterPool" xsi:type="object" shared="false">PoporhGridFilterPool</argument>
+		</arguments>
+	</virtualType>
+
+	<!-- Poporh grid filter pool -->
+	<virtualType name="PoporhGridFilterPool"
+	             type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+		<arguments>
+			<argument name="appliers" xsi:type="array">
+				<item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+				<item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+			</argument>
+		</arguments>
+	</virtualType>
+
+
+
+	<!-- Poporl grid collection -->
+	<virtualType name="PoporlCollection"
+	             type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">ecinternet_sage300account_poporl</argument>
+			<argument name="resourceModel" xsi:type="string">ECInternet\Sage300Account\Model\ResourceModel\Poporl</argument>
+		</arguments>
+	</virtualType>
+
+	<!-- Poporl grid data provider -->
+	<virtualType name="PoporlGridDataProvider"
+	             type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+		<arguments>
+			<argument name="collection" xsi:type="object" shared="false">ECInternet\Sage300Account\Model\ResourceModel\Poporl\Collection</argument>
+			<argument name="filterPool" xsi:type="object" shared="false">PoporlGridFilterPool</argument>
+		</arguments>
+	</virtualType>
+
+	<!-- Poporl grid filter pool -->
+	<virtualType name="PoporlGridFilterPool"
+	             type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+		<arguments>
+			<argument name="appliers" xsi:type="array">
+				<item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+				<item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+			</argument>
+		</arguments>
+	</virtualType>
+
+
+
+	<!-- Poporlo grid collection -->
+	<virtualType name="PoporloCollection"
+	             type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">ecinternet_sage300account_poporlo</argument>
+			<argument name="resourceModel" xsi:type="string">ECInternet\Sage300Account\Model\ResourceModel\Poporlo</argument>
+		</arguments>
+	</virtualType>
+
+	<!-- Poporl grid data provider -->
+	<virtualType name="PoporloGridDataProvider"
+	             type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+		<arguments>
+			<argument name="collection" xsi:type="object" shared="false">ECInternet\Sage300Account\Model\ResourceModel\Poporlo\Collection</argument>
+			<argument name="filterPool" xsi:type="object" shared="false">PoporloGridFilterPool</argument>
+		</arguments>
+	</virtualType>
+
+	<!-- Poporl grid filter pool -->
+	<virtualType name="PoporloGridFilterPool"
+	             type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+		<arguments>
+			<argument name="appliers" xsi:type="array">
+				<item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+				<item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+			</argument>
+		</arguments>
+	</virtualType>
+</config>
