@@ -112,6 +112,7 @@
 		<column xsi:type="varchar" name="SHIPVIA" nullable="true" length="6" comment="Ship-Via Code" />
 		<column xsi:type="int" name="INVDATE" padding="8" unsigned="true" nullable="true" comment="Invoice Date" />
 		<column xsi:type="decimal" name="INVNETNOTX" scale="3" precision="19" unsigned="true" nullable="true" comment="Invoice Total Before Tax" />
+		<column xsi:type="decimal" name="INVITAXTOT" scale="3" precision="19" unsigned="true" nullable="true" comment="Invoice Included Tax Total Amount" />
 		<column xsi:type="decimal" name="INVSUBTOT" scale="3" precision="19" unsigned="true" nullable="true" comment="Invoice Subtotal Amount" />
 		<column xsi:type="decimal" name="INVNETWTX" scale="3" precision="19" unsigned="true" nullable="true" comment="Invoice Total With Tax" />
 		<column xsi:type="varchar" name="INHOMECURR" nullable="true" length="3" comment="Invoice Home Currency" />
@@ -358,6 +359,10 @@
 		<column xsi:type="decimal" name="DEFCONV" scale="6" precision="19" unsigned="true" nullable="false" comment="Default Conversion Factor" />
 		<constraint xsi:type="primary" referenceId="PRIMARY">
 			<column name="entity_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="ECINTERNET_SAGE300ACCOUNT_UOM_ITEMNO_PRICELIST">
+			<column name="ITEMNO" />
+			<column name="PRICELIST" />
 		</constraint>
 	</table>
 </schema>

@@ -256,7 +256,6 @@ class PoporhRepository implements PoporhRepositoryInterface
         /** @var \ECInternet\Sage300Account\Api\Data\PoporhSearchResultsInterface $searchResults */
         $searchResults = $this->searchResultsFactory->create();
 
-        /** @noinspection PhpExpressionResultUnusedInspection */
         $searchResults->setSearchCriteria($searchCriteria);
 
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Poporh\Collection $collection */

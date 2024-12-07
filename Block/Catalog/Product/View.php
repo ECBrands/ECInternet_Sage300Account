@@ -18,6 +18,7 @@ use Magento\Framework\Pricing\PriceCurrencyInterface;
 use Magento\Framework\Stdlib\StringUtils;
 use Magento\Framework\Url\EncoderInterface as UrlEncoderInterface;
 use ECInternet\Sage300Account\Helper\Data;
+use ECInternet\Sage300Account\Model\Config;
 
 /**
  * Catalog Product View Block
@@ -28,6 +29,11 @@ class View extends \Magento\Catalog\Block\Product\View
      * @var \ECInternet\Sage300Account\Helper\Data
      */
     private $helper;
+
+    /**
+     * @var \ECInternet\Sage300Account\Model\Config
+     */
+    private $config;
 
     /**
      * View constructor.
@@ -43,6 +49,7 @@ class View extends \Magento\Catalog\Block\Product\View
      * @param \Magento\Framework\Stdlib\StringUtils               $string
      * @param \Magento\Framework\Url\EncoderInterface             $urlEncoder
      * @param \ECInternet\Sage300Account\Helper\Data              $helper
+     * @param \ECInternet\Sage300Account\Model\Config             $config
      * @param array                                               $data
      */
     public function __construct(
@@ -57,6 +64,7 @@ class View extends \Magento\Catalog\Block\Product\View
         StringUtils $string,
         UrlEncoderInterface $urlEncoder,
         Data $helper,
+        Config $config,
         array $data = []
     ) {
         parent::__construct(
@@ -74,6 +82,7 @@ class View extends \Magento\Catalog\Block\Product\View
         );
 
         $this->helper = $helper;
+        $this->config = $config;
     }
 
     /**
@@ -83,7 +92,7 @@ class View extends \Magento\Catalog\Block\Product\View
      */
     public function showBlock()
     {
-        return $this->helper->shouldDisplayUom();
+        return $this->config->shouldDisplayUom();
     }
 
     /**

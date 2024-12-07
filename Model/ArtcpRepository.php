@@ -207,7 +207,6 @@ class ArtcpRepository implements ArtcpRepositoryInterface
         /** @var \ECInternet\Sage300Account\Api\Data\ArtcpSearchResultsInterface $searchResults */
         $searchResults = $this->searchResultsFactory->create();
 
-        /** @noinspection PhpExpressionResultUnusedInspection */
         $searchResults->setSearchCriteria($searchCriteria);
 
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Artcp\Collection $collection */

@@ -124,6 +124,7 @@ declare(strict_types=1);
                         <th scope="col" class="col a-center"><?= $escaper->escapeHtml('Description') ?></th>
                         <th scope="col" class="col a-right"><?= $escaper->escapeHtml('Unit Price') ?></th>
                         <th scope="col" class="col a-center"><?= $escaper->escapeHtml('UOM') ?></th>
+                        <th scope="col" class="col a-right"><?= $escaper->escapeHtml('Line Discount') ?></th>
                         <th scope="col" class="col a-right"><?= $escaper->escapeHtml('Extended Price') ?></th>
                     </tr>
                 </thead>
@@ -151,6 +152,9 @@ declare(strict_types=1);
                         </td>
                         <td data-th="<?= $escaper->escapeHtml(__('UOM')) ?>" class="col a-center">
                             <?= $escaper->escapeHtml($invoiceDetail->getInvoiceUnitOfMeasure()) ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('LineDiscount')) ?>" class="col a-right">
+                            <?= $block->getLineDiscountHtml($invoiceDetail) ?>
                         </td>
                         <td data-th="<?= $escaper->escapeHtml(__('Extended Price')) ?>" class="col a-right">
                             <?= $block->getExtendedPriceHtml($invoiceDetail) ?>
@@ -200,6 +204,10 @@ declare(strict_types=1);
             <tr>
                 <td class="a-right"><strong><?= $escaper->escapeHtml(__('Subtotal')) ?></strong></td>
                 <td class="a-right"><?= $block->getInvoiceTotalBeforeTaxHtml($invoice) ?></td>
+            </tr>
+            <tr>
+                <td class="a-right"><strong><?= $escaper->escapeHtml(__('Total VAT')) ?></strong></td>
+                <td class="a-right"><?= $block->getInvoiceTotalTaxAmountHtml($invoice) ?></td>
             </tr>
             <tr>
                 <td class="a-right"><strong><?= $escaper->escapeHtml(__('Total Amount')) ?></strong></td>

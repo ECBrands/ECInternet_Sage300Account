@@ -19,6 +19,7 @@ use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Quote\Api\CartItemRepositoryInterface;
 use ECInternet\Sage300Account\Helper\Data as Helper;
 use ECInternet\Sage300Account\Logger\Logger;
+use ECInternet\Sage300Account\Model\Config;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\CollectionFactory as OeinvhCollectionFactory;
 
 /**
@@ -31,67 +32,72 @@ abstract class Invoice
     /**
      * @var \Magento\Catalog\Api\ProductRepositoryInterface
      */
-    protected $_productRepository;
+    protected $productRepository;
 
     /**
      * @var \Magento\Checkout\Model\Session
      */
-    protected $_checkoutSession;
+    protected $checkoutSession;
 
     /**
      * @var \Magento\Customer\Model\Session
      */
-    protected $_customerSession;
+    protected $customerSession;
 
     /**
      * @var \Magento\Framework\App\RequestInterface
      */
-    protected $_request;
+    protected $request;
 
     /**
      * @var \Magento\Framework\UrlInterface
      */
-    protected $_url;
+    protected $url;
 
     /**
      * @var \Magento\Framework\Controller\Result\RedirectFactory
      */
-    protected $_resultRedirectFactory;
+    protected $resultRedirectFactory;
 
     /**
      * @var \Magento\Framework\Message\ManagerInterface
      */
-    protected $_messageManager;
+    protected $messageManager;
 
     /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
-    protected $_resultPageFactory;
+    protected $resultPageFactory;
 
     /**
      * @var \Magento\Quote\Api\CartItemRepositoryInterface
      */
-    protected $_cartItemRepository;
+    protected $cartItemRepository;
 
     /**
      * @var \Magento\Quote\Api\CartRepositoryInterface
      */
-    protected $_cartRepository;
+    protected $cartRepository;
 
     /**
      * @var \ECInternet\Sage300Account\Helper\Data
      */
-    protected $_helper;
+    protected $helper;
 
     /**
      * @var \ECInternet\Sage300Account\Logger\Logger
      */
-    protected $_logger;
+    protected $logger;
+
+    /**
+     * @var \ECInternet\Sage300Account\Model\Config
+     */
+    protected $config;
 
     /**
      * @var \ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\CollectionFactory
      */
-    protected $_oeinvhCollectionFactory;
+    protected $oeinvhCollectionFactory;
 
     /**
      * Invoice constructor.
@@ -108,6 +114,7 @@ abstract class Invoice
      * @param \Magento\Quote\Api\CartRepositoryInterface                              $cartRepository
      * @param \ECInternet\Sage300Account\Helper\Data                                  $helper
      * @param \ECInternet\Sage300Account\Logger\Logger                                $logger
+     * @param \ECInternet\Sage300Account\Model\Config                                 $config
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\CollectionFactory $oeinvhCollectionFactory
      */
     public function __construct(
@@ -123,21 +130,23 @@ abstract class Invoice
         CartRepositoryInterface $cartRepository,
         Helper $helper,
         Logger $logger,
+        Config $config,
         OeinvhCollectionFactory $oeinvhCollectionFactory
     ) {
-        $this->_productRepository       = $productRepository;
-        $this->_checkoutSession         = $checkoutSession;
-        $this->_customerSession         = $customerSession;
-        $this->_request                 = $request;
-        $this->_resultRedirectFactory   = $redirect;
-        $this->_messageManager          = $messageManager;
-        $this->_url                     = $url;
-        $this->_resultPageFactory       = $resultPageFactory;
-        $this->_cartItemRepository      = $cartItemRepository;
-        $this->_cartRepository          = $cartRepository;
-        $this->_helper                  = $helper;
-        $this->_logger                  = $logger;
-        $this->_oeinvhCollectionFactory = $oeinvhCollectionFactory;
+        $this->productRepository       = $productRepository;
+        $this->checkoutSession         = $checkoutSession;
+        $this->customerSession         = $customerSession;
+        $this->request                 = $request;
+        $this->resultRedirectFactory   = $redirect;
+        $this->messageManager          = $messageManager;
+        $this->url                     = $url;
+        $this->resultPageFactory       = $resultPageFactory;
+        $this->cartItemRepository      = $cartItemRepository;
+        $this->cartRepository          = $cartRepository;
+        $this->helper                  = $helper;
+        $this->logger                  = $logger;
+        $this->config                  = $config;
+        $this->oeinvhCollectionFactory = $oeinvhCollectionFactory;
     }
 
     /**
@@ -147,17 +156,17 @@ abstract class Invoice
      */
     protected function getRequest()
     {
-        return $this->_request;
+        return $this->request;
     }
 
     public function isAllowed()
     {
-        return $this->_customerSession->isLoggedIn();
+        return $this->customerSession->isLoggedIn();
     }
 
     public function getLoginRedirect()
     {
-        $resultRedirect = $this->_resultRedirectFactory->create();
+        $resultRedirect = $this->resultRedirectFactory->create();
         $resultRedirect->setPath('customer/account/login');
 
         return $resultRedirect;

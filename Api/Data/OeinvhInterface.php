@@ -67,6 +67,8 @@ interface OeinvhInterface
 
     const COLUMN_INVNETNOTX = 'INVNETNOTX';
 
+    const COLUMN_INVITAXTOT = 'INVITAXTOT';
+
     const COLUMN_INVSUBTOT  = 'INVSUBTOT';
 
     const COLUMN_INVNETWTX  = 'INVNETWTX';
@@ -528,6 +530,22 @@ interface OeinvhInterface
      * @return void
      */
     public function setInvoiceTotalBeforeTax(float $invoiceTotalBeforeTax);
+
+    /**
+     * Set Invoice Total Tax Amount - INVITAXTOT
+     *
+     * @return float
+     */
+    public function getInvoiceTotalTaxAmount();
+
+    /**
+     * Set Invoice Total Tax Amount - INVITAXTOT
+     *
+     * @param float $invoiceTotalTaxAmount
+     *
+     * @return void
+     */
+    public function setInvoiceTotalTaxAmount(float $invoiceTotalTaxAmount);
 
     /**
      * Get Invoice Subtotal Amount - INVSUBTOT

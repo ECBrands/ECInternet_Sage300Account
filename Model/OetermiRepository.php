@@ -186,7 +186,6 @@ class OetermiRepository implements OetermiRepositoryInterface
         /** @var \ECInternet\Sage300Account\Api\Data\OetermiSearchResultsInterface $searchResults */
         $searchResults = $this->searchResultsFactory->create();
 
-        /** @noinspection PhpExpressionResultUnusedInspection */
         $searchResults->setSearchCriteria($searchCriteria);
 
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Oetermi\Collection $collection */

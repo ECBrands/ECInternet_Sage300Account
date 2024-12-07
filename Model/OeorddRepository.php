@@ -184,7 +184,6 @@ class OeorddRepository implements OeorddRepositoryInterface
         /** @var \ECInternet\Sage300Account\Api\Data\OeorddSearchResultsInterface $searchResults */
         $searchResults = $this->searchResultsFactory->create();
 
-        /** @noinspection PhpExpressionResultUnusedInspection */
         $searchResults->setSearchCriteria($searchCriteria);
 
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Oeordd\Collection $collection */

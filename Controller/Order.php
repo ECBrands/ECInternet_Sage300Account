@@ -16,8 +16,8 @@ use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Quote\Api\CartRepositoryInterface;
 use ECInternet\Sage300Account\Api\OeordhRepositoryInterface;
-use ECInternet\Sage300Account\Helper\Data as Helper;
 use ECInternet\Sage300Account\Logger\Logger;
+use ECInternet\Sage300Account\Model\Config;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeordh\CollectionFactory as OeordhCollectionFactory;
 
 /**
@@ -83,6 +83,11 @@ abstract class Order
     protected $logger;
 
     /**
+     * @var \ECInternet\Sage300Account\Model\Config
+     */
+    protected $config;
+
+    /**
      * @var \ECInternet\Sage300Account\Model\ResourceModel\Oeordh\CollectionFactory
      */
     protected $oeordhCollectionFactory;
@@ -99,8 +104,8 @@ abstract class Order
      * @param \Magento\Framework\View\Result\PageFactory                              $resultPageFactory
      * @param \Magento\Quote\Api\CartRepositoryInterface                              $cartRepository
      * @param \ECInternet\Sage300Account\Api\OeordhRepositoryInterface                $oeordhRepository
-     * @param \ECInternet\Sage300Account\Helper\Data                                  $helper
      * @param \ECInternet\Sage300Account\Logger\Logger                                $logger
+     * @param \ECInternet\Sage300Account\Model\Config                                 $config
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeordh\CollectionFactory $oeordhCollectionFactory
      */
     public function __construct(
@@ -113,8 +118,8 @@ abstract class Order
         PageFactory $resultPageFactory,
         CartRepositoryInterface $cartRepository,
         OeordhRepositoryInterface $oeordhRepository,
-        Helper $helper,
         Logger $logger,
+        Config $config,
         OeordhCollectionFactory $oeordhCollectionFactory
     ) {
         $this->productRepository       = $productRepository;
@@ -126,8 +131,8 @@ abstract class Order
         $this->resultPageFactory       = $resultPageFactory;
         $this->cartRepository          = $cartRepository;
         $this->oeordhRepository        = $oeordhRepository;
-        $this->helper                  = $helper;
         $this->logger                  = $logger;
+        $this->config                  = $config;
         $this->oeordhCollectionFactory = $oeordhCollectionFactory;
     }
 

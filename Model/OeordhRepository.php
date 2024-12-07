@@ -191,7 +191,6 @@ class OeordhRepository implements OeordhRepositoryInterface
         /** @var \ECInternet\Sage300Account\Api\Data\OeordhSearchResultsInterface $searchResults */
         $searchResults = $this->searchResultsFactory->create();
 
-        /** @noinspection PhpExpressionResultUnusedInspection */
         $searchResults->setSearchCriteria($searchCriteria);
 
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Oeordh\Collection $collection */

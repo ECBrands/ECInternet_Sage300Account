@@ -28,12 +28,12 @@ class View extends Invoice implements HttpGetActionInterface
         }
 
         /** @var \Magento\Framework\Controller\Result\Redirect $resultRedirect */
-        $resultRedirect = $this->_resultRedirectFactory->create();
+        $resultRedirect = $this->resultRedirectFactory->create();
 
         /** @var \Magento\Customer\Model\Customer $customer */
-        $customer = $this->_customerSession->getCustomer();
+        $customer = $this->customerSession->getCustomer();
         if (!$customer) {
-            $this->_messageManager->addErrorMessage(
+            $this->messageManager->addErrorMessage(
                 __('You must be logged in to view this page')
             );
 
@@ -44,7 +44,7 @@ class View extends Invoice implements HttpGetActionInterface
         $customerNumber = $customer->getData('customer_number');
         if (empty($customerNumber)) {
             // Redirect to Customer Account page and show error message
-            $this->_messageManager->addErrorMessage(
+            $this->messageManager->addErrorMessage(
                 __("Customer does not have 'customer_number' attribute set.")
             );
 
@@ -54,7 +54,7 @@ class View extends Invoice implements HttpGetActionInterface
         $invoiceId = $this->getRequest()->getParam('id');
         if (!$invoiceId) {
             // Redirect to Invoice History page and show error message
-            $this->_messageManager->addErrorMessage(
+            $this->messageManager->addErrorMessage(
                 __('Invalid URL. Could not determine Invoice.')
             );
 
@@ -62,12 +62,12 @@ class View extends Invoice implements HttpGetActionInterface
         }
 
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\Collection $invoiceCollection */
-        $invoiceCollection = $this->_oeinvhCollectionFactory->create()
+        $invoiceCollection = $this->oeinvhCollectionFactory->create()
             ->addFieldToFilter(Oeinvh::COLUMN_ID, ['eq' => $invoiceId]);
 
         if (!$invoiceCollection->getSize()) {
             // Redirect to Open Invoices page and show error message
-            $this->_messageManager->addErrorMessage(
+            $this->messageManager->addErrorMessage(
                 __('No invoices found with this ID')
             );
 
@@ -80,7 +80,7 @@ class View extends Invoice implements HttpGetActionInterface
         $invoiceNumber = $invoice->getInvoiceNumber();
 
         /** @var \Magento\Framework\View\Result\Page $resultPage */
-        $resultPage = $this->_resultPageFactory->create();
+        $resultPage = $this->resultPageFactory->create();
         $resultPage->getConfig()->getTitle()->prepend(__("Invoice #$invoiceNumber"));
 
         /** @var \ECInternet\Sage300Account\Block\Invoice\View $viewBlock */
@@ -93,7 +93,7 @@ class View extends Invoice implements HttpGetActionInterface
                 $breadcrumbs->addCrumb('home', [
                     'label' => __('Home'),
                     'title' => __('Home'),
-                    'link'  => $this->_url->getUrl('')
+                    'link'  => $this->url->getUrl('')
                 ]);
                 $breadcrumbs->addCrumb('my_account', [
                     'label' => __('My Account'),

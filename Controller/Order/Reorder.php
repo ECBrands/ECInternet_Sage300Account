@@ -25,6 +25,7 @@ use ECInternet\Sage300Account\Api\OeordhRepositoryInterface;
 use ECInternet\Sage300Account\Controller\Order;
 use ECInternet\Sage300Account\Helper\Data as Helper;
 use ECInternet\Sage300Account\Logger\Logger;
+use ECInternet\Sage300Account\Model\Config;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeordh\CollectionFactory as OeordhCollectionFactory;
 use Exception;
 
@@ -64,6 +65,7 @@ class Reorder extends Order implements HttpGetActionInterface
      * @param \ECInternet\Sage300Account\Api\OeordhRepositoryInterface                $oeordhRepository
      * @param \ECInternet\Sage300Account\Helper\Data                                  $helper
      * @param \ECInternet\Sage300Account\Logger\Logger                                $logger
+     * @param \ECInternet\Sage300Account\Model\Config                                 $config
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeordh\CollectionFactory $oeordhCollectionFactory
      * @param \Magento\Customer\Api\CustomerRepositoryInterface                       $customerRepository
      * @param \Magento\Quote\Api\CartManagementInterface                              $cartManagement
@@ -81,12 +83,26 @@ class Reorder extends Order implements HttpGetActionInterface
         OeordhRepositoryInterface $oeordhRepository,
         Helper $helper,
         Logger $logger,
+        Config $config,
         OeordhCollectionFactory $oeordhCollectionFactory,
         CustomerRepositoryInterface $customerRepository,
         CartManagementInterface $cartManagement,
         StoreManagerInterface $storeManager
     ) {
-        parent::__construct($productRepository, $customerSession, $request, $redirect, $messageManager, $url, $resultPageFactory, $cartRepository, $oeordhRepository, $helper, $logger, $oeordhCollectionFactory);
+        parent::__construct(
+            $productRepository,
+            $customerSession,
+            $request,
+            $redirect,
+            $messageManager,
+            $url,
+            $resultPageFactory,
+            $cartRepository,
+            $oeordhRepository,
+            $logger,
+            $config,
+            $oeordhCollectionFactory
+        );
 
         $this->customerRepository = $customerRepository;
         $this->cartManagement     = $cartManagement;
@@ -286,7 +302,7 @@ class Reorder extends Order implements HttpGetActionInterface
      */
     private function shouldSkipSku(string $sku)
     {
-        if ($skippableSkuString = $this->helper->getSkippableSkus()) {
+        if ($skippableSkuString = $this->config->getSkippableSkus()) {
             $skippableSkuArray = explode(',', $skippableSkuString);
 
             return in_array($sku, $skippableSkuArray);

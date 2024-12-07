@@ -404,6 +404,16 @@ class Oeinvh extends AbstractModel implements IdentityInterface, OeinvhInterface
         $this->setData(self::COLUMN_INVNETNOTX, $invoiceTotalBeforeTax);
     }
 
+    public function getInvoiceTotalTaxAmount()
+    {
+        return (float)$this->getData(self::COLUMN_INVITAXTOT);
+    }
+
+    public function setInvoiceTotalTaxAmount(float $invoiceTotalTaxAmount)
+    {
+        return $this->setData(self::COLUMN_INVITAXTOT, $invoiceTotalTaxAmount);
+    }
+
     public function getInvoiceSubtotalAmount()
     {
         return (float)$this->getData(self::COLUMN_INVSUBTOT);

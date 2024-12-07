@@ -199,7 +199,6 @@ class AroblRepository implements AroblRepositoryInterface
         /** @var \ECInternet\Sage300Account\Api\Data\AroblSearchResultsInterface $searchResults */
         $searchResults = $this->searchResultsFactory->create();
 
-        /** @noinspection PhpExpressionResultUnusedInspection */
         $searchResults->setSearchCriteria($searchCriteria);
 
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Arobl\Collection $collection */
