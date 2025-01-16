@@ -190,7 +190,6 @@ class PoporloRepository implements PoporloRepositoryInterface
         /** @var \ECInternet\Sage300Account\Api\Data\PoporloSearchResultsInterface $searchResults */
         $searchResults = $this->searchResultsFactory->create();
 
-        /** @noinspection PhpExpressionResultUnusedInspection */
         $searchResults->setSearchCriteria($searchCriteria);
 
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Poporlo\Collection $collection */

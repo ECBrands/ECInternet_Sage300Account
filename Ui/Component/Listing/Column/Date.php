@@ -19,6 +19,8 @@ class Date extends \Magento\Ui\Component\Listing\Columns\Date
         try {
             return parent::prepareDataSource($dataSource);
         } catch (Exception $e) {
+            error_log($e->getMessage());
+
             return $dataSource;
         }
     }

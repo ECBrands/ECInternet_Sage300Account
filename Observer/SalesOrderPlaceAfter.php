@@ -11,7 +11,7 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Order;
-use ECInternet\Sage300Account\Helper\Data;
+use ECInternet\Sage300Account\Model\Config;
 
 /**
  * Observer for 'sales_order_place_after' event
@@ -24,22 +24,22 @@ class SalesOrderPlaceAfter implements ObserverInterface
     private $orderRepository;
 
     /**
-     * @var \ECInternet\Sage300Account\Helper\Data
+     * @var \ECInternet\Sage300Account\Model\Config
      */
-    private $helper;
+    private $config;
 
     /**
      * SalesOrderPlaceAfter constructor.
      *
      * @param \Magento\Sales\Api\OrderRepositoryInterface $orderRepository
-     * @param \ECInternet\Sage300Account\Helper\Data      $helper
+     * @param \ECInternet\Sage300Account\Model\Config     $config
      */
     public function __construct(
         OrderRepositoryInterface $orderRepository,
-        Data $helper
+        Config $config
     ) {
         $this->orderRepository = $orderRepository;
-        $this->helper          = $helper;
+        $this->config          = $config;
     }
 
     /**
@@ -55,8 +55,8 @@ class SalesOrderPlaceAfter implements ObserverInterface
         /** @var \Magento\Sales\Model\Order $order */
         $order = $observer->getData('order');
         if ($this->isInvoicePaymentOrder($order)) {
-            $order->setState(Data::INVOICE_PAYMENT_ORDER_STATUS);
-            $order->setStatus(Data::INVOICE_PAYMENT_ORDER_STATUS);
+            $order->setState(Config::INVOICE_PAYMENT_ORDER_STATUS);
+            $order->setStatus(Config::INVOICE_PAYMENT_ORDER_STATUS);
             $order->setData('is_invoice_payment', 1);
 
             $this->orderRepository->save($order);
@@ -74,7 +74,7 @@ class SalesOrderPlaceAfter implements ObserverInterface
         Order $order
     ) {
         // Make sure we have a sku to compare against
-        if ($invoicePaymentSku = $this->helper->getInvoicePaymentSku()) {
+        if ($invoicePaymentSku = $this->config->getInvoicePaymentSku()) {
             /** @var \Magento\Sales\Api\Data\OrderItemInterface[] $orderItems */
             $orderItems = $order->getItems();
             if (count($orderItems)) {

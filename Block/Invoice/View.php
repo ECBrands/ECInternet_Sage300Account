@@ -94,7 +94,7 @@ class View extends Template
      *
      * @param \ECInternet\Sage300Account\Model\Data\Oeinvh $invoice
      *
-     * @return string|false
+     * @return string
      */
     public function getInvoiceDateHtml(
         Oeinvh $invoice
@@ -111,7 +111,7 @@ class View extends Template
      *
      * @param \ECInternet\Sage300Account\Model\Data\Oeinvh $invoice
      *
-     * @return string|false
+     * @return string
      */
     public function getInvoicePaymentScheduleDueDateHtml(
         Oeinvh $invoice
@@ -128,7 +128,7 @@ class View extends Template
      *
      * @param \ECInternet\Sage300Account\Model\Data\Oeinvh $invoice
      *
-     * @return string|false
+     * @return string
      */
     public function getInvoicePaymentScheduleDiscountDateHtml(
         Oeinvh $invoice
@@ -151,6 +151,19 @@ class View extends Template
         Oeinvh $invoice
     ) {
         return $this->format($invoice->getInvoiceTotalBeforeTax());
+    }
+
+    /**
+     * Get the formatted InvoiceTotalTaxAmount
+     *
+     * @param \ECInternet\Sage300Account\Model\Data\Oeinvh $invoice
+     *
+     * @return string
+     */
+    public function getInvoiceTotalTaxAmountHtml(
+        Oeinvh $invoice
+    ) {
+        return $this->format($invoice->getInvoiceTotalTaxAmount());
     }
 
     /**
@@ -262,6 +275,19 @@ class View extends Template
         Oeinvd $oeinvd
     ) {
         return $this->format($oeinvd->getExtendedPrice());
+    }
+
+    /**
+     * Get the formatted LineDiscount
+     *
+     * @param \ECInternet\Sage300Account\Model\Data\Oeinvd $oeinvd
+     *
+     * @return string
+     */
+    public function getLineDiscountHtml(
+        Oeinvd $oeinvd
+    ) {
+        return $this->format($oeinvd->getInvoiceDiscountAmount());
     }
 
     /**

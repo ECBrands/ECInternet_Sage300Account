@@ -12,8 +12,8 @@ use Magento\Framework\App\Request\Http;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\View\Result\Layout;
 use Magento\Quote\Api\CartRepositoryInterface;
-use ECInternet\Sage300Account\Helper\Data;
 use ECInternet\Sage300Account\Logger\Logger;
+use ECInternet\Sage300Account\Model\Config;
 use Exception;
 
 /**
@@ -37,14 +37,14 @@ class ViewResultLayoutPlugin
     private $cartRepository;
 
     /**
-     * @var \ECInternet\Sage300Account\Helper\Data
-     */
-    private $helper;
-
-    /**
      * @var \ECInternet\Sage300Account\Logger\Logger
      */
     private $logger;
+
+    /**
+     * @var \ECInternet\Sage300Account\Model\Config
+     */
+    private $config;
 
     /**
      * @var array
@@ -60,21 +60,21 @@ class ViewResultLayoutPlugin
      * @param \Magento\Checkout\Model\Session            $checkoutSession
      * @param \Magento\Framework\App\Request\Http        $request
      * @param \Magento\Quote\Api\CartRepositoryInterface $cartRepository
-     * @param \ECInternet\Sage300Account\Helper\Data     $helper
      * @param \ECInternet\Sage300Account\Logger\Logger   $logger
+     * @param \ECInternet\Sage300Account\Model\Config    $config
      */
     public function __construct(
         CheckoutSession $checkoutSession,
         Http $request,
         CartRepositoryInterface $cartRepository,
-        Data $helper,
-        Logger $logger
+        Logger $logger,
+        Config $config
     ) {
         $this->checkoutSession = $checkoutSession;
         $this->request         = $request;
         $this->cartRepository  = $cartRepository;
-        $this->helper          = $helper;
         $this->logger          = $logger;
+        $this->config          = $config;
     }
 
     /**
@@ -109,7 +109,7 @@ class ViewResultLayoutPlugin
      */
     private function isInvoicePaymentInCart()
     {
-        if ($invoicePaymentSku = $this->helper->getInvoicePaymentSku()) {
+        if ($invoicePaymentSku = $this->config->getInvoicePaymentSku()) {
             if ($quote = $this->getCurrentQuote()) {
                 foreach ($quote->getAllItems() as $quoteItem) {
                     if ($quoteItem->getSku() == $invoicePaymentSku) {

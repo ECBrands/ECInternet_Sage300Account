@@ -12,6 +12,7 @@ use Magento\Catalog\Model\Product;
 use Magento\Framework\View\Element\BlockFactory;
 use ECInternet\Sage300Account\Helper\Data;
 use ECInternet\Sage300Account\Logger\Logger;
+use ECInternet\Sage300Account\Model\Config;
 
 /**
  * Plugin for Magento\Catalog\Model\Product
@@ -34,20 +35,28 @@ class ListProductPlugin
     private $logger;
 
     /**
+     * @var \ECInternet\Sage300Account\Model\Config
+     */
+    private $config;
+
+    /**
      * ListProductPlugin constructor.
      *
      * @param \Magento\Framework\View\Element\BlockFactory $blockFactory
      * @param \ECInternet\Sage300Account\Helper\Data       $helper
      * @param \ECInternet\Sage300Account\Logger\Logger     $logger
+     * @param \ECInternet\Sage300Account\Model\Config      $config
      */
     public function __construct(
         BlockFactory $blockFactory,
         Data $helper,
-        Logger $logger
+        Logger $logger,
+        Config $config
     ) {
         $this->blockFactory = $blockFactory;
         $this->helper       = $helper;
         $this->logger       = $logger;
+        $this->config       = $config;
     }
 
     /**
@@ -64,7 +73,7 @@ class ListProductPlugin
         string $result,
         Product $product
     ) {
-        if ($this->helper->isModuleEnabled() && $this->helper->shouldDisplayUom()) {
+        if ($this->config->isModuleEnabled() && $this->config->shouldDisplayUom()) {
             $this->log('---------------------------------------');
             $this->log('afterGetProductPrice()');
 

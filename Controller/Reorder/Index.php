@@ -18,7 +18,7 @@ class Index extends Reorder implements HttpGetActionInterface
     /**
      * Execute 'Index' action based on request and return result
      *
-     * @return \Magento\Framework\Controller\ResultInterface|\Magento\Framework\App\ResponseInterface
+     * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()
     {

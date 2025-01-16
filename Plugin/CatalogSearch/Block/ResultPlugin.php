@@ -11,8 +11,8 @@ use Magento\CatalogSearch\Block\Result as SearchResult;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\App\Response\Http as HttpResponse;
 use Magento\Framework\UrlInterface;
-use ECInternet\Sage300Account\Helper\Data;
 use ECInternet\Sage300Account\Logger\Logger;
+use ECInternet\Sage300Account\Model\Config;
 use ECInternet\Sage300Account\Model\Data\Oeshdt;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeshdt\CollectionFactory as OeshdtCollection;
 
@@ -37,14 +37,14 @@ class ResultPlugin
     private $url;
 
     /**
-     * @var \ECInternet\Sage300Account\Helper\Data
-     */
-    private $helper;
-
-    /**
      * @var \ECInternet\Sage300Account\Logger\Logger
      */
     private $logger;
+
+    /**
+     * @var \ECInternet\Sage300Account\Model\Config
+     */
+    private $config;
 
     /**
      * @var \ECInternet\Sage300Account\Model\ResourceModel\Oeshdt\CollectionFactory
@@ -57,23 +57,23 @@ class ResultPlugin
      * @param \Magento\Customer\Model\Session                                         $customerSession
      * @param \Magento\Framework\App\Response\Http                                    $response
      * @param \Magento\Framework\UrlInterface                                         $url
-     * @param \ECInternet\Sage300Account\Helper\Data                                  $helper
      * @param \ECInternet\Sage300Account\Logger\Logger                                $logger
+     * @param \ECInternet\Sage300Account\Model\Config                                 $config
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeshdt\CollectionFactory $oeshdtCollection
      */
     public function __construct(
         CustomerSession $customerSession,
         HttpResponse $response,
         UrlInterface $url,
-        Data $helper,
         Logger $logger,
+        Config $config,
         OeshdtCollection $oeshdtCollection
     ) {
         $this->customerSession  = $customerSession;
         $this->response         = $response;
         $this->url              = $url;
-        $this->helper           = $helper;
         $this->logger           = $logger;
+        $this->config           = $config;
         $this->oeshdtCollection = $oeshdtCollection;
     }
 
@@ -83,7 +83,7 @@ class ResultPlugin
     ) {
         // Only attempt if search doesn't find exact result
         if ($result !== 1) {
-            if ($this->helper->isReorderEnabled()) {
+            if ($this->config->isReorderEnabled()) {
                 if ($this->shouldRedirectToReorder($subject)) {
                     $this->response->setRedirect($this->url->getUrl('accounting/reorder/index'));
                 }

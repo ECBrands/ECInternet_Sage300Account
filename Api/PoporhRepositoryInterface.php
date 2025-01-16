@@ -48,7 +48,7 @@ interface PoporhRepositoryInterface
     /**
      * Get POPORH record by ID
      *
-     * @param int $poporhPoporhId
+     * @param int $poporhId
      *
      * @return \ECInternet\Sage300Account\Api\Data\PoporhInterface|null
      */

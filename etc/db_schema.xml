@@ -10,7 +10,7 @@
 		<column xsi:type="varchar" name="IDINVC" nullable="false" length="22" comment="Document Number" />
 		<column xsi:type="int" name="AUDTDATE" padding="8" unsigned="true" nullable="true" comment="Audit Date" />
 		<column xsi:type="int" name="AUDTTIME" padding="8" unsigned="true" nullable="true" comment="Audit Time" />
-		<column xsi:type="decimal" name="AMTDUEHC" scale="3" precision="19" unsigned="true" nullable="false" comment="Currency Amount Due" />
+		<column xsi:type="decimal" name="AMTDUEHC" scale="3" precision="19" unsigned="false" nullable="false" comment="Currency Amount Due" />
 		<column xsi:type="boolean" name="SWPAID" nullable="false" comment="Fully Paid" />
 		<constraint xsi:type="primary" referenceId="PRIMARY">
 			<column name="entity_id" />
@@ -64,8 +64,8 @@
 		<column xsi:type="decimal" name="QTYSHIPPED" scale="4" precision="19" unsigned="true" nullable="true" comment="QTYSHIPPED" />
 		<column xsi:type="decimal" name="QTYBACKORD" scale="4" precision="19" unsigned="true" nullable="true" comment="QTYBACKORD" />
 		<column xsi:type="varchar" name="INVUNIT" nullable="true" length="10" comment="INVUNIT" />
-		<column xsi:type="decimal" name="UNITPRICE" scale="6" precision="19" unsigned="true" nullable="true" comment="UNITPRICE" />
-		<column xsi:type="decimal" name="EXTINVMISC" scale="3" precision="19" unsigned="true" nullable="true" comment="EXTINVMISC" />
+		<column xsi:type="decimal" name="UNITPRICE" scale="6" precision="19" unsigned="false" nullable="true" comment="UNITPRICE" />
+		<column xsi:type="decimal" name="EXTINVMISC" scale="3" precision="19" unsigned="false" nullable="true" comment="EXTINVMISC" />
 		<column xsi:type="decimal" name="INVDISC" scale="3" precision="19" unsigned="true" nullable="true" comment="INVDISC" />
 		<constraint xsi:type="primary" referenceId="PRIMARY">
 			<column name="entity_id" />
@@ -111,14 +111,15 @@
 		<column xsi:type="int" name="ORDDATE" padding="8" unsigned="true" nullable="true" comment="Order Date" />
 		<column xsi:type="varchar" name="SHIPVIA" nullable="true" length="6" comment="Ship-Via Code" />
 		<column xsi:type="int" name="INVDATE" padding="8" unsigned="true" nullable="true" comment="Invoice Date" />
-		<column xsi:type="decimal" name="INVNETNOTX" scale="3" precision="19" unsigned="true" nullable="true" comment="Invoice Total Before Tax" />
-		<column xsi:type="decimal" name="INVSUBTOT" scale="3" precision="19" unsigned="true" nullable="true" comment="Invoice Subtotal Amount" />
-		<column xsi:type="decimal" name="INVNETWTX" scale="3" precision="19" unsigned="true" nullable="true" comment="Invoice Total With Tax" />
+		<column xsi:type="decimal" name="INVNETNOTX" scale="3" precision="19" unsigned="false" nullable="true" comment="Invoice Total Before Tax" />
+		<column xsi:type="decimal" name="INVITAXTOT" scale="3" precision="19" unsigned="false" nullable="true" comment="Invoice Included Tax Total Amount" />
+		<column xsi:type="decimal" name="INVSUBTOT" scale="3" precision="19" unsigned="false" nullable="true" comment="Invoice Subtotal Amount" />
+		<column xsi:type="decimal" name="INVNETWTX" scale="3" precision="19" unsigned="false" nullable="true" comment="Invoice Total With Tax" />
 		<column xsi:type="varchar" name="INHOMECURR" nullable="true" length="3" comment="Invoice Home Currency" />
 		<column xsi:type="varchar" name="INSOURCURR" nullable="true" length="3" comment="Invoice Source Currency" />
 		<column xsi:type="varchar" name="SALESPER1" nullable="true" length="8" comment="Salesperson 1" />
 		<column xsi:type="varchar" name="INVNUMBER" nullable="true" length="22" comment="Invoice Number" />
-		<column xsi:type="decimal" name="RTGAMOUNT" scale="3" precision="19" unsigned="true" nullable="true" comment="Retainage Amount" />
+		<column xsi:type="decimal" name="RTGAMOUNT" scale="3" precision="19" unsigned="false" nullable="true" comment="Retainage Amount" />
 		<constraint xsi:type="primary" referenceId="PRIMARY">
 			<column name="entity_id" />
 		</constraint>
@@ -145,8 +146,8 @@
 		<column xsi:type="decimal" name="QTYSHIPPED" scale="4" precision="19" unsigned="true" nullable="true" comment="QTYSHIPPED" />
 		<column xsi:type="decimal" name="QTYBACKORD" scale="4" precision="19" unsigned="true" nullable="true" comment="QTYBACKORD" />
 		<column xsi:type="varchar" name="ORDUNIT" nullable="true" length="10" comment="ORDUNIT" />
-		<column xsi:type="decimal" name="UNITPRICE" scale="6" precision="19" unsigned="true" nullable="true" comment="UNITPRICE" />
-		<column xsi:type="decimal" name="EXTINVMISC" scale="3" precision="19" unsigned="true" nullable="true" comment="Extended Amount" />
+		<column xsi:type="decimal" name="UNITPRICE" scale="6" precision="19" unsigned="false" nullable="true" comment="UNITPRICE" />
+		<column xsi:type="decimal" name="EXTINVMISC" scale="3" precision="19" unsigned="false" nullable="true" comment="Extended Amount" />
 		<constraint xsi:type="primary" referenceId="PRIMARY">
 			<column name="entity_id" />
 		</constraint>
@@ -198,20 +199,20 @@
 		<column xsi:type="varchar" name="TAUTH3" nullable="true" length="12" comment="TAUTH3" />
 		<column xsi:type="varchar" name="TAUTH4" nullable="true" length="12" comment="TAUTH4" />
 		<column xsi:type="varchar" name="TAUTH5" nullable="true" length="12" comment="TAUTH5" />
-		<column xsi:type="decimal" name="TEAMOUNT1" scale="3" precision="19" unsigned="true" nullable="true" comment="TEAMOUNT1" />
-		<column xsi:type="decimal" name="TEAMOUNT2" scale="3" precision="19" unsigned="true" nullable="true" comment="TEAMOUNT2" />
-		<column xsi:type="decimal" name="TEAMOUNT3" scale="3" precision="19" unsigned="true" nullable="true" comment="TEAMOUNT3" />
-		<column xsi:type="decimal" name="TEAMOUNT4" scale="3" precision="19" unsigned="true" nullable="true" comment="TEAMOUNT4" />
-		<column xsi:type="decimal" name="TEAMOUNT5" scale="3" precision="19" unsigned="true" nullable="true" comment="TEAMOUNT5" />
-		<column xsi:type="decimal" name="TIAMOUNT1" scale="3" precision="19" unsigned="true" nullable="true" comment="TIAMOUNT1" />
-		<column xsi:type="decimal" name="TIAMOUNT2" scale="3" precision="19" unsigned="true" nullable="true" comment="TIAMOUNT2" />
-		<column xsi:type="decimal" name="TIAMOUNT3" scale="3" precision="19" unsigned="true" nullable="true" comment="TIAMOUNT3" />
-		<column xsi:type="decimal" name="TIAMOUNT4" scale="3" precision="19" unsigned="true" nullable="true" comment="TIAMOUNT4" />
-		<column xsi:type="decimal" name="TIAMOUNT5" scale="3" precision="19" unsigned="true" nullable="true" comment="TIAMOUNT5" />
-		<column xsi:type="decimal" name="INVITAXTOT" scale="3" precision="19" unsigned="true" nullable="true" comment="INVITAXTOT" />
-		<column xsi:type="decimal" name="INVDISCAMT" scale="3" precision="19" unsigned="true" nullable="true" comment="INVDISCAMT" />
-		<column xsi:type="decimal" name="INVSUBTOT" scale="3" precision="19" unsigned="true" nullable="true" comment="INVSUBTOT" />
-		<column xsi:type="decimal" name="INVNETWTX" scale="3" precision="19" unsigned="true" nullable="true" comment="INVNETWTX" />
+		<column xsi:type="decimal" name="TEAMOUNT1" scale="3" precision="19" unsigned="false" nullable="true" comment="TEAMOUNT1" />
+		<column xsi:type="decimal" name="TEAMOUNT2" scale="3" precision="19" unsigned="false" nullable="true" comment="TEAMOUNT2" />
+		<column xsi:type="decimal" name="TEAMOUNT3" scale="3" precision="19" unsigned="false" nullable="true" comment="TEAMOUNT3" />
+		<column xsi:type="decimal" name="TEAMOUNT4" scale="3" precision="19" unsigned="false" nullable="true" comment="TEAMOUNT4" />
+		<column xsi:type="decimal" name="TEAMOUNT5" scale="3" precision="19" unsigned="false" nullable="true" comment="TEAMOUNT5" />
+		<column xsi:type="decimal" name="TIAMOUNT1" scale="3" precision="19" unsigned="false" nullable="true" comment="TIAMOUNT1" />
+		<column xsi:type="decimal" name="TIAMOUNT2" scale="3" precision="19" unsigned="false" nullable="true" comment="TIAMOUNT2" />
+		<column xsi:type="decimal" name="TIAMOUNT3" scale="3" precision="19" unsigned="false" nullable="true" comment="TIAMOUNT3" />
+		<column xsi:type="decimal" name="TIAMOUNT4" scale="3" precision="19" unsigned="false" nullable="true" comment="TIAMOUNT4" />
+		<column xsi:type="decimal" name="TIAMOUNT5" scale="3" precision="19" unsigned="false" nullable="true" comment="TIAMOUNT5" />
+		<column xsi:type="decimal" name="INVITAXTOT" scale="3" precision="19" unsigned="false" nullable="true" comment="INVITAXTOT" />
+		<column xsi:type="decimal" name="INVDISCAMT" scale="3" precision="19" unsigned="false" nullable="true" comment="INVDISCAMT" />
+		<column xsi:type="decimal" name="INVSUBTOT" scale="3" precision="19" unsigned="false" nullable="true" comment="INVSUBTOT" />
+		<column xsi:type="decimal" name="INVNETWTX" scale="3" precision="19" unsigned="false" nullable="true" comment="INVNETWTX" />
 		<constraint xsi:type="primary" referenceId="PRIMARY">
 			<column name="entity_id" />
 		</constraint>
@@ -232,8 +233,8 @@
 		<column xsi:type="int" name="AUDTTIME" padding="8" unsigned="true" nullable="true" comment="Audit Time" />
 		<column xsi:type="varchar" name="AUDTUSER" nullable="true" length="8" comment="Audit User" />
 		<column xsi:type="varchar" name="AUDTORG" nullable="true" length="6" comment="Audit Organization" />
-		<column xsi:type="decimal" name="PAYMENT" scale="3" precision="19" unsigned="true" nullable="true" comment="Payment in Customer Currency" />
-		<column xsi:type="decimal" name="INVPAYDISC" scale="3" precision="19" unsigned="true" nullable="true" comment="Payment Discount" />
+		<column xsi:type="decimal" name="PAYMENT" scale="3" precision="19" unsigned="false" nullable="true" comment="Payment in Customer Currency" />
+		<column xsi:type="decimal" name="INVPAYDISC" scale="3" precision="19" unsigned="false" nullable="true" comment="Payment Discount" />
 		<constraint xsi:type="primary" referenceId="PRIMARY">
 			<column name="entity_id" />
 		</constraint>
@@ -274,7 +275,7 @@
 		<column xsi:type="varchar" name="AUDTUSER" nullable="true" length="8" comment="AUDTUSER" />
 		<column xsi:type="varchar" name="AUDTORG" nullable="true" length="6" comment="AUDTORG" />
 		<column xsi:type="int" name="DISCDATE" padding="8" unsigned="true" nullable="true" comment="Discount Date" />
-		<column xsi:type="decimal" name="DISCAMT" scale="3" precision="19" unsigned="true" nullable="true" comment="Discount Amount" />
+		<column xsi:type="decimal" name="DISCAMT" scale="3" precision="19" unsigned="false" nullable="true" comment="Discount Amount" />
 		<column xsi:type="int" name="DUEDATE" padding="8" unsigned="true" nullable="true" comment="Due Date" />
 		<constraint xsi:type="primary" referenceId="PRIMARY">
 			<column name="entity_id" />
@@ -358,6 +359,10 @@
 		<column xsi:type="decimal" name="DEFCONV" scale="6" precision="19" unsigned="true" nullable="false" comment="Default Conversion Factor" />
 		<constraint xsi:type="primary" referenceId="PRIMARY">
 			<column name="entity_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="ECINTERNET_SAGE300ACCOUNT_UOM_ITEMNO_PRICELIST">
+			<column name="ITEMNO" />
+			<column name="PRICELIST" />
 		</constraint>
 	</table>
 </schema>

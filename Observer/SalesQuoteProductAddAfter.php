@@ -11,6 +11,7 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Quote\Model\Quote\Item;
 use ECInternet\Sage300Account\Helper\Data;
+use ECInternet\Sage300Account\Helper\Uom as UomHelper;
 use ECInternet\Sage300Account\Logger\Logger;
 use Exception;
 
@@ -25,6 +26,11 @@ class SalesQuoteProductAddAfter implements ObserverInterface
     private $helper;
 
     /**
+     * @var \ECInternet\Sage300Account\Helper\Uom
+     */
+    private $uom;
+
+    /**
      * @var \ECInternet\Sage300Account\Logger\Logger
      */
     private $logger;
@@ -33,13 +39,16 @@ class SalesQuoteProductAddAfter implements ObserverInterface
      * SalesQuoteProductAddAfter constructor.
      *
      * @param \ECInternet\Sage300Account\Helper\Data   $helper
+     * @param \ECInternet\Sage300Account\Helper\Uom    $uomHelper
      * @param \ECInternet\Sage300Account\Logger\Logger $logger
      */
     public function __construct(
         Data $helper,
+        UomHelper $uomHelper,
         Logger $logger
     ) {
         $this->helper = $helper;
+        $this->uom    = $uomHelper;
         $this->logger = $logger;
     }
 
@@ -92,7 +101,7 @@ class SalesQuoteProductAddAfter implements ObserverInterface
                     if (is_numeric($customerGroupId)) {
                         $customerGroupCode = $this->getCustomerGroupCode((int)$customerGroupId);
                         if ($customerGroupCode !== null) {
-                            return $this->helper->getUomText($product->getSku(), $customerGroupCode);
+                            return $this->uom->getUomText($product->getSku(), $customerGroupCode);
                         } else {
                             $this->log('getUom() - Unable to get customer group code');
                         }

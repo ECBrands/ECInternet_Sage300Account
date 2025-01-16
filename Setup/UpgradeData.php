@@ -62,7 +62,7 @@ class UpgradeData implements UpgradeDataInterface
      *
      * @return void
      * @throws \Magento\Framework\Exception\LocalizedException
-     * @throws \Zend_Validate_Exception
+     * @throws \Magento\Framework\Validator\ValidateException
      */
     public function upgrade(
         ModuleDataSetupInterface $setup,

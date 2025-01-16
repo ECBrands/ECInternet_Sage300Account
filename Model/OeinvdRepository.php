@@ -197,7 +197,6 @@ class OeinvdRepository implements OeinvdRepositoryInterface
         /** @var \ECInternet\Sage300Account\Api\Data\OeinvdSearchResultsInterface $searchResults */
         $searchResults = $this->searchResultsFactory->create();
 
-        /** @noinspection PhpExpressionResultUnusedInspection */
         $searchResults->setSearchCriteria($searchCriteria);
 
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Poporl\Collection $collection */

@@ -14,7 +14,7 @@ use Magento\Framework\View\Element\Template;
 use Magento\Sales\Api\Data\OrderItemInterface;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory as OrderCollectionFactory;
 use Magento\Theme\Block\Html\Pager;
-use ECInternet\Sage300Account\Helper\Data;
+use ECInternet\Sage300Account\Model\Config;
 use ECInternet\Sage300Account\Model\Data\Oeinvh;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\CollectionFactory as OeinvhCollectionFactory;
 
@@ -41,9 +41,9 @@ class Open extends Template
     private $orderCollectionFactory;
 
     /**
-     * @var \ECInternet\Sage300Account\Helper\Data
+     * @var \ECInternet\Sage300Account\Model\Config
      */
-    private $helper;
+    private $config;
 
     /**
      * @var \ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\CollectionFactory
@@ -57,7 +57,7 @@ class Open extends Template
      * @param \Magento\Customer\Model\Session                                         $customerSession
      * @param \Magento\Framework\Pricing\PriceCurrencyInterface                       $priceCurrency
      * @param \Magento\Sales\Model\ResourceModel\Order\CollectionFactory              $orderCollectionFactory
-     * @param \ECInternet\Sage300Account\Helper\Data                                  $helper
+     * @param \ECInternet\Sage300Account\Model\Config                                 $config
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\CollectionFactory $oeinvhCollectionFactory
      * @param array                                                                   $data
      */
@@ -66,14 +66,14 @@ class Open extends Template
         CustomerSession $customerSession,
         PriceCurrencyInterface $priceCurrency,
         OrderCollectionFactory $orderCollectionFactory,
-        Data $helper,
+        Config $config,
         OeinvhCollectionFactory $oeinvhCollectionFactory,
         array $data = []
     ) {
         $this->customerSession         = $customerSession;
         $this->priceCurrency           = $priceCurrency;
         $this->orderCollectionFactory  = $orderCollectionFactory;
-        $this->helper                  = $helper;
+        $this->config                  = $config;
         $this->oeinvhCollectionFactory = $oeinvhCollectionFactory;
 
         parent::__construct($context, $data);
@@ -125,7 +125,7 @@ class Open extends Template
      */
     public function getOpenInvoices()
     {
-        if ($this->helper->isModuleEnabled()) {
+        if ($this->config->isModuleEnabled()) {
             if ($customer = $this->getCurrentCustomer()) {
                 if ($customerNumber = $customer->getData('customer_number')) {
                     $collection = $this->oeinvhCollectionFactory->create();
@@ -227,7 +227,7 @@ class Open extends Template
      */
     public function allowInvoicePayments()
     {
-        return $this->helper->areInvoicePaymentsAllowed();
+        return $this->config->areInvoicePaymentsAllowed();
     }
 
     /**
@@ -330,7 +330,7 @@ class Open extends Template
     ) {
         return $this->orderCollectionFactory->create()
             ->addAttributeToSelect('*')
-            ->addFieldToFilter('status', Data::INVOICE_PAYMENT_ORDER_STATUS)
+            ->addFieldToFilter('status', Config::INVOICE_PAYMENT_ORDER_STATUS)
             ->addFieldToFilter('customer_email', $customerEmail);
     }
 

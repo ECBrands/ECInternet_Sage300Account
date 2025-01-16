@@ -18,7 +18,7 @@ class History extends Invoice implements HttpGetActionInterface
     /**
      * Execute 'History' action based on request and return result
      *
-     * @return \Magento\Framework\Controller\ResultInterface|\Magento\Framework\App\ResponseInterface
+     * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()
     {
@@ -27,7 +27,7 @@ class History extends Invoice implements HttpGetActionInterface
         }
 
         /** @var \Magento\Framework\View\Result\Page $resultPage */
-        $resultPage = $this->_resultPageFactory->create();
+        $resultPage = $this->resultPageFactory->create();
         $resultPage->getConfig()->getTitle()->prepend(__('My Invoice History'));
 
         /** @var \Magento\Theme\Block\Html\Breadcrumbs $breadcrumbs */
@@ -36,7 +36,7 @@ class History extends Invoice implements HttpGetActionInterface
             $breadcrumbs->addCrumb('home', [
                 'label' => __('Home'),
                 'title' => __('Home'),
-                'link'  => $this->_url->getUrl('')
+                'link'  => $this->url->getUrl('')
             ]);
             $breadcrumbs->addCrumb('my_account', [
                 'label' => __('My Account'),

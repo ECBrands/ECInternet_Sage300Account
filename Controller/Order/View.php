@@ -19,7 +19,7 @@ class View extends Order implements HttpGetActionInterface
     /**
      * Execute 'View' action based on request and return result
      *
-     * @return \Magento\Framework\Controller\ResultInterface|\Magento\Framework\App\ResponseInterface
+     * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()
     {

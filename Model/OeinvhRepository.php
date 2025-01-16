@@ -190,7 +190,6 @@ class OeinvhRepository implements OeinvhRepositoryInterface
         /** @var \ECInternet\Sage300Account\Api\Data\OeinvhSearchResultsInterface $searchResults */
         $searchResults = $this->searchResultsFactory->create();
 
-        /** @noinspection PhpExpressionResultUnusedInspection */
         $searchResults->setSearchCriteria($searchCriteria);
 
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Poporl\Collection $collection */

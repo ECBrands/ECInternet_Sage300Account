@@ -122,8 +122,6 @@ define([
 
                 /** @inheritdoc */
                 success: function (res) {
-                    var eventData, parameters;
-
                     $(document).trigger('ajax:addToCart', {
                         'sku': form.data().productSku,
                         'productIds': productIds,

@@ -309,11 +309,17 @@ class ReorderList extends View
         $this->log('getFewestValidCount()', ['sku' => $product->getSku()]);
 
         $minAllowed = $this->getMinAllowed($product);
+        $this->log('getFewestValidCount()', ['minAllowed' => $minAllowed]);
+
+        // We need 'min_sale_qty'
         if ($minAllowed === null) {
             return null;
         }
 
         $qtyIncrements = $this->getQtyIncrements($product);
+        $this->log('getFewestValidCount()', ['qtyIncrements' => $qtyIncrements]);
+
+        // We need 'qty_increments'
         if ($qtyIncrements === null) {
             return null;
         }
@@ -327,6 +333,7 @@ class ReorderList extends View
             // minAllowed is a quantity increment
             return $minAllowed;
         } else {
+            // TODO: Why didn't I use ceiling?
             // minAllowed is not a quantity increment.  Get the floor, add one, and multiply by qtyIncrements
             $floor = $this->getFloor($minAllowed, $qtyIncrements);
             if ($floor !== null) {
@@ -350,9 +357,6 @@ class ReorderList extends View
 
         if ($stockItem = $this->stockRegistry->getStockItem($product->getId(), 1)) {
             $this->log('getQtyIncrements()', ['stockItem' => $stockItem->getData()]);
-
-            //$qtyIncrements = $stockItem->getQtyIncrements();
-            //$this->log('getQtyIncrements()', ['getQtyIncrements()' => $qtyIncrements]);
 
             // TODO: Use this until we can step through getQtyIncrements() logic
             $qtyIncrements = (int)$stockItem->getData('qty_increments');

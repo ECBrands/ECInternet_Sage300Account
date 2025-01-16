@@ -12,7 +12,7 @@ use Magento\Framework\Pricing\PriceCurrencyInterface;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\View\Element\Template;
 use Magento\Theme\Block\Html\Pager;
-use ECInternet\Sage300Account\Helper\Data;
+use ECInternet\Sage300Account\Model\Config;
 use ECInternet\Sage300Account\Model\Data\Oeinvh;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\CollectionFactory as OeinvhCollectionFactory;
 
@@ -34,9 +34,9 @@ class History extends Template
     private $priceCurrency;
 
     /**
-     * @var \ECInternet\Sage300Account\Helper\Data
+     * @var \ECInternet\Sage300Account\Model\Config
      */
-    private $helper;
+    private $config;
 
     /**
      * @var \ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\CollectionFactory
@@ -49,7 +49,7 @@ class History extends Template
      * @param \Magento\Framework\View\Element\Template\Context                        $context
      * @param \Magento\Customer\Model\Session                                         $customerSession
      * @param \Magento\Framework\Pricing\PriceCurrencyInterface                       $priceCurrency
-     * @param \ECInternet\Sage300Account\Helper\Data                                  $helper
+     * @param \ECInternet\Sage300Account\Model\Config                                 $config
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\CollectionFactory $oeinvhCollectionFactory
      * @param array                                                                   $data
      */
@@ -57,13 +57,13 @@ class History extends Template
         Context $context,
         CustomerSession $customerSession,
         PriceCurrencyInterface $priceCurrency,
-        Data $helper,
+        Config $config,
         OeinvhCollectionFactory $oeinvhCollectionFactory,
         array $data = []
     ) {
         $this->customerSession         = $customerSession;
         $this->priceCurrency           = $priceCurrency;
-        $this->helper                  = $helper;
+        $this->config                  = $config;
         $this->oeinvhCollectionFactory = $oeinvhCollectionFactory;
 
         parent::__construct($context, $data);
@@ -115,13 +115,12 @@ class History extends Template
      */
     public function getInvoices()
     {
-        if ($this->helper->isModuleEnabled()) {
+        if ($this->config->isModuleEnabled()) {
             if ($this->customerSession->isLoggedIn()) {
                 /** @var \Magento\Customer\Model\Customer $customer */
                 $customer = $this->customerSession->getCustomer();
 
-                $customerNumber = $customer->getData('customer_number');
-                if ($customerNumber) {
+                if ($customerNumber = $customer->getData('customer_number')) {
                     // Get value of current page
                     $page = $this->getRequest()->getParam('p')
                         ? $this->getRequest()->getParam('p')

@@ -203,7 +203,6 @@ class OeppreRepository implements OeppreRepositoryInterface
         /** @var \ECInternet\Sage300Account\Api\Data\OeppreSearchResultsInterface $searchResults */
         $searchResults = $this->searchResultsFactory->create();
 
-        /** @noinspection PhpExpressionResultUnusedInspection */
         $searchResults->setSearchCriteria($searchCriteria);
 
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Oeppre\Collection $collection */

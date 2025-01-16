@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace ECInternet\Sage300Account\Controller\Invoice;
 
+use Magento\Catalog\Model\Product;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -14,7 +15,7 @@ use Magento\Framework\Exception\StateException;
 use Magento\Quote\Api\Data\CartInterface;
 use Magento\Quote\Model\Quote;
 use ECInternet\Sage300Account\Controller\Invoice;
-use ECInternet\Sage300Account\Helper\Data as Helper;
+use ECInternet\Sage300Account\Model\Config;
 use ECInternet\Sage300Account\Model\Data\Oeinvh;
 use Exception;
 
@@ -29,7 +30,7 @@ class OpenPost extends Invoice implements HttpPostActionInterface
     /**
      * Execute 'OpenPost' action based on request and return result
      *
-     * @return \Magento\Framework\Controller\ResultInterface|\Magento\Framework\App\ResponseInterface
+     * @return \Magento\Framework\Controller\ResultInterface
      * @throws Exception
      */
     public function execute()
@@ -37,7 +38,7 @@ class OpenPost extends Invoice implements HttpPostActionInterface
         $this->log('execute()');
 
         /** @var \Magento\Framework\Controller\Result\Redirect $resultRedirect */
-        $resultRedirect = $this->_resultRedirectFactory->create();
+        $resultRedirect = $this->resultRedirectFactory->create();
 
         $postData = $this->getRequest()->getParams();
         if ($this->isPaymentAttempt($postData)) {
@@ -45,7 +46,7 @@ class OpenPost extends Invoice implements HttpPostActionInterface
             $quote = $this->getCurrentQuote();
 
             // Clear out current quote
-            $this->_checkoutSession->clearQuote();
+            $this->checkoutSession->clearQuote();
 
             foreach ($postData['pay'] as $id => $checkbox) {
                 if (isset($postData['amount'][$id])) {
@@ -69,7 +70,7 @@ class OpenPost extends Invoice implements HttpPostActionInterface
             } catch (NoSuchEntityException $e) {
                 $this->log('execute()', ['exception' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
 
-                $this->_messageManager->addErrorMessage(
+                $this->messageManager->addErrorMessage(
                     __('Unable to pay invoice payment: ' . $e->getMessage())
                 );
 
@@ -137,7 +138,7 @@ class OpenPost extends Invoice implements HttpPostActionInterface
     private function getCurrentQuote()
     {
         try {
-            return $this->_checkoutSession->getQuote();
+            return $this->checkoutSession->getQuote();
         } catch (Exception $e) {
             $this->log('getCurrentQuote()', ['exception' => $e->getMessage()]);
         }
@@ -155,7 +156,7 @@ class OpenPost extends Invoice implements HttpPostActionInterface
         $this->log('getInvoiceById()', ['invoiceId' => $invoiceId]);
 
         /** @var \ECInternet\Sage300Account\Model\Data\Oeinvh $invoice */
-        $invoice = $this->_oeinvhCollectionFactory->create()
+        $invoice = $this->oeinvhCollectionFactory->create()
             ->addFieldToFilter(Oeinvh::COLUMN_ID, ['eq' => $invoiceId])
             ->getFirstItem();
 
@@ -187,7 +188,7 @@ class OpenPost extends Invoice implements HttpPostActionInterface
             'invoicePaymentAmount' => $invoicePaymentAmount
         ]);
 
-        $invoicePaymentSku = $this->_helper->getInvoicePaymentSku();
+        $invoicePaymentSku = $this->config->getInvoicePaymentSku();
         if (!$invoicePaymentSku) {
             $this->log('addInvoicePaymentToQuote() - Invoice Payment Sku not defined.');
             throw new InputException(__('Invoice Payment Sku not defined.'));
@@ -203,7 +204,7 @@ class OpenPost extends Invoice implements HttpPostActionInterface
             throw new StateException(__("Invoice Payment Product [$invoicePaymentSku] is not salable."));
         }
 
-        $additionalOptions[Helper::ORDER_ITEM_INVOICE_ADDITIONAL_OPTION] = [
+        $additionalOptions[Config::ORDER_ITEM_INVOICE_ADDITIONAL_OPTION] = [
             'label' => 'Invoice',
             'value' => $docNumber
         ];
@@ -219,10 +220,10 @@ class OpenPost extends Invoice implements HttpPostActionInterface
         $quote->addProduct($invoicePaymentProduct, 1);
         $this->log('addInvoicePaymentToQuote() - Product added, saving cart...');
 
-        $this->_cartRepository->save($quote);
+        $this->cartRepository->save($quote);
         $this->log('addInvoicePaymentToQuote() - Cart saved.');
 
-        if ($invoicePaymentProduct instanceof \Magento\Catalog\Model\Product) {
+        if ($invoicePaymentProduct instanceof Product) {
             /** @var \Magento\Quote\Model\Quote\Item $quoteItem */
             if ($quoteItem = $quote->getItemByProduct($invoicePaymentProduct)) {
                 $this->log('addInvoicePaymentToQuote()', ['quoteItem BEFORE' => $quoteItem->getData()]);
@@ -248,7 +249,7 @@ class OpenPost extends Invoice implements HttpPostActionInterface
         //$this->log('getProduct()', ['sku' => $sku]);
 
         try {
-            return $this->_productRepository->get($sku, false, null, true);
+            return $this->productRepository->get($sku, false, null, true);
         } catch (NoSuchEntityException $e) {
             $this->log('getProduct()', ['exception' => $e->getMessage()]);
         }
@@ -264,9 +265,9 @@ class OpenPost extends Invoice implements HttpPostActionInterface
     private function saveAndReplaceQuote(
         CartInterface $quote
     ) {
-        $this->_cartRepository->save($quote);
+        $this->cartRepository->save($quote);
         if ($quote instanceof Quote) {
-            $this->_checkoutSession->replaceQuote($quote);
+            $this->checkoutSession->replaceQuote($quote);
         }
     }
 
@@ -280,6 +281,6 @@ class OpenPost extends Invoice implements HttpPostActionInterface
      */
     private function log(string $message, array $extra = [])
     {
-        $this->_logger->info('Controller/Invoice/OpenPost - ' . $message, $extra);
+        $this->logger->info('Controller/Invoice/OpenPost - ' . $message, $extra);
     }
 }

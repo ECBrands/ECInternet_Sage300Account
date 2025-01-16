@@ -189,7 +189,6 @@ class OeshdtRepository implements OeshdtRepositoryInterface
         /** @var \ECInternet\Sage300Account\Api\Data\OeshdtSearchResultsInterface $searchResults */
         $searchResults = $this->searchResultsFactory->create();
 
-        /** @noinspection PhpExpressionResultUnusedInspection */
         $searchResults->setSearchCriteria($searchCriteria);
 
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Oeshdt\Collection $collection */

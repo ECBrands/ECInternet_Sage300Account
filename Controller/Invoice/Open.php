@@ -18,7 +18,7 @@ class Open extends Invoice implements HttpGetActionInterface
     /**
      * Execute 'Open' action based on request and return result
      *
-     * @return \Magento\Framework\Controller\ResultInterface|\Magento\Framework\App\ResponseInterface
+     * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()
     {
@@ -27,16 +27,15 @@ class Open extends Invoice implements HttpGetActionInterface
         }
 
         /** @var \Magento\Framework\View\Result\Page $resultPage */
-        $resultPage = $this->_resultPageFactory->create();
+        $resultPage = $this->resultPageFactory->create();
         $resultPage->getConfig()->getTitle()->prepend(__('My Open Invoices'));
 
         /** @var \Magento\Theme\Block\Html\Breadcrumbs $breadcrumbs */
-        $breadcrumbs = $resultPage->getLayout()->getBlock('breadcrumbs');
-        if ($breadcrumbs) {
+        if ($breadcrumbs = $resultPage->getLayout()->getBlock('breadcrumbs')) {
             $breadcrumbs->addCrumb('home', [
                 'label' => __('Home'),
                 'title' => __('Home'),
-                'link'  => $this->_url->getUrl('')
+                'link'  => $this->url->getUrl('')
             ]);
             $breadcrumbs->addCrumb('my_account', [
                 'label' => __('My Account'),

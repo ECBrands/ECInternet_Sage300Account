@@ -11,8 +11,8 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Store\Model\StoreManagerInterface;
-use ECInternet\Sage300Account\Helper\Data;
 use ECInternet\Sage300Account\Logger\Logger;
+use ECInternet\Sage300Account\Model\Config;
 
 /**
  * Observer for 'layout_generate_blocks_after' event
@@ -33,30 +33,30 @@ class LayoutGenerateBlocksAfter implements ObserverInterface
     private $storeManager;
 
     /**
-     * @var \ECInternet\Sage300Account\Helper\Data
-     */
-    private $helper;
-
-    /**
      * @var \ECInternet\Sage300Account\Logger\Logger
      */
     private $logger;
 
     /**
+     * @var \ECInternet\Sage300Account\Model\Config
+     */
+    private $config;
+
+    /**
      * LayoutGenerateBlocksAfter constructor.
      *
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \ECInternet\Sage300Account\Helper\Data     $helper
      * @param \ECInternet\Sage300Account\Logger\Logger   $logger
+     * @param \ECInternet\Sage300Account\Model\Config    $config
      */
     public function __construct(
         StoreManagerInterface $storeManager,
-        Data $helper,
-        Logger $logger
+        Logger $logger,
+        Config $config
     ) {
         $this->storeManager = $storeManager;
-        $this->helper       = $helper;
         $this->logger       = $logger;
+        $this->config       = $config;
     }
 
     /**
@@ -70,24 +70,20 @@ class LayoutGenerateBlocksAfter implements ObserverInterface
         Observer $observer
     ) {
         /** @var \Magento\Framework\View\LayoutInterface $layout */
-        $layout = $observer->getData('layout');
-
-        if ($this->helper->hideCustomerDashboard()) {
-            $layout->unsetElement('customer_account_dashboard_info');
-        }
-
-        // Get current store id
-        $storeId = $this->getStoreId();
-        //$this->log('execute()', ['storeId' => $storeId]);
-
-        if (is_numeric($storeId)) {
-            if (!$this->helper->showSidenavLinks((int)$storeId)) {
-                $layout->unsetElement(self::BLOCK_NAME_DELIMETER);
-                $layout->unsetElement(self::BLOCK_NAME_ORDER_HISTORY);
-                $layout->unsetElement(self::BLOCK_NAME_INVOICE_HISTORY);
-                $layout->unsetElement(self::BLOCK_NAME_OPEN_INVOICES);
+        if ($layout = $observer->getData('layout')) {
+            if ($this->config->hideCustomerDashboard()) {
+                $layout->unsetElement('customer_account_dashboard_info');
             }
 
+            $storeId = $this->getStoreId();
+            if (is_numeric($storeId)) {
+                if (!$this->config->showSidenavLinks((int)$storeId)) {
+                    $layout->unsetElement(self::BLOCK_NAME_DELIMETER);
+                    $layout->unsetElement(self::BLOCK_NAME_ORDER_HISTORY);
+                    $layout->unsetElement(self::BLOCK_NAME_INVOICE_HISTORY);
+                    $layout->unsetElement(self::BLOCK_NAME_OPEN_INVOICES);
+                }
+            }
         }
     }
 
