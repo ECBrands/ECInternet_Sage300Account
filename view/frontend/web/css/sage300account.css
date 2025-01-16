@@ -1,0 +1,41 @@
+.invoice-head .invoice-head-title,
+.order-head .order-head-title {
+    font-weight: 900;
+    padding-right: 1em;
+}
+
+.invoice-head .invoice-head-label,
+.order-head .order-head-label {
+    font-style: italic;
+}
+
+.col2-set {
+    margin-top: 2em;
+}
+
+.col2-set .col-1 .box-title {
+    float: left;
+    width: 10%;
+}
+
+.col2-set .col-1 .box-content {
+    float: left;
+    margin-left: 10%;
+}
+
+.col2-set .invoice-sold-to,
+.col2-set .order-sold-to {
+    padding-right: 25px;
+}
+
+.invoice-details,
+.order-details {
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+
+.data-table thead tr {
+    background-color: #d5d3d3;
+    border: solid #bdb1b1 1px;
+}
+

@@ -1,0 +1,363 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="ecinternet_sage300account_arobl" resource="default" engine="innodb" comment="Documents">
+		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
+		<column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="true" identity="false" default="0" comment="Store Id" />
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+		<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+		<column xsi:type="varchar" name="IDCUST" nullable="false" length="12" comment="Customer Number" />
+		<column xsi:type="varchar" name="IDINVC" nullable="false" length="22" comment="Document Number" />
+		<column xsi:type="int" name="AUDTDATE" padding="8" unsigned="true" nullable="true" comment="Audit Date" />
+		<column xsi:type="int" name="AUDTTIME" padding="8" unsigned="true" nullable="true" comment="Audit Time" />
+		<column xsi:type="decimal" name="AMTDUEHC" scale="3" precision="19" unsigned="true" nullable="false" comment="Currency Amount Due" />
+		<column xsi:type="boolean" name="SWPAID" nullable="false" comment="Fully Paid" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="entity_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="ECINTERNET_SAGE300ACCOUNT_AROBL_IDCUST_IDINVC">
+			<column name="IDCUST" />
+			<column name="IDINVC" />
+		</constraint>
+	</table>
+
+	<table name="ecinternet_sage300account_artcp" resource="default" engine="innodb" comment="Applied Receipts and Adjustments">
+		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
+		<column xsi:type="int" name="store_id" padding="10" unsigned="true" nullable="true" identity="false" default="0" comment="Store Id" />
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+		<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+		<column xsi:type="varchar" name="CODEPAYM" nullable="false" length="2" comment="Batch Type" />
+		<column xsi:type="decimal" name="CNTBTCH" scale="0" precision="9" unsigned="true" nullable="true" comment="Batch Number" />
+		<column xsi:type="decimal" name="CNTITEM" scale="0" precision="7" unsigned="true" nullable="true" comment="Entry Number" />
+		<column xsi:type="decimal" name="CNTLINE" scale="0" precision="5" unsigned="true" nullable="true" comment="Line Number" />
+		<column xsi:type="int" name="AUDTDATE" padding="8" unsigned="true" nullable="true" comment="Audit Date" />
+		<column xsi:type="int" name="AUDTTIME" padding="8" unsigned="true" nullable="true" comment="Audit Time" />
+		<column xsi:type="varchar" name="AUDTUSER" nullable="true" length="8" comment="Audit User" />
+		<column xsi:type="varchar" name="AUDTORG" nullable="true" length="6" comment="Audit Organization" />
+		<column xsi:type="varchar" name="IDINVC" nullable="true" length="22" comment="Document Number" />
+		<column xsi:type="decimal" name="AMTPAYM" scale="3" precision="19" unsigned="false" nullable="true" comment="Customer Receipt Amount" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="entity_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="ECINTERNET_SAGE300ACCOUNT_ARTCP_CODEPAYM_CNTBTCH_CNTITEM_CNTLINE">
+			<column name="CODEPAYM" />
+			<column name="CNTBTCH" />
+			<column name="CNTITEM" />
+			<column name="CNTLINE" />
+		</constraint>
+	</table>
+
+	<table name="ecinternet_sage300account_oeinvd" resource="default" engine="innodb" comment="Invoice Details">
+		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
+		<column xsi:type="int" name="store_id" padding="10" unsigned="true" nullable="true" identity="false" default="0" comment="Store Id" />
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+		<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+		<column xsi:type="decimal" name="INVUNIQ" scale="0" precision="19" unsigned="true" nullable="false" comment="Invoice Uniquifier" />
+		<column xsi:type="smallint" name="LINENUM" padding="6" unsigned="true" nullable="true" identity="false" comment="Line Uniquifier" />
+		<column xsi:type="int" name="AUDTDATE" padding="8" unsigned="true" nullable="true" comment="Audit Date" />
+		<column xsi:type="int" name="AUDTTIME" padding="8" unsigned="true" nullable="true" comment="Audit Time" />
+		<column xsi:type="varchar" name="AUDTUSER" nullable="true" length="8" comment="Audit User" />
+		<column xsi:type="varchar" name="AUDTORG" nullable="true" length="6" comment="Audit Organization" />
+		<column xsi:type="varchar" name="ITEM" nullable="true" length="24" comment="ITEM" />
+		<column xsi:type="varchar" name="DESC" nullable="true" length="60" comment="DESC" />
+		<column xsi:type="decimal" name="QTYORDERED" scale="4" precision="19" unsigned="true" nullable="true" comment="QTYORDERED" />
+		<column xsi:type="decimal" name="QTYSHIPPED" scale="4" precision="19" unsigned="true" nullable="true" comment="QTYSHIPPED" />
+		<column xsi:type="decimal" name="QTYBACKORD" scale="4" precision="19" unsigned="true" nullable="true" comment="QTYBACKORD" />
+		<column xsi:type="varchar" name="INVUNIT" nullable="true" length="10" comment="INVUNIT" />
+		<column xsi:type="decimal" name="UNITPRICE" scale="6" precision="19" unsigned="true" nullable="true" comment="UNITPRICE" />
+		<column xsi:type="decimal" name="EXTINVMISC" scale="3" precision="19" unsigned="true" nullable="true" comment="EXTINVMISC" />
+		<column xsi:type="decimal" name="INVDISC" scale="3" precision="19" unsigned="true" nullable="true" comment="INVDISC" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="entity_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="ECINTERNET_SAGE300ACCOUNT_OEINVD_INVUNIQ_LINENUM">
+			<column name="INVUNIQ" />
+			<column name="LINENUM" />
+		</constraint>
+	</table>
+
+	<table name="ecinternet_sage300account_oeinvh" resource="default" engine="innodb" comment="Invoice Headers">
+		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
+		<column xsi:type="int" name="store_id" padding="10" unsigned="true" nullable="true" identity="false" default="0" comment="Store Id" />
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+		<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+		<column xsi:type="decimal" name="INVUNIQ" scale="0" precision="19" unsigned="true" nullable="false" comment="Invoice Uniquifier" />
+		<column xsi:type="int" name="AUDTDATE" padding="8" unsigned="true" nullable="true" comment="Audit Date" />
+		<column xsi:type="int" name="AUDTTIME" padding="8" unsigned="true" nullable="true" comment="Audit Time" />
+		<column xsi:type="varchar" name="AUDTUSER" nullable="true" length="8" comment="AUDTUSER" />
+		<column xsi:type="varchar" name="AUDTORG" nullable="true" length="6" comment="AUDTORG" />
+		<column xsi:type="varchar" name="ORDNUMBER" nullable="true" length="22" comment="Order Number" />
+		<column xsi:type="varchar" name="CUSTOMER" nullable="true" length="12" comment="Customer Number" />
+		<column xsi:type="varchar" name="BILNAME" nullable="true" length="60" comment="Bill-To Name" />
+		<column xsi:type="varchar" name="BILADDR1" nullable="true" length="60" comment="BILADDR1" />
+		<column xsi:type="varchar" name="BILADDR2" nullable="true" length="60" comment="BILADDR2" />
+		<column xsi:type="varchar" name="BILADDR3" nullable="true" length="60" comment="BILADDR3" />
+		<column xsi:type="varchar" name="BILADDR4" nullable="true" length="60" comment="BILADDR4" />
+		<column xsi:type="varchar" name="BILCITY" nullable="true" length="30" comment="BILCITY" />
+		<column xsi:type="varchar" name="BILSTATE" nullable="true" length="30" comment="BILSTATE" />
+		<column xsi:type="varchar" name="BILZIP" nullable="true" length="20" comment="BILZIP" />
+		<column xsi:type="varchar" name="BILCOUNTRY" nullable="true" length="30" comment="BILCOUNTRY" />
+		<column xsi:type="varchar" name="SHPNAME" nullable="true" length="60" comment="SHPNAME" />
+		<column xsi:type="varchar" name="SHPADDR1" nullable="true" length="60" comment="SHPADDR1" />
+		<column xsi:type="varchar" name="SHPADDR2" nullable="true" length="60" comment="SHPADDR2" />
+		<column xsi:type="varchar" name="SHPADDR3" nullable="true" length="60" comment="SHPADDR3" />
+		<column xsi:type="varchar" name="SHPADDR4" nullable="true" length="60" comment="SHPADDR4" />
+		<column xsi:type="varchar" name="SHPCITY" nullable="true" length="30" comment="SHPCITY" />
+		<column xsi:type="varchar" name="SHPSTATE" nullable="true" length="30" comment="SHPSTATE" />
+		<column xsi:type="varchar" name="SHPZIP" nullable="true" length="20" comment="SHPZIP" />
+		<column xsi:type="varchar" name="SHPCOUNTRY" nullable="true" length="30" comment="SHPCOUNTRY" />
+		<column xsi:type="varchar" name="PONUMBER" nullable="true" length="22" comment="Purchase Order Number" />
+		<column xsi:type="varchar" name="TERMS" nullable="true" length="6" comment="Terms Code" />
+		<column xsi:type="int" name="ORDDATE" padding="8" unsigned="true" nullable="true" comment="Order Date" />
+		<column xsi:type="varchar" name="SHIPVIA" nullable="true" length="6" comment="Ship-Via Code" />
+		<column xsi:type="int" name="INVDATE" padding="8" unsigned="true" nullable="true" comment="Invoice Date" />
+		<column xsi:type="decimal" name="INVNETNOTX" scale="3" precision="19" unsigned="true" nullable="true" comment="Invoice Total Before Tax" />
+		<column xsi:type="decimal" name="INVSUBTOT" scale="3" precision="19" unsigned="true" nullable="true" comment="Invoice Subtotal Amount" />
+		<column xsi:type="decimal" name="INVNETWTX" scale="3" precision="19" unsigned="true" nullable="true" comment="Invoice Total With Tax" />
+		<column xsi:type="varchar" name="INHOMECURR" nullable="true" length="3" comment="Invoice Home Currency" />
+		<column xsi:type="varchar" name="INSOURCURR" nullable="true" length="3" comment="Invoice Source Currency" />
+		<column xsi:type="varchar" name="SALESPER1" nullable="true" length="8" comment="Salesperson 1" />
+		<column xsi:type="varchar" name="INVNUMBER" nullable="true" length="22" comment="Invoice Number" />
+		<column xsi:type="decimal" name="RTGAMOUNT" scale="3" precision="19" unsigned="true" nullable="true" comment="Retainage Amount" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="entity_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="ECINTERNET_SAGE300ACCOUNT_OEINVH_INVUNIQ">
+			<column name="INVUNIQ" />
+		</constraint>
+	</table>
+
+	<table name="ecinternet_sage300account_oeordd" resource="default" engine="innodb" comment="Order Details">
+		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
+		<column xsi:type="int" name="store_id" padding="10" unsigned="true" nullable="true" identity="false" default="0" comment="Store Id" />
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+		<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+		<column xsi:type="decimal" name="ORDUNIQ" scale="0" precision="19" unsigned="true" nullable="false" comment="ORDUNIQ" />
+		<column xsi:type="smallint" name="LINENUM" padding="6" unsigned="true" nullable="true" identity="false" comment="LINENUM" />
+		<column xsi:type="int" name="AUDTDATE" padding="8" unsigned="true" nullable="true" comment="Audit Date" />
+		<column xsi:type="int" name="AUDTTIME" padding="8" unsigned="true" nullable="true" comment="Audit Time" />
+		<column xsi:type="varchar" name="AUDTUSER" nullable="true" length="8" comment="AUDTUSER" />
+		<column xsi:type="varchar" name="AUDTORG" nullable="true" length="6" comment="AUDTORG" />
+		<column xsi:type="smallint" name="LINETYPE" padding="6" unsigned="true" nullable="true" identity="false" comment="Line Type" />
+		<column xsi:type="varchar" name="ITEM" nullable="true" length="24" comment="ITEM" />
+		<column xsi:type="varchar" name="DESC" nullable="true" length="60" comment="DESC" />
+		<column xsi:type="decimal" name="QTYORDERED" scale="4" precision="19" unsigned="true" nullable="true" comment="QTYORDERED" />
+		<column xsi:type="decimal" name="QTYSHIPPED" scale="4" precision="19" unsigned="true" nullable="true" comment="QTYSHIPPED" />
+		<column xsi:type="decimal" name="QTYBACKORD" scale="4" precision="19" unsigned="true" nullable="true" comment="QTYBACKORD" />
+		<column xsi:type="varchar" name="ORDUNIT" nullable="true" length="10" comment="ORDUNIT" />
+		<column xsi:type="decimal" name="UNITPRICE" scale="6" precision="19" unsigned="true" nullable="true" comment="UNITPRICE" />
+		<column xsi:type="decimal" name="EXTINVMISC" scale="3" precision="19" unsigned="true" nullable="true" comment="Extended Amount" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="entity_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="ECINTERNET_SAGE300ACCOUNT_OEORDD_ORDUNIQ_LINENUM">
+			<column name="ORDUNIQ" />
+			<column name="LINENUM" />
+		</constraint>
+	</table>
+
+	<table name="ecinternet_sage300account_oeordh" resource="default" engine="innodb" comment="Order Headers">
+		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
+		<column xsi:type="int" name="store_id" padding="10" unsigned="true" nullable="true" identity="false" default="0" comment="Store Id" />
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+		<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+		<column xsi:type="decimal" name="ORDUNIQ" scale="0" precision="19" unsigned="true" nullable="false" comment="ORDUNIQ" />
+		<column xsi:type="int" name="AUDTDATE" padding="8" unsigned="true" nullable="true" comment="Audit Date" />
+		<column xsi:type="int" name="AUDTTIME" padding="8" unsigned="true" nullable="true" comment="Audit Time" />
+		<column xsi:type="varchar" name="AUDTUSER" nullable="true" length="8" comment="AUDTUSER" />
+		<column xsi:type="varchar" name="AUDTORG" nullable="true" length="6" comment="AUDTORG" />
+		<column xsi:type="varchar" name="ORDNUMBER" nullable="true" length="22" comment="ORDNUMBER" />
+		<column xsi:type="varchar" name="CUSTOMER" nullable="true" length="12" comment="CUSTOMER" />
+		<column xsi:type="varchar" name="BILNAME" nullable="true" length="60" comment="BILNAME" />
+		<column xsi:type="varchar" name="BILADDR1" nullable="true" length="60" comment="BILADDR1" />
+		<column xsi:type="varchar" name="BILADDR2" nullable="true" length="60" comment="BILADDR2" />
+		<column xsi:type="varchar" name="BILADDR3" nullable="true" length="60" comment="BILADDR3" />
+		<column xsi:type="varchar" name="BILADDR4" nullable="true" length="60" comment="BILADDR4" />
+		<column xsi:type="varchar" name="BILCITY" nullable="true" length="30" comment="BILCITY" />
+		<column xsi:type="varchar" name="BILSTATE" nullable="true" length="30" comment="BILSTATE" />
+		<column xsi:type="varchar" name="BILZIP" nullable="true" length="20" comment="BILZIP" />
+		<column xsi:type="varchar" name="BILCOUNTRY" nullable="true" length="30" comment="BILCOUNTRY" />
+		<column xsi:type="varchar" name="SHPNAME" nullable="true" length="60" comment="SHPNAME" />
+		<column xsi:type="varchar" name="SHPADDR1" nullable="true" length="60" comment="SHPADDR1" />
+		<column xsi:type="varchar" name="SHPADDR2" nullable="true" length="60" comment="SHPADDR2" />
+		<column xsi:type="varchar" name="SHPADDR3" nullable="true" length="60" comment="SHPADDR3" />
+		<column xsi:type="varchar" name="SHPADDR4" nullable="true" length="60" comment="SHPADDR4" />
+		<column xsi:type="varchar" name="SHPCITY" nullable="true" length="30" comment="SHPCITY" />
+		<column xsi:type="varchar" name="SHPSTATE" nullable="true" length="30" comment="SHPSTATE" />
+		<column xsi:type="varchar" name="SHPZIP" nullable="true" length="20" comment="SHPZIP" />
+		<column xsi:type="varchar" name="SHPCOUNTRY" nullable="true" length="30" comment="SHPCOUNTRY" />
+		<column xsi:type="varchar" name="PONUMBER" nullable="true" length="22" comment="PONUMBER" />
+		<column xsi:type="varchar" name="TERMS" nullable="true" length="6" comment="TERMS" />
+		<column xsi:type="varchar" name="REFERENCE" nullable="true" length="60" comment="REFERENCE" />
+		<column xsi:type="int" name="ORDDATE" padding="8" unsigned="true" nullable="true" comment="ORDDATE" />
+		<column xsi:type="varchar" name="SHIPVIA" nullable="true" length="6" comment="SHIPVIA" />
+		<column xsi:type="varchar" name="COMMENT" nullable="true" length="250" comment="COMMENT" />
+		<column xsi:type="varchar" name="SALESPER1" nullable="true" length="8" comment="SALESPER1" />
+		<column xsi:type="varchar" name="TAUTH1" nullable="true" length="12" comment="TAUTH1" />
+		<column xsi:type="varchar" name="TAUTH2" nullable="true" length="12" comment="TAUTH2" />
+		<column xsi:type="varchar" name="TAUTH3" nullable="true" length="12" comment="TAUTH3" />
+		<column xsi:type="varchar" name="TAUTH4" nullable="true" length="12" comment="TAUTH4" />
+		<column xsi:type="varchar" name="TAUTH5" nullable="true" length="12" comment="TAUTH5" />
+		<column xsi:type="decimal" name="TEAMOUNT1" scale="3" precision="19" unsigned="true" nullable="true" comment="TEAMOUNT1" />
+		<column xsi:type="decimal" name="TEAMOUNT2" scale="3" precision="19" unsigned="true" nullable="true" comment="TEAMOUNT2" />
+		<column xsi:type="decimal" name="TEAMOUNT3" scale="3" precision="19" unsigned="true" nullable="true" comment="TEAMOUNT3" />
+		<column xsi:type="decimal" name="TEAMOUNT4" scale="3" precision="19" unsigned="true" nullable="true" comment="TEAMOUNT4" />
+		<column xsi:type="decimal" name="TEAMOUNT5" scale="3" precision="19" unsigned="true" nullable="true" comment="TEAMOUNT5" />
+		<column xsi:type="decimal" name="TIAMOUNT1" scale="3" precision="19" unsigned="true" nullable="true" comment="TIAMOUNT1" />
+		<column xsi:type="decimal" name="TIAMOUNT2" scale="3" precision="19" unsigned="true" nullable="true" comment="TIAMOUNT2" />
+		<column xsi:type="decimal" name="TIAMOUNT3" scale="3" precision="19" unsigned="true" nullable="true" comment="TIAMOUNT3" />
+		<column xsi:type="decimal" name="TIAMOUNT4" scale="3" precision="19" unsigned="true" nullable="true" comment="TIAMOUNT4" />
+		<column xsi:type="decimal" name="TIAMOUNT5" scale="3" precision="19" unsigned="true" nullable="true" comment="TIAMOUNT5" />
+		<column xsi:type="decimal" name="INVITAXTOT" scale="3" precision="19" unsigned="true" nullable="true" comment="INVITAXTOT" />
+		<column xsi:type="decimal" name="INVDISCAMT" scale="3" precision="19" unsigned="true" nullable="true" comment="INVDISCAMT" />
+		<column xsi:type="decimal" name="INVSUBTOT" scale="3" precision="19" unsigned="true" nullable="true" comment="INVSUBTOT" />
+		<column xsi:type="decimal" name="INVNETWTX" scale="3" precision="19" unsigned="true" nullable="true" comment="INVNETWTX" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="entity_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="ECINTERNET_SAGE300ACCOUNT_OEORDH_ORDUNIQ">
+			<column name="ORDUNIQ" />
+		</constraint>
+	</table>
+
+	<table name="ecinternet_sage300account_oeppre" resource="default" engine="innodb" comment="Posted Prepayments">
+		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
+		<column xsi:type="int" name="store_id" padding="10" unsigned="true" nullable="true" identity="false" default="0" comment="Store Id" />
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+		<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+		<column xsi:type="tinyint" name="APPLYTO" padding="6" unsigned="true" nullable="true" identity="false" comment="Apply To" />
+		<column xsi:type="varchar" name="DOCNUMBER" nullable="true" length="22" comment="Document Number" />
+		<column xsi:type="smallint" name="PPNUMBER" padding="6" unsigned="true" nullable="true" identity="false" comment="Prepayment Number" />
+		<column xsi:type="int" name="AUDTDATE" padding="8" unsigned="true" nullable="true" comment="Audit Date" />
+		<column xsi:type="int" name="AUDTTIME" padding="8" unsigned="true" nullable="true" comment="Audit Time" />
+		<column xsi:type="varchar" name="AUDTUSER" nullable="true" length="8" comment="Audit User" />
+		<column xsi:type="varchar" name="AUDTORG" nullable="true" length="6" comment="Audit Organization" />
+		<column xsi:type="decimal" name="PAYMENT" scale="3" precision="19" unsigned="true" nullable="true" comment="Payment in Customer Currency" />
+		<column xsi:type="decimal" name="INVPAYDISC" scale="3" precision="19" unsigned="true" nullable="true" comment="Payment Discount" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="entity_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="ECINTERNET_SAGE300ACCOUNT_OEPPRE_APPLYTO_DOCNUMBER_PPNUMBER">
+			<column name="APPLYTO" />
+			<column name="DOCNUMBER" />
+			<column name="PPNUMBER" />
+		</constraint>
+	</table>
+
+	<table name="ecinternet_sage300account_oeshdt" resource="default" engine="innodb" comment="Sales History Details">
+		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
+		<column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="true" identity="false" default="0" comment="Store Id" />
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+		<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+		<column xsi:type="boolean" name="is_active" nullable="false" default="false" comment="Is Active?" />
+		<column xsi:type="varchar" name="CUSTOMER" nullable="false" length="12" comment="Customer Number" />
+		<column xsi:type="varchar" name="ITEM" nullable="false" length="24" comment="Item Number" />
+		<column xsi:type="decimal" name="SHIPDATE" scale="0" precision="9" unsigned="true" nullable="false" comment="Ship Date" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="entity_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="ECINTERNET_SAGE300ACCOUNT_OESHDT_CUSTOMER_ITEM">
+			<column name="CUSTOMER" />
+			<column name="ITEM" />
+		</constraint>
+	</table>
+
+	<table name="ecinternet_sage300account_oetermi" resource="default" engine="innodb" comment="Invoice Payment Schedules">
+		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
+		<column xsi:type="int" name="store_id" padding="10" unsigned="true" nullable="true" identity="false" default="0" comment="Store Id" />
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+		<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+		<column xsi:type="decimal" name="INVUNIQ" scale="0" precision="19" unsigned="true" nullable="false" comment="Invoice Uniquifier" />
+		<column xsi:type="int" name="PAYMENT" padding="10" unsigned="true" nullable="true" identity="false" comment="Payment Number" />
+		<column xsi:type="int" name="AUDTDATE" padding="8" unsigned="true" nullable="true" comment="Audit Date" />
+		<column xsi:type="int" name="AUDTTIME" padding="8" unsigned="true" nullable="true" comment="Audit Time" />
+		<column xsi:type="varchar" name="AUDTUSER" nullable="true" length="8" comment="AUDTUSER" />
+		<column xsi:type="varchar" name="AUDTORG" nullable="true" length="6" comment="AUDTORG" />
+		<column xsi:type="int" name="DISCDATE" padding="8" unsigned="true" nullable="true" comment="Discount Date" />
+		<column xsi:type="decimal" name="DISCAMT" scale="3" precision="19" unsigned="true" nullable="true" comment="Discount Amount" />
+		<column xsi:type="int" name="DUEDATE" padding="8" unsigned="true" nullable="true" comment="Due Date" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="entity_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="ECINTERNET_SAGE300ACCOUNT_OETERMI_INVUNIQ_PAYMENT">
+			<column name="INVUNIQ" />
+			<column name="PAYMENT" />
+		</constraint>
+	</table>
+
+	<table name="ecinternet_sage300account_poporh" resource="default" engine="innodb" comment="Purchase Orders">
+		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
+		<column xsi:type="int" name="store_id" padding="10" unsigned="true" nullable="true" identity="false" default="0" comment="Store Id" />
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+		<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+		<column xsi:type="decimal" name="PORHSEQ" scale="0" precision="19" unsigned="true" nullable="false" comment="Purchase Order Sequence Key" />
+		<column xsi:type="varchar" name="PONUMBER" nullable="false" length="22" comment="Purchase Order Number" />
+		<column xsi:type="varchar" name="VDCODE" nullable="false" length="12" comment="Vendor Code" />
+		<column xsi:type="varchar" name="VDNAME" nullable="false" length="60" comment="Vendor Name" />
+		<column xsi:type="decimal" name="EXPARRIVAL" scale="0" precision="9" unsigned="true" nullable="true" comment="Expected Arrival Date" />
+		<column xsi:type="varchar" name="VIACODE" nullable="false" length="6" comment="Ship-Via Code" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="entity_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="ECINTERNET_SAGE300ACCOUNT_POPORH_PORHSEQ">
+			<column name="PORHSEQ" />
+		</constraint>
+	</table>
+
+	<table name="ecinternet_sage300account_poporl" resource="default" engine="innodb" comment="Purchase Order Lines">
+		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
+		<column xsi:type="int" name="store_id" padding="10" unsigned="true" nullable="true" identity="false" default="0" comment="Store Id" />
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+		<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+		<column xsi:type="boolean" name="is_active" nullable="false" default="false" comment="Is Active" />
+		<column xsi:type="decimal" name="PORHSEQ" scale="0" precision="19" unsigned="true" nullable="false" comment="Purchase Order Sequence Key" />
+		<column xsi:type="decimal" name="PORLREV" scale="0" precision="19" unsigned="true" nullable="false" comment="Line Number" />
+		<column xsi:type="decimal" name="PORLSEQ" scale="0" precision="19" unsigned="true" nullable="false" comment="Purchase Order Line Sequence Key" />
+		<column xsi:type="varchar" name="ITEMNO" nullable="false" length="24" comment="Item Number" />
+		<column xsi:type="decimal" name="OQORDERED" scale="4" precision="19" nullable="false" comment="Quantity Ordered" />
+		<column xsi:type="decimal" name="OQRECEIVED" scale="4" precision="19" nullable="false" comment="Quantity Received" />
+		<column xsi:type="decimal" name="OQCANCELED" scale="4" precision="19" nullable="false" comment="Quantity Canceled" />
+		<column xsi:type="decimal" name="OQOUTSTAND" scale="4" precision="19" nullable="false" comment="Quantity Outstanding" />
+		<column xsi:type="int" name="DETAILNUM" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Detail Number" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="entity_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="ECINTERNET_SAGE300ACCOUNT_POPORL_PORHSEQ_PORLREV">
+			<column name="PORHSEQ" />
+			<column name="PORLREV" />
+		</constraint>
+	</table>
+
+	<table name="ecinternet_sage300account_poporlo" resource="default" engine="innodb" comment="Purchase Order Detail Optional Fields">
+		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
+		<column xsi:type="int" name="store_id" padding="10" unsigned="true" nullable="true" identity="false" default="0" comment="Store Id" />
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+		<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+		<column xsi:type="decimal" name="PORHSEQ" scale="0" precision="19" unsigned="true" nullable="false" comment="Purchase Order Sequence Key" />
+		<column xsi:type="decimal" name="PORLREV" scale="0" precision="19" unsigned="true" nullable="false" comment="Line Number" />
+		<column xsi:type="varchar" name="OPTFIELD" nullable="false" length="12" comment="Optional Field" />
+		<column xsi:type="varchar" name="VALUE" nullable="false" length="60" comment="Value" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="entity_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="ECINTERNET_SAGE300ACCOUNT_POPORLO_PORHSEQ_PORLREV_OPTFIELD">
+			<column name="PORHSEQ" />
+			<column name="PORLREV" />
+			<column name="OPTFIELD" />
+		</constraint>
+	</table>
+
+	<table name="ecinternet_sage300account_uom" resource="default" engine="innodb" comment="Units of Measure">
+		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
+		<column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="true" identity="false" default="0" comment="Store Id" />
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+		<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+		<column xsi:type="varchar" name="ITEMNO" nullable="false" length="24" comment="Item Number" />
+		<column xsi:type="varchar" name="PRICELIST" nullable="false" length="6" comment="Pricelist" />
+		<column xsi:type="varchar" name="UNIT" nullable="false" length="10" comment="Unit of Measure" />
+		<column xsi:type="decimal" name="DEFCONV" scale="6" precision="19" unsigned="true" nullable="false" comment="Default Conversion Factor" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="entity_id" />
+		</constraint>
+	</table>
+</schema>

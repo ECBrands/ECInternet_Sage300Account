@@ -1,0 +1,37 @@
+.clearfix:before,
+.clearfix:after {
+    content: ' ';
+    display: table;
+}
+
+.clearfix:after {
+    clear: both
+}
+
+.pull-right {
+    float: right !important
+}
+
+.pull-left {
+    float: left !important
+}
+
+.a-left {
+    text-align: left !important;
+}
+
+.a-center {
+    text-align: center !important;
+}
+
+.a-right {
+    text-align: right !important;
+}
+
+.hide {
+    display: none !important
+}
+
+.show {
+    display: block !important
+}

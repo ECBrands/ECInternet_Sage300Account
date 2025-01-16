@@ -1,0 +1,14 @@
+<?php
+/**
+ * Copyright (C) EC Brands Corporation - All Rights Reserved
+ * Contact Licensing@ECInternet.com for use guidelines
+ */
+declare(strict_types=1);
+?>
+
+<?php /** @var \ECInternet\Sage300Account\Block\Catalog\Product\UomList $block */ ?>
+<?php /** @var \Magento\Framework\Escaper $escaper */ ?>
+
+<div class="uom-container">
+    <strong>UOM</strong>&nbsp;<span><?= $escaper->escapeHtml($block->getUomDisplayValue()) ?></span>
+</div>

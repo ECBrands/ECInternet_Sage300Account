@@ -1,0 +1,66 @@
+<?php
+/**
+ * Copyright (C) EC Brands Corporation - All Rights Reserved
+ * Contact Licensing@ECInternet.com for use guidelines
+ */
+declare(strict_types=1);
+?>
+
+<?php /** @var \ECInternet\Sage300Account\Block\Order\History $block */ ?>
+<?php /** @var \Magento\Framework\Escaper $escaper */ ?>
+
+<?php /** @var \ECInternet\Sage300Account\Model\ResourceModel\Oeordh\Collection $orders */?>
+<?php $orders = $block->getOrders(); ?>
+<?php if ($orders && $orders->getSize()) { ?>
+    <div class="table-wrapper orders-history">
+        <table id="my-orders-table" class="data table table-order-items history">
+            <caption class="table-caption"><?= $escaper->escapeHtml(__('Orders')) ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Order Number')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Order Date')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Ship To')) ?></th>
+                    <th scope="col" class="col a-right"><?= $escaper->escapeHtml(__('Grand Total')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Actions')) ?></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php /** @var \ECInternet\Sage300Account\Model\Data\Oeordh $order */?>
+            <?php foreach ($orders as $order) { ?>
+                <tr>
+                    <td data-th="<?= $escaper->escapeHtml(__('Order Number')) ?>" class="col a-center">
+                        <a href="<?= $escaper->escapeUrl($block->getViewUrl($order)) ?>" class="action view">
+                            <?= $escaper->escapeHtml($order->getOrderNumber()) ?>
+                        </a>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Order Date')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($order->getOrderDateFormatted()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Ship-To')) ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($order->getBillToName()) . '<br />' ?>
+                        <?= $escaper->escapeHtml($order->getBillToCity() . ', ' . $order->getBillToState()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Grand Total')) ?>" class="col a-right">
+                        <?= $block->getOrderTotalHtml($order) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Actions')) ?>" class="col a-center">
+                        <a href="<?= $escaper->escapeUrl($block->getViewUrl($order)) ?>">View Order</a>
+                        &nbsp;|&nbsp;
+                        <a href="<?= $escaper->escapeUrl($block->getReorderUrl($order)) ?>">Reorder</a>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
+    <?php if ($block->getPagerHtml()) { ?>
+        <div class="order-products-toolbar toolbar bottom">
+            <?= $block->getPagerHtml() ?>
+        </div>
+    <?php } ?>
+<?php } else { ?>
+    <div class="message info empty">
+        <span><?= $escaper->escapeHtml(__('You have no orders.')) ?></span>
+    </div>
+<?php } ?>

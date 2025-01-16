@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<sage300account>
+			<general>
+				<enable>1</enable>
+			</general>
+			<customer_account_display>
+				<show_recent_orders>1</show_recent_orders>
+				<show_recent_invoices>1</show_recent_invoices>
+				<show_sidenav_links>1</show_sidenav_links>
+			</customer_account_display>
+		</sage300account>
+	</default>
+</config>

@@ -1,0 +1,129 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+declare(strict_types=1);
+
+use Magento\Framework\App\ActionInterface;
+
+?>
+<?php
+/**
+ * Reorder product list template
+ *
+ * @var \ECInternet\Sage300Account\Block\Reorder\ReorderList $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<?php $_productCollection = $block->getProductCollection(); ?>
+<?php //$_productCollection->setPageSize(10)->setCurPage(1)->load(); ?>
+
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty">
+        <div><?= $escaper->escapeHtml(__('We can\'t find products matching the selection.')) ?></div>
+    </div>
+<?php else: ?>
+    <div class="table-wrapper">
+        <table class="data table">
+            <tr>
+                <th scope="col" class="col"><?= $escaper->escapeHtml(__('Sku')) ?></th>
+                <th scope="col" class="col"><?= $escaper->escapeHtml(__('Short Description')) ?></th>
+                <th scope="col" class="col"><?= $escaper->escapeHtml(__('UOM')) ?></th>
+                <th scope="col" class="col"><?= $escaper->escapeHtml(__('Last Ordered Date')) ?></th>
+                <th scope="col" class="col a-right"><?= $escaper->escapeHtml(__('Price')) ?></th>
+                <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Qty Increment')) ?></th>
+                <th scope="col" class="col"><?= $escaper->escapeHtml(__('Action')) ?></th>
+            </tr>
+
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+            <?php foreach ($_productCollection as $_product): ?>
+                <?php if ($block->getQtyIncrements($_product) !== null) { ?>
+                <tr>
+                    <td data-th="<?= $escaper->escapeHtml(__('Sku')) ?>" class="col">
+                        <?= /* @noEscape */ $_product->getSku() ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Short Description')) ?>" class="col">
+                        <?= /* @noEscape */ $block->getShortDescription($_product) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('UOM')) ?>" class="col">
+                        <?= /* @noEscape */ $block->getUom($_product) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Last Ordered Date')) ?>" class="col">
+                        <?= /* @noEscape */ $block->getLastOrderedDate($_product) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Price')) ?>" class="col a-right">
+                        <?= /* @noEscape */ $block->getPriceHtml($_product) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Qty Increment')) ?>" class="col a-center">
+                        <?= /* @noEscape */ $block->getQtyIncrements($_product) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml(__('Action')) ?>" class="col">
+                        <div class="actions-primary">
+                            <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                            <form data-role="tocart-form"
+                                  data-product-sku="<?= $escaper->escapeHtml($_product->getSku()) ?>"
+                                  action="<?= $escaper->escapeUrl($postParams['action']) ?>"
+                                  data-mage-init='{"validation":{}}'
+                                  method="post">
+                                <input type="hidden"
+                                       name="product"
+                                       value="<?= /* @noEscape */ $postParams['data']['product'] ?>">
+                                <input type="hidden"
+                                       name="<?= /* @noEscape */ ActionInterface::PARAM_NAME_URL_ENCODED ?>"
+                                       value="<?= /* @noEscape */ $postParams['data'][ActionInterface::PARAM_NAME_URL_ENCODED] ?>">
+                                <input type="hidden" name="skip_sage300pricing_recalc" value="true">
+                                <input type="hidden" name="default_price_list_code" value="<?= $_product->getData('default_price_list_code') ?>">
+                                <?= $block->getBlockHtml('formkey') ?>
+                                <input type="number"
+                                       name="qty"
+                                       id="qty-<?= $escaper->escapeHtml($_product->getId()) ?>"
+                                       maxlength="12"
+                                       value="<?= $block->getQuoteItemQty($_product) ?: '1' ?>"
+                                       title="<?= /* @escapeNotVerified */ __('Qty') ?>"
+                                       class="input-text qty"
+                                       style="width: 180px !important;"
+                                       data-validate='{
+                                           "required-number":true,
+                                           "validate-item-quantity":{
+                                               "minAllowed":<?= $block->getMinAllowed($_product) ?? 1 ?>,
+                                               "qtyIncrements":<?= $block->getQtyIncrements($_product) ?? 1 ?>
+                                           }
+                                       }'
+                                />
+                                <button type="submit"
+                                        title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
+                                        class="action tocart primary"
+                                        disabled>
+                                    <span><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                <?php } ?>
+            <?php endforeach; ?>
+        </table>
+    </div>
+
+    <style>
+        div.price-box,
+        div.product-item-inner,
+        div.product-item-actions,
+        strong.product-item-name {
+            display: inline;
+        }
+
+        input.qty { width: 20%; }
+    </style>
+
+    <script type="text/x-magento-init">
+    {
+        "[data-role=tocart-form]": {
+            "customAddToCart": {
+                "product_sku": "<?= $escaper->escapeJs($_product->getSku()) ?>"
+            }
+        }
+    }
+    </script>
+<?php endif; ?>

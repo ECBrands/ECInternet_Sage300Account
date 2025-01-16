@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<!-- Set Order fields related to invoice payments -->
+	<event name="sales_order_place_after">
+		<observer name="ecinternet_sage300account-sales_order_place_after"
+		          instance="ECInternet\Sage300Account\Observer\SalesOrderPlaceAfter" />
+	</event>
+
+	<!-- Set 'uom' on QuoteItems -->
+	<event name="sales_quote_product_add_after">
+		<observer name="ecinternet_sage300account-sales_quote_product_add_after"
+		          instance="ECInternet\Sage300Account\Observer\SalesQuoteProductAddAfter" />
+	</event>
+</config>

@@ -1,0 +1,371 @@
+{
+    "ecinternet_sage300account_arobl": {
+        "column": {
+            "entity_id": true,
+            "store_id": true,
+            "created_at": true,
+            "updated_at": true,
+            "IDCUST": true,
+            "IDINVC": true,
+            "AUDTDATE": true,
+            "AUDTTIME": true,
+            "AMTDUEHC": true,
+            "SWPAID": true
+        },
+        "index": {
+            "ECINTERNET_SAGE300ACCOUNT_AROBL_IDCUST_IDINVC": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ECINTERNET_SAGE300ACCOUNT_AROBL_IDCUST_IDINVC": true
+        }
+    },
+    "ecinternet_sage300account_artcp": {
+        "column": {
+            "entity_id": true,
+            "store_id": true,
+            "created_at": true,
+            "updated_at": true,
+            "CODEPAYM": true,
+            "CNTBTCH": true,
+            "CNTITEM": true,
+            "CNTLINE": true,
+            "AUDTDATE": true,
+            "AUDTTIME": true,
+            "AUDTUSER": true,
+            "AUDTORG": true,
+            "IDINVC": true,
+            "AMTPAYM": true
+        },
+        "index": {
+            "ECINTERNET_SAGE300ACCOUNT_ARTCP_CODEPAYM_CNTBTCH_CNTITEM_CNTLINE": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ECINTERNET_SAGE300ACCOUNT_ARTCP_CODEPAYM_CNTBTCH_CNTITEM_CNTLINE": true
+        }
+    },
+    "ecinternet_sage300account_oeinvd": {
+        "column": {
+            "entity_id": true,
+            "store_id": true,
+            "created_at": true,
+            "updated_at": true,
+            "INVUNIQ": true,
+            "LINENUM": true,
+            "AUDTDATE": true,
+            "AUDTTIME": true,
+            "AUDTUSER": true,
+            "AUDTORG": true,
+            "ITEM": true,
+            "DESC": true,
+            "QTYORDERED": true,
+            "QTYSHIPPED": true,
+            "QTYBACKORD": true,
+            "INVUNIT": true,
+            "UNITPRICE": true,
+            "EXTINVMISC": true,
+            "INVDISC": true
+        },
+        "index": {
+            "ECINTERNET_SAGE300ACCOUNT_OEINVD_INVUNIQ_LINENUM": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ECINTERNET_SAGE300ACCOUNT_OEINVD_INVUNIQ_LINENUM": true
+        }
+    },
+    "ecinternet_sage300account_oeinvh": {
+        "column": {
+            "entity_id": true,
+            "store_id": true,
+            "created_at": true,
+            "updated_at": true,
+            "INVUNIQ": true,
+            "AUDTDATE": true,
+            "AUDTTIME": true,
+            "AUDTUSER": true,
+            "AUDTORG": true,
+            "ORDNUMBER": true,
+            "CUSTOMER": true,
+            "BILNAME": true,
+            "BILADDR1": true,
+            "BILADDR2": true,
+            "BILADDR3": true,
+            "BILADDR4": true,
+            "BILCITY": true,
+            "BILSTATE": true,
+            "BILZIP": true,
+            "BILCOUNTRY": true,
+            "SHPNAME": true,
+            "SHPADDR1": true,
+            "SHPADDR2": true,
+            "SHPADDR3": true,
+            "SHPADDR4": true,
+            "SHPCITY": true,
+            "SHPSTATE": true,
+            "SHPZIP": true,
+            "SHPCOUNTRY": true,
+            "PONUMBER": true,
+            "TERMS": true,
+            "ORDDATE": true,
+            "SHIPVIA": true,
+            "INVDATE": true,
+            "INVNETNOTX": true,
+            "INVSUBTOT": true,
+            "INVNETWTX": true,
+            "INHOMECURR": true,
+            "INSOURCURR": true,
+            "SALESPER1": true,
+            "INVNUMBER": true,
+            "RTGAMOUNT": true
+        },
+        "index": {
+            "ECINTERNET_SAGE300ACCOUNT_OEINVH_INVUNIQ": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ECINTERNET_SAGE300ACCOUNT_OEINVH_INVUNIQ": true
+        }
+    },
+    "ecinternet_sage300account_oeordd": {
+        "column": {
+            "entity_id": true,
+            "store_id": true,
+            "created_at": true,
+            "updated_at": true,
+            "ORDUNIQ": true,
+            "LINENUM": true,
+            "AUDTDATE": true,
+            "AUDTTIME": true,
+            "AUDTUSER": true,
+            "AUDTORG": true,
+            "LINETYPE": true,
+            "ITEM": true,
+            "DESC": true,
+            "QTYORDERED": true,
+            "QTYSHIPPED": true,
+            "QTYBACKORD": true,
+            "ORDUNIT": true,
+            "UNITPRICE": true,
+            "EXTINVMISC": true
+        },
+        "index": {
+            "ECINTERNET_SAGE300ACCOUNT_OEORDD_ORDUNIQ_LINENUM": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ECINTERNET_SAGE300ACCOUNT_OEORDD_ORDUNIQ_LINENUM": true
+        }
+    },
+    "ecinternet_sage300account_oeordh": {
+        "column": {
+            "entity_id": true,
+            "store_id": true,
+            "created_at": true,
+            "updated_at": true,
+            "ORDUNIQ": true,
+            "AUDTDATE": true,
+            "AUDTTIME": true,
+            "AUDTUSER": true,
+            "AUDTORG": true,
+            "ORDNUMBER": true,
+            "CUSTOMER": true,
+            "BILNAME": true,
+            "BILADDR1": true,
+            "BILADDR2": true,
+            "BILADDR3": true,
+            "BILADDR4": true,
+            "BILCITY": true,
+            "BILSTATE": true,
+            "BILZIP": true,
+            "BILCOUNTRY": true,
+            "SHPNAME": true,
+            "SHPADDR1": true,
+            "SHPADDR2": true,
+            "SHPADDR3": true,
+            "SHPADDR4": true,
+            "SHPCITY": true,
+            "SHPSTATE": true,
+            "SHPZIP": true,
+            "SHPCOUNTRY": true,
+            "PONUMBER": true,
+            "TERMS": true,
+            "REFERENCE": true,
+            "ORDDATE": true,
+            "SHIPVIA": true,
+            "COMMENT": true,
+            "SALESPER1": true,
+            "TAUTH1": true,
+            "TAUTH2": true,
+            "TAUTH3": true,
+            "TAUTH4": true,
+            "TAUTH5": true,
+            "TEAMOUNT1": true,
+            "TEAMOUNT2": true,
+            "TEAMOUNT3": true,
+            "TEAMOUNT4": true,
+            "TEAMOUNT5": true,
+            "TIAMOUNT1": true,
+            "TIAMOUNT2": true,
+            "TIAMOUNT3": true,
+            "TIAMOUNT4": true,
+            "TIAMOUNT5": true,
+            "INVITAXTOT": true,
+            "INVDISCAMT": true,
+            "INVSUBTOT": true,
+            "INVNETWTX": true
+        },
+        "index": {
+            "ECINTERNET_SAGE300ACCOUNT_OEORDH_ORDUNIQ": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ECINTERNET_SAGE300ACCOUNT_OEORDH_ORDUNIQ": true
+        }
+    },
+    "ecinternet_sage300account_oeppre": {
+        "column": {
+            "entity_id": true,
+            "store_id": true,
+            "created_at": true,
+            "updated_at": true,
+            "APPLYTO": true,
+            "DOCNUMBER": true,
+            "PPNUMBER": true,
+            "AUDTDATE": true,
+            "AUDTTIME": true,
+            "AUDTUSER": true,
+            "AUDTORG": true,
+            "PAYMENT": true,
+            "INVPAYDISC": true
+        },
+        "index": {
+            "ECINTERNET_SAGE300ACCOUNT_OEPPRE_APPLYTO_DOCNUMBER_PPNUMBER": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ECINTERNET_SAGE300ACCOUNT_OEPPRE_APPLYTO_DOCNUMBER_PPNUMBER": true
+        }
+    },
+    "ecinternet_sage300account_oeshdt": {
+        "column": {
+            "entity_id": true,
+            "store_id": true,
+            "created_at": true,
+            "updated_at": true,
+            "is_active": true,
+            "CUSTOMER": true,
+            "ITEM": true,
+            "SHIPDATE": true
+        },
+        "index": {
+            "ECINTERNET_SAGE300ACCOUNT_OESHDT_CUSTOMER_ITEM": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ECINTERNET_SAGE300ACCOUNT_OESHDT_CUSTOMER_ITEM": true
+        }
+    },
+    "ecinternet_sage300account_oetermi": {
+        "column": {
+            "entity_id": true,
+            "store_id": true,
+            "created_at": true,
+            "updated_at": true,
+            "INVUNIQ": true,
+            "PAYMENT": true,
+            "AUDTDATE": true,
+            "AUDTTIME": true,
+            "AUDTUSER": true,
+            "AUDTORG": true,
+            "DISCDATE": true,
+            "DISCAMT": true,
+            "DUEDATE": true
+        },
+        "index": {
+            "ECINTERNET_SAGE300ACCOUNT_OETERMI_INVUNIQ_PAYMENT": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ECINTERNET_SAGE300ACCOUNT_OETERMI_INVUNIQ_PAYMENT": true
+        }
+    },
+    "ecinternet_sage300account_uom": {
+        "column": {
+            "entity_id": true,
+            "store_id": true,
+            "created_at": true,
+            "updated_at": true,
+            "ITEMNO": true,
+            "PRICELIST": true,
+            "DEFCONV": true,
+            "UNIT": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "ecinternet_sage300account_poporh": {
+        "column": {
+            "entity_id": true,
+            "store_id": true,
+            "created_at": true,
+            "updated_at": true,
+            "PORHSEQ": true,
+            "PONUMBER": true,
+            "VDCODE": true,
+            "VDNAME": true,
+            "EXPARRIVAL": true,
+            "VIACODE": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ECINTERNET_SAGE300ACCOUNT_POPORH_PORHSEQ": true
+        }
+    },
+    "ecinternet_sage300account_poporl": {
+        "column": {
+            "entity_id": true,
+            "store_id": true,
+            "created_at": true,
+            "updated_at": true,
+            "is_active": true,
+            "PORHSEQ": true,
+            "PORLREV": true,
+            "PORLSEQ": true,
+            "ITEMNO": true,
+            "OQORDERED": true,
+            "OQRECEIVED": true,
+            "OQCANCELED": true,
+            "OQOUTSTAND": true,
+            "DETAILNUM": true
+        },
+        "index": {
+            "ECINTERNET_SAGE300ACCOUNT_POPORL_PORHSEQ_PORLREV": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ECINTERNET_SAGE300ACCOUNT_POPORL_PORHSEQ_PORLREV": true
+        }
+    },
+    "ecinternet_sage300account_poporlo": {
+        "column": {
+            "entity_id": true,
+            "store_id": true,
+            "created_at": true,
+            "updated_at": true,
+            "PORHSEQ": true,
+            "PORLREV": true,
+            "OPTFIELD": true,
+            "VALUE": true
+        },
+        "index": {
+            "ECINTERNET_SAGE300ACCOUNT_POPORLO_PORHSEQ_PORLREV_OPTFIELD": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ECINTERNET_SAGE300ACCOUNT_POPORLO_PORHSEQ_PORLREV_OPTFIELD": true
+        }
+    }
+}

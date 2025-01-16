@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceBlock name="content">
+			<!-- Add Order History List -->
+			<block class="ECInternet\Sage300Account\Block\Order\History"
+			       name="ecinternet-sage300account_customer-account-index_recent-orders"
+			       template="ECInternet_Sage300Account::customer/account/recent_orders.phtml"
+			       ifconfig="sage300account/customer_account_display/show_recent_orders"
+			       after="-" />
+
+			<!-- Add Invoice History List -->
+			<block class="ECInternet\Sage300Account\Block\Invoice\History"
+			       name="ecinternet-sage300account_customer-account-index_recent-invoices"
+			       template="ECInternet_Sage300Account::customer/account/recent_invoices.phtml"
+			       ifconfig="sage300account/customer_account_display/show_recent_invoices"
+			       after="ecinternet-sage300account_customer-account-index_recent-orders" />
+		</referenceBlock>
+	</body>
+</page>

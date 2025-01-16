@@ -1,0 +1,264 @@
+<?php
+/**
+ * Copyright (C) EC Brands Corporation - All Rights Reserved
+ * Contact Licensing@ECInternet.com for use guidelines
+ */
+declare(strict_types=1);
+?>
+
+<?php /** @var \ECInternet\Sage300Account\Block\Order\View $block */?>
+<?php /** @var \Magento\Framework\Escaper $escaper */ ?>
+
+<?php /** @var \ECInternet\Sage300Account\Model\Data\Oeordh $order */ ?>
+<?php $order = $block->getOrder(); ?>
+<?php if ($order) { ?>
+    <div class="order-head">
+        <div class="pull-right">
+            <table class="table-order-head">
+                <tr>
+                    <td class="order-head-title"><?= $escaper->escapeHtml(__('Order #:')) ?></td>
+                    <td class="order-head-label"><?= $escaper->escapeHtml($order->getOrderNumber()) ?></td>
+                </tr>
+                <tr>
+                    <td class="order-head-title"><?= $escaper->escapeHtml(__('Date:')) ?></td>
+                    <td class="order-head-label"><?= $escaper->escapeHtml($order->getOrderDateFormatted()) ?></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="col2-set">
+        <div class="box">
+            <div class="box-content">
+                <div class="col-1 order-sold-to">
+                    <div class="box-title">
+                        <h3><?= $escaper->escapeHtml(__('Sold To:')) ?></h3>
+                    </div>
+                    <div class="box-content">
+                        <address>
+                            <p><?= $escaper->escapeHtml($order->getBillToName()) ?></p>
+                            <p><?= $escaper->escapeHtml($order->getBillToAddressLine1()) ?></p>
+                            <p><?= $escaper->escapeHtml($order->getBillToAddressLine2()) ?></p>
+                            <p><?= $escaper->escapeHtml($order->getBillToAddressLine3()) ?></p>
+                            <p><?= $escaper->escapeHtml($order->getBillToAddressLine4()) ?></p>
+                            <p><?= $escaper->escapeHtml($order->getBillingAddressDisplayLineHtml()) ?></p>
+                            <p><?= $escaper->escapeHtml($order->getBillToCountry()) ?></p>
+                        </address>
+                    </div>
+                </div>
+                <div class="col-1 order-ship-to">
+                    <div class="box-title">
+                        <h3><?= $escaper->escapeHtml(__('Ship To:')) ?></h3>
+                    </div>
+                    <div class="box-content">
+                        <address>
+                            <p><?= $escaper->escapeHtml($order->getShipToName()) ?></p>
+                            <p><?= $escaper->escapeHtml($order->getShipToAddressLine1()) ?></p>
+                            <p><?= $escaper->escapeHtml($order->getShipToAddressLine2()) ?></p>
+                            <p><?= $escaper->escapeHtml($order->getShipToAddressLine3()) ?></p>
+                            <p><?= $escaper->escapeHtml($order->getShipToAddressLine4()) ?></p>
+                            <p><?= $escaper->escapeHtml($order->getShippingAddressDisplayLineHtml()) ?></p>
+                            <p><?= $escaper->escapeHtml($order->getShipToCountry()) ?></p>
+                        </address>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div>
+        <table id="order-info-table" class="data-table order-details">
+            <thead>
+                <tr>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Reference')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('PO Number')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Customer Number')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Salesperson')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Order Date')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Ship Via')) ?></th>
+                    <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Terms')) ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-th="<?= $escaper->escapeHtml('Reference') ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($order->getOrderReference()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml('PO Number') ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($order->getPurchaseOrderNumber()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml('Customer Number') ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($order->getCustomerNumber()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml('Salesperson') ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($order->getSalesperson1()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml('Order Date') ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($order->getOrderDateFormatted()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml('Ship Via') ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($order->getShipViaCode()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtml('Terms') ?>" class="col a-center">
+                        <?= $escaper->escapeHtml($order->getTermsCode()) ?>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Order Details -->
+    <div>
+        <?php $orderDetails = $block->getOrderDetails(); ?>
+        <?php if (count($orderDetails)) { ?>
+            <table class="data-table order-details">
+                <thead>
+                    <tr>
+                        <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Qty Ordered')) ?></th>
+                        <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Qty Shipped')) ?></th>
+                        <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Qty Backordered')) ?></th>
+                        <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Item Number')) ?></th>
+                        <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('Description')) ?></th>
+                        <th scope="col" class="col a-right"><?= $escaper->escapeHtml(__('Unit Price')) ?></th>
+                        <th scope="col" class="col a-center"><?= $escaper->escapeHtml(__('UOM')) ?></th>
+                        <th scope="col" class="col a-right"><?= $escaper->escapeHtml(__('Extended Price')) ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php /** @var \ECInternet\Sage300Account\Model\Data\Oeordd $orderDetail */ ?>
+                <?php foreach ($orderDetails as $orderDetail) { ?>
+                    <tr>
+                        <td data-th="<?= $escaper->escapeHtml(__('Qty Ordered')) ?>" class="a-center">
+                            <?= (int)$orderDetail->getQuantityOrdered() ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Qty Shipped')) ?>" class="a-center">
+                            <?= (int)$orderDetail->getQuantityShipped() ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Qty Backordered')) ?>" class="a-center">
+                            <?= (int)$orderDetail->getQuantityBackordered() ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Item Number')) ?>" class="a-center">
+                            <?= $escaper->escapeHtml($orderDetail->getItem()) ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Description')) ?>" class="a-center">
+                            <?= $escaper->escapeHtml($orderDetail->getDescription()) ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Unit Price')) ?>" class="a-right">
+                            <?= $block->getOrderUnitPriceHtml($orderDetail) ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('UOM')) ?>" class="a-center">
+                            <?= $escaper->escapeHtml($orderDetail->getOrderUnitOfMeasure()) ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Extended Price')) ?>" class="a-right">
+                            <?= $block->getExtendedPriceHtml($orderDetail) ?>
+                        </td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        <?php } else { ?>
+            <h2><?= $escaper->escapeHtml(__('No Order Detail Information available.')) ?></h2>
+        <?php } ?>
+    </div>
+
+    <div class="cart">
+        <div class="cart-collaterals">
+            <div class="cart-right-column grid12-4 no-right-gutter">
+                <div class="totals grid-full no-gutter">
+                    <div class="totals-inner">
+                        <table id="shopping-cart-totals-table">
+                            <tbody>
+                            <tr>
+                                <td rowspan="8" style="vertical-align: top;">
+                                    <strong><?= $escaper->escapeHtml(__('Comments')) ?></strong>
+                                    <div><?= $escaper->escapeHtml($order->getOrderComment()) ?></div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td class="a-right" colspan="1">
+                                    <?= $escaper->escapeHtml(__('Less Discount')) ?></td>
+                                <td class="a-right">
+                                    <span class="price">
+                                        <?= $block->getDiscountAmountHtml($order) ?>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td class="a-right" colspan="1">
+                                    <?= $escaper->escapeHtml(__('Included Tax')) ?>
+                                </td>
+                                <td class="a-right">
+                                    <span class="price">
+                                        <?= $block->getTaxAmount1Html($order) ?>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td class="a-right wrap-none" colspan="1">
+                                    <?= $escaper->escapeHtml(__('Included Sales Tax')) ?>
+                                </td>
+                                <td class="a-right">
+                                    <span class="price">
+                                        <?= $block->getTaxAmount2Html($order) ?>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td colspan="2" class="align-right">
+                                    <div class="pull-right" style="width: 300px;">
+                                        <hr>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td class="a-right" colspan="1">
+                                    <?= $escaper->escapeHtml(__('Subtotal')) ?>
+                                </td>
+                                <td class="a-right">
+                                    <span class="price">
+                                        <?= $block->getSubtotalHtml($order) ?>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td class="a-right" colspan="1">
+                                    <?= $escaper->escapeHtml(__('Total Sales Tax')) ?>
+                                </td>
+                                <td class="a-right">
+                                    <span class="price">
+                                        <?= $block->getTotalTaxAmountHtml($order) ?>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="align-right">
+                                    <div class="pull-right" style="width: 300px;">
+                                        <hr>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td class="a-right" colspan="1">
+                                    <?= $escaper->escapeHtml(__('Total Un-Shipped')) ?>
+                                </td>
+                                <td class="a-right">
+                                    <span class="price">
+                                        <?= $block->getOrderTotalHtml($order) ?>
+                                    </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
