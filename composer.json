@@ -2,7 +2,6 @@
 	"name": "ecinternet/sage300account",
 	"description": "EC Internet Sage 300 Account",
 	"require": {
-		"php": "^7.4.0",
 		"ext-json": "*"
 	},
 	"type": "magento2-module",
