@@ -25,7 +25,7 @@ use ECInternet\Sage300Account\Model\ResourceModel\Oeordd\CollectionFactory as Oe
  */
 class Oeordh extends AbstractModel implements IdentityInterface, OeordhInterface
 {
-    const CACHE_TAG = 'ecinternet_sage300account_oeordh';
+    private const CACHE_TAG = 'ecinternet_sage300account_oeordh';
 
     protected $_cacheTag    = self::CACHE_TAG;
 

@@ -17,7 +17,7 @@ use Magento\Framework\View\Result\PageFactory;
  */
 class Index extends Action implements HttpGetActionInterface
 {
-    const MENU_ID = 'ECInternet_Sage300Account::poporh';
+    private const MENU_ID = 'ECInternet_Sage300Account::poporh';
 
     /**
      * @var \Magento\Framework\View\Result\PageFactory

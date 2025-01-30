@@ -9,79 +9,79 @@ namespace ECInternet\Sage300Account\Api\Data;
 
 interface OeinvhInterface
 {
-    const COLUMN_ID         = 'entity_id';
+    public const COLUMN_ID         = 'entity_id';
 
-    const COLUMN_UPDATED_AT = 'updated_at';
+    public const COLUMN_UPDATED_AT = 'updated_at';
 
-    const COLUMN_INVUNIQ    = 'INVUNIQ';
+    public const COLUMN_INVUNIQ    = 'INVUNIQ';
 
-    const COLUMN_ORDNUMBER  = 'ORDNUMBER';
+    public const COLUMN_ORDNUMBER  = 'ORDNUMBER';
 
-    const COLUMN_CUSTOMER   = 'CUSTOMER';
+    public const COLUMN_CUSTOMER   = 'CUSTOMER';
 
-    const COLUMN_BILNAME    = 'BILNAME';
+    public const COLUMN_BILNAME    = 'BILNAME';
 
-    const COLUMN_BILADDR1   = 'BILADDR1';
+    public const COLUMN_BILADDR1   = 'BILADDR1';
 
-    const COLUMN_BILADDR2   = 'BILADDR2';
+    public const COLUMN_BILADDR2   = 'BILADDR2';
 
-    const COLUMN_BILADDR3   = 'BILADDR3';
+    public const COLUMN_BILADDR3   = 'BILADDR3';
 
-    const COLUMN_BILADDR4   = 'BILADDR4';
+    public const COLUMN_BILADDR4   = 'BILADDR4';
 
-    const COLUMN_BILCITY    = 'BILCITY';
+    public const COLUMN_BILCITY    = 'BILCITY';
 
-    const COLUMN_BILSTATE   = 'BILSTATE';
+    public const COLUMN_BILSTATE   = 'BILSTATE';
 
-    const COLUMN_BILZIP     = 'BILZIP';
+    public const COLUMN_BILZIP     = 'BILZIP';
 
-    const COLUMN_BILCOUNTRY = 'BILCOUNTRY';
+    public const COLUMN_BILCOUNTRY = 'BILCOUNTRY';
 
-    const COLUMN_SHPNAME    = 'SHPNAME';
+    public const COLUMN_SHPNAME    = 'SHPNAME';
 
-    const COLUMN_SHPADDR1   = 'SHPADDR1';
+    public const COLUMN_SHPADDR1   = 'SHPADDR1';
 
-    const COLUMN_SHPADDR2   = 'SHPADDR2';
+    public const COLUMN_SHPADDR2   = 'SHPADDR2';
 
-    const COLUMN_SHPADDR3   = 'SHPADDR3';
+    public const COLUMN_SHPADDR3   = 'SHPADDR3';
 
-    const COLUMN_SHPADDR4   = 'SHPADDR4';
+    public const COLUMN_SHPADDR4   = 'SHPADDR4';
 
-    const COLUMN_SHPCITY    = 'SHPCITY';
+    public const COLUMN_SHPCITY    = 'SHPCITY';
 
-    const COLUMN_SHPSTATE   = 'SHPSTATE';
+    public const COLUMN_SHPSTATE   = 'SHPSTATE';
 
-    const COLUMN_SHPZIP     = 'SHPZIP';
+    public const COLUMN_SHPZIP     = 'SHPZIP';
 
-    const COLUMN_SHPCOUNTRY = 'SHPCOUNTRY';
+    public const COLUMN_SHPCOUNTRY = 'SHPCOUNTRY';
 
-    const COLUMN_PONUMBER   = 'PONUMBER';
+    public const COLUMN_PONUMBER   = 'PONUMBER';
 
-    const COLUMN_TERMS      = 'TERMS';
+    public const COLUMN_TERMS      = 'TERMS';
 
-    const COLUMN_ORDDATE    = 'ORDDATE';
+    public const COLUMN_ORDDATE    = 'ORDDATE';
 
-    const COLUMN_SHIPVIA    = 'SHIPVIA';
+    public const COLUMN_SHIPVIA    = 'SHIPVIA';
 
-    const COLUMN_INVDATE    = 'INVDATE';
+    public const COLUMN_INVDATE    = 'INVDATE';
 
-    const COLUMN_INVNETNOTX = 'INVNETNOTX';
+    public const COLUMN_INVNETNOTX = 'INVNETNOTX';
 
-    const COLUMN_INVITAXTOT = 'INVITAXTOT';
+    public const COLUMN_INVITAXTOT = 'INVITAXTOT';
 
-    const COLUMN_INVSUBTOT  = 'INVSUBTOT';
+    public const COLUMN_INVSUBTOT  = 'INVSUBTOT';
 
-    const COLUMN_INVNETWTX  = 'INVNETWTX';
+    public const COLUMN_INVNETWTX  = 'INVNETWTX';
 
-    const COLUMN_INHOMECURR = 'INHOMECURR';
+    public const COLUMN_INHOMECURR = 'INHOMECURR';
 
-    const COLUMN_INSOURCURR = 'INSOURCURR';
+    public const COLUMN_INSOURCURR = 'INSOURCURR';
 
-    const COLUMN_SALESPER1  = 'SALESPER1';
+    public const COLUMN_SALESPER1  = 'SALESPER1';
 
-    const COLUMN_INVNUMBER  = 'INVNUMBER';
+    public const COLUMN_INVNUMBER  = 'INVNUMBER';
 
-    const COLUMN_RTGAMOUNT  = 'RTGAMOUNT';
+    public const COLUMN_RTGAMOUNT  = 'RTGAMOUNT';
 
     /**
      * Get ID

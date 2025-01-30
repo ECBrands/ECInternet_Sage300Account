@@ -9,107 +9,107 @@ namespace ECInternet\Sage300Account\Api\Data;
 
 interface OeordhInterface
 {
-    const COLUMN_ID         = 'entity_id';
+    public const COLUMN_ID         = 'entity_id';
 
-    const COLUMN_UPDATED_AT = 'updated_at';
+    public const COLUMN_UPDATED_AT = 'updated_at';
 
-    const COLUMN_ORDUNIQ    = 'ORDUNIQ';
+    public const COLUMN_ORDUNIQ    = 'ORDUNIQ';
 
-    const COLUMN_ORDNUMBER  = 'ORDNUMBER';
+    public const COLUMN_ORDNUMBER  = 'ORDNUMBER';
 
-    const COLUMN_CUSTOMER   = 'CUSTOMER';
+    public const COLUMN_CUSTOMER   = 'CUSTOMER';
 
-    const COLUMN_BILNAME    = 'BILNAME';
+    public const COLUMN_BILNAME    = 'BILNAME';
 
-    const COLUMN_BILADDR1   = 'BILADDR1';
+    public const COLUMN_BILADDR1   = 'BILADDR1';
 
-    const COLUMN_BILADDR2   = 'BILADDR2';
+    public const COLUMN_BILADDR2   = 'BILADDR2';
 
-    const COLUMN_BILADDR3   = 'BILADDR3';
+    public const COLUMN_BILADDR3   = 'BILADDR3';
 
-    const COLUMN_BILADDR4   = 'BILADDR4';
+    public const COLUMN_BILADDR4   = 'BILADDR4';
 
-    const COLUMN_BILADDR5   = 'BILADDR5';
+    public const COLUMN_BILADDR5   = 'BILADDR5';
 
-    const COLUMN_BILCITY    = 'BILCITY';
+    public const COLUMN_BILCITY    = 'BILCITY';
 
-    const COLUMN_BILSTATE   = 'BILSTATE';
+    public const COLUMN_BILSTATE   = 'BILSTATE';
 
-    const COLUMN_BILZIP     = 'BILZIP';
+    public const COLUMN_BILZIP     = 'BILZIP';
 
-    const COLUMN_BILCOUNTRY = 'BILCOUNTRY';
+    public const COLUMN_BILCOUNTRY = 'BILCOUNTRY';
 
-    const COLUMN_SHPNAME    = 'SHPNAME';
+    public const COLUMN_SHPNAME    = 'SHPNAME';
 
-    const COLUMN_SHPADDR1   = 'SHPADDR1';
+    public const COLUMN_SHPADDR1   = 'SHPADDR1';
 
-    const COLUMN_SHPADDR2   = 'SHPADDR2';
+    public const COLUMN_SHPADDR2   = 'SHPADDR2';
 
-    const COLUMN_SHPADDR3   = 'SHPADDR3';
+    public const COLUMN_SHPADDR3   = 'SHPADDR3';
 
-    const COLUMN_SHPADDR4   = 'SHPADDR4';
+    public const COLUMN_SHPADDR4   = 'SHPADDR4';
 
-    const COLUMN_SHPADDR5   = 'SHPADDR5';
+    public const COLUMN_SHPADDR5   = 'SHPADDR5';
 
-    const COLUMN_SHPCITY    = 'SHPCITY';
+    public const COLUMN_SHPCITY    = 'SHPCITY';
 
-    const COLUMN_SHPSTATE   = 'SHPSTATE';
+    public const COLUMN_SHPSTATE   = 'SHPSTATE';
 
-    const COLUMN_SHPZIP     = 'SHPZIP';
+    public const COLUMN_SHPZIP     = 'SHPZIP';
 
-    const COLUMN_SHPCOUNTRY = 'SHPCOUNTRY';
+    public const COLUMN_SHPCOUNTRY = 'SHPCOUNTRY';
 
-    const COLUMN_PONUMBER   = 'PONUMBER';
+    public const COLUMN_PONUMBER   = 'PONUMBER';
 
-    const COLUMN_TERMS      = 'TERMS';
+    public const COLUMN_TERMS      = 'TERMS';
 
-    const COLUMN_REFERENCE  = 'REFERENCE';
+    public const COLUMN_REFERENCE  = 'REFERENCE';
 
-    const COLUMN_ORDDATE    = 'ORDDATE';
+    public const COLUMN_ORDDATE    = 'ORDDATE';
 
-    const COLUMN_SHIPVIA    = 'SHIPVIA';
+    public const COLUMN_SHIPVIA    = 'SHIPVIA';
 
-    const COLUMN_COMMENT    = 'COMMENT';
+    public const COLUMN_COMMENT    = 'COMMENT';
 
-    const COLUMN_SALESPER1  = 'SALESPER1';
+    public const COLUMN_SALESPER1  = 'SALESPER1';
 
-    const COLUMN_TAUTH1     = 'TAUTH1';
+    public const COLUMN_TAUTH1     = 'TAUTH1';
 
-    const COLUMN_TAUTH2     = 'TAUTH2';
+    public const COLUMN_TAUTH2     = 'TAUTH2';
 
-    const COLUMN_TAUTH3     = 'TAUTH3';
+    public const COLUMN_TAUTH3     = 'TAUTH3';
 
-    const COLUMN_TAUTH4     = 'TAUTH4';
+    public const COLUMN_TAUTH4     = 'TAUTH4';
 
-    const COLUMN_TAUTH5     = 'TAUTH5';
+    public const COLUMN_TAUTH5     = 'TAUTH5';
 
-    const COLUMN_TEAMOUNT1  = 'TEAMOUNT1';
+    public const COLUMN_TEAMOUNT1  = 'TEAMOUNT1';
 
-    const COLUMN_TEAMOUNT2  = 'TEAMOUNT2';
+    public const COLUMN_TEAMOUNT2  = 'TEAMOUNT2';
 
-    const COLUMN_TEAMOUNT3  = 'TEAMOUNT3';
+    public const COLUMN_TEAMOUNT3  = 'TEAMOUNT3';
 
-    const COLUMN_TEAMOUNT4  = 'TEAMOUNT4';
+    public const COLUMN_TEAMOUNT4  = 'TEAMOUNT4';
 
-    const COLUMN_TEAMOUNT5  = 'TEAMOUNT5';
+    public const COLUMN_TEAMOUNT5  = 'TEAMOUNT5';
 
-    const COLUMN_TIAMOUNT1  = 'TEAMOUNT1';
+    public const COLUMN_TIAMOUNT1  = 'TEAMOUNT1';
 
-    const COLUMN_TIAMOUNT2  = 'TIAMOUNT2';
+    public const COLUMN_TIAMOUNT2  = 'TIAMOUNT2';
 
-    const COLUMN_TIAMOUNT3  = 'TIAMOUNT3';
+    public const COLUMN_TIAMOUNT3  = 'TIAMOUNT3';
 
-    const COLUMN_TIAMOUNT4  = 'TIAMOUNT4';
+    public const COLUMN_TIAMOUNT4  = 'TIAMOUNT4';
 
-    const COLUMN_TIAMOUNT5  = 'TIAMOUNT5';
+    public const COLUMN_TIAMOUNT5  = 'TIAMOUNT5';
 
-    const COLUMN_INVITAXTOT = 'INVITAXTOT';
+    public const COLUMN_INVITAXTOT = 'INVITAXTOT';
 
-    const COLUMN_INVDISCAMT = 'INVDISCAMT';
+    public const COLUMN_INVDISCAMT = 'INVDISCAMT';
 
-    const COLUMN_INVSUBTOT  = 'INVSUBTOT';
+    public const COLUMN_INVSUBTOT  = 'INVSUBTOT';
 
-    const COLUMN_INVNETWTX  = 'INVNETWTX';
+    public const COLUMN_INVNETWTX  = 'INVNETWTX';
 
     /**
      * Get ID

@@ -23,7 +23,7 @@ use ECInternet\Sage300Account\Api\Data\PoporloInterface;
  */
 class Poporlo extends AbstractModel implements IdentityInterface, PoporloInterface
 {
-    const CACHE_TAG = 'ecinternet_sage300account_poporlo';
+    private const CACHE_TAG = 'ecinternet_sage300account_poporlo';
 
     protected $_cacheTag    = 'ecinternet_sage300account_poporlo';
 

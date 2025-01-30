@@ -14,9 +14,10 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
  */
 class Oeordh extends AbstractDb
 {
-    const TABLE_NAME    = 'ecinternet_sage300account_oeordh';
+    public const TABLE_NAME    = 'ecinternet_sage300account_oeordh';
 
-    const ID_FIELD_NAME = 'entity_id';
+    public const ID_FIELD_NAME = 'entity_id';
+
     /**
      * Initialize resource model
      *

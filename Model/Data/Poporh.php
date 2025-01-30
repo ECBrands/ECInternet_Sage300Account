@@ -23,7 +23,7 @@ use ECInternet\Sage300Account\Api\Data\PoporhInterface;
  */
 class Poporh extends AbstractModel implements IdentityInterface, PoporhInterface
 {
-    const CACHE_TAG = 'ecinternet_sage300account_poporh';
+    private const CACHE_TAG = 'ecinternet_sage300account_poporh';
 
     protected $_cacheTag    = 'ecinternet_sage300account_poporh';
 

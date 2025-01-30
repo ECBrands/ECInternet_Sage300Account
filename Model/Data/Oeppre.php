@@ -21,7 +21,7 @@ use ECInternet\Sage300Account\Api\Data\OeppreInterface;
  */
 class Oeppre extends AbstractModel implements IdentityInterface, OeppreInterface
 {
-    const CACHE_TAG = 'ecinternet_sage300account_oeppre';
+    private const CACHE_TAG = 'ecinternet_sage300account_oeppre';
 
     protected $_cacheTag    = 'ecinternet_sage300account_oeppre';
 

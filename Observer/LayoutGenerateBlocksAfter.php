@@ -19,13 +19,13 @@ use ECInternet\Sage300Account\Model\Config;
  */
 class LayoutGenerateBlocksAfter implements ObserverInterface
 {
-    const BLOCK_NAME_DELIMETER       = 'customer_account-sage300account-delimiter-1';
+    private const BLOCK_NAME_DELIMETER       = 'customer_account-sage300account-delimiter-1';
 
-    const BLOCK_NAME_ORDER_HISTORY   = 'customer_account_index-sage300account-my_order_history';
+    private const BLOCK_NAME_ORDER_HISTORY   = 'customer_account_index-sage300account-my_order_history';
 
-    const BLOCK_NAME_INVOICE_HISTORY = 'customer_account_index-sage300account-my_invoice_history';
+    private const BLOCK_NAME_INVOICE_HISTORY = 'customer_account_index-sage300account-my_invoice_history';
 
-    const BLOCK_NAME_OPEN_INVOICES   = 'customer_account_index-sage300account-my_open_invoices';
+    private const BLOCK_NAME_OPEN_INVOICES   = 'customer_account_index-sage300account-my_open_invoices';
 
     /**
      * @var \Magento\Store\Model\StoreManagerInterface

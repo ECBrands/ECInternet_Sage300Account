@@ -9,25 +9,25 @@ namespace ECInternet\Sage300Account\Api\Data;
 
 interface OeppreInterface
 {
-    const COLUMN_ID         = 'entity_id';
+    public const COLUMN_ID         = 'entity_id';
 
-    const COLUMN_UPDATED_AT = 'updated_at';
+    public const COLUMN_UPDATED_AT = 'updated_at';
 
-    const COLUMN_APPLYTO    = 'APPLYTO';
+    public const COLUMN_APPLYTO    = 'APPLYTO';
 
-    const COLUMN_DOCNUMBER  = 'DOCNUMBER';
+    public const COLUMN_DOCNUMBER  = 'DOCNUMBER';
 
-    const COLUMN_PPNUMBER   = 'PPNUMBER';
+    public const COLUMN_PPNUMBER   = 'PPNUMBER';
 
-    const COLUMN_PAYMENT    = 'PAYMENT';
+    public const COLUMN_PAYMENT    = 'PAYMENT';
 
-    const COLUMN_INVPAYDISC = 'INVPAYDISC';
+    public const COLUMN_INVPAYDISC = 'INVPAYDISC';
 
-    const APPLY_TO_INVOICE  = 2;
+    public const APPLY_TO_INVOICE  = 2;
 
-    const APPLY_TO_ORDER    = 4;
+    public const APPLY_TO_ORDER    = 4;
 
-    const APPLY_TO_SHIPMENT = 9;
+    public const APPLY_TO_SHIPMENT = 9;
 
     /**
      * Get ID

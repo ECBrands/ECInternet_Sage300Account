@@ -21,7 +21,7 @@ use ECInternet\Sage300Account\Api\Data\OeinvdInterface;
  */
 class Oeinvd extends AbstractModel implements IdentityInterface, OeinvdInterface
 {
-    const CACHE_TAG = 'ecinternet_sage300account_oeinvd';
+    private const CACHE_TAG = 'ecinternet_sage300account_oeinvd';
 
     protected $_cacheTag    = 'ecinternet_sage300account_oeinvd';
 

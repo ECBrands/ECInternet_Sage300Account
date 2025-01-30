@@ -9,17 +9,17 @@ namespace ECInternet\Sage300Account\Api\Data;
 
 interface UomInterface
 {
-    const COLUMN_ID         = 'entity_id';
+    public const COLUMN_ID         = 'entity_id';
 
-    const COLUMN_UPDATED_AT = 'updated_at';
+    public const COLUMN_UPDATED_AT = 'updated_at';
 
-    const COLUMN_ITEMNO     = 'ITEMNO';
+    public const COLUMN_ITEMNO     = 'ITEMNO';
 
-    const COLUMN_PRICELIST  = 'PRICELIST';
+    public const COLUMN_PRICELIST  = 'PRICELIST';
 
-    const COLUMN_UNIT       = 'UNIT';
+    public const COLUMN_UNIT       = 'UNIT';
 
-    const COLUMN_DEFCONV    = 'DEFCONV';
+    public const COLUMN_DEFCONV    = 'DEFCONV';
 
     /**
      * Get ID
