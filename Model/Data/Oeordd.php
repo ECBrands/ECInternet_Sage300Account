@@ -21,7 +21,7 @@ use ECInternet\Sage300Account\Api\Data\OeorddInterface;
  */
 class Oeordd extends AbstractModel implements IdentityInterface, OeorddInterface
 {
-    const CACHE_TAG = 'ecinternet_sage300account_oeordd';
+    private const CACHE_TAG = 'ecinternet_sage300account_oeordd';
 
     protected $_cacheTag    = 'ecinternet_sage300account_oeordd';
 

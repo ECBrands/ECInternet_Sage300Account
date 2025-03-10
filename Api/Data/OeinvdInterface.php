@@ -9,31 +9,31 @@ namespace ECInternet\Sage300Account\Api\Data;
 
 interface OeinvdInterface
 {
-    const COLUMN_ID         = 'entity_id';
+    public const COLUMN_ID         = 'entity_id';
 
-    const COLUMN_UPDATED_AT = 'updated_at';
+    public const COLUMN_UPDATED_AT = 'updated_at';
 
-    const COLUMN_INVUNIQ    = 'INVUNIQ';
+    public const COLUMN_INVUNIQ    = 'INVUNIQ';
 
-    const COLUMN_LINENUM    = 'LINENUM';
+    public const COLUMN_LINENUM    = 'LINENUM';
 
-    const COLUMN_ITEM       = 'ITEM';
+    public const COLUMN_ITEM       = 'ITEM';
 
-    const COLUMN_DESC       = 'DESC';
+    public const COLUMN_DESC       = 'DESC';
 
-    const COLUMN_QTYORDERED = 'QTYORDERED';
+    public const COLUMN_QTYORDERED = 'QTYORDERED';
 
-    const COLUMN_QTYSHIPPED = 'QTYSHIPPED';
+    public const COLUMN_QTYSHIPPED = 'QTYSHIPPED';
 
-    const COLUMN_QTYBACKORD = 'QTYBACKORD';
+    public const COLUMN_QTYBACKORD = 'QTYBACKORD';
 
-    const COLUMN_INVUNIT    = 'INVUNIT';
+    public const COLUMN_INVUNIT    = 'INVUNIT';
 
-    const COLUMN_UNITPRICE  = 'UNITPRICE';
+    public const COLUMN_UNITPRICE  = 'UNITPRICE';
 
-    const COLUMN_EXTINVMISC = 'EXTINVMISC';
+    public const COLUMN_EXTINVMISC = 'EXTINVMISC';
 
-    const COLUMN_INVDISC    = 'INVDISC';
+    public const COLUMN_INVDISC    = 'INVDISC';
 
     /**
      * Get ID

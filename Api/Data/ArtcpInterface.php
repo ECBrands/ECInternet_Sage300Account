@@ -9,21 +9,21 @@ namespace ECInternet\Sage300Account\Api\Data;
 
 interface ArtcpInterface
 {
-    const COLUMN_ID         = 'entity_id';
+    public const COLUMN_ID         = 'entity_id';
 
-    const COLUMN_UPDATED_AT = 'updated_at';
+    public const COLUMN_UPDATED_AT = 'updated_at';
 
-    const COLUMN_CODEPAYM   = 'CODEPAYM';
+    public const COLUMN_CODEPAYM   = 'CODEPAYM';
 
-    const COLUMN_CNTBTCH    = 'CNTBTCH';
+    public const COLUMN_CNTBTCH    = 'CNTBTCH';
 
-    const COLUMN_CNTITEM    = 'CNTITEM';
+    public const COLUMN_CNTITEM    = 'CNTITEM';
 
-    const COLUMN_CNTLINE    = 'CNTLINE';
+    public const COLUMN_CNTLINE    = 'CNTLINE';
 
-    const COLUMN_IDINVC     = 'IDINVC';
+    public const COLUMN_IDINVC     = 'IDINVC';
 
-    const COLUMN_AMTPAYM    = 'AMTPAYM';
+    public const COLUMN_AMTPAYM    = 'AMTPAYM';
 
     /**
      * Get ID

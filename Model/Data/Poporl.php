@@ -27,7 +27,7 @@ use ECInternet\Sage300Account\Model\ResourceModel\Poporlo\CollectionFactory as P
  */
 class Poporl extends AbstractExtensibleModel implements IdentityInterface, PoporlInterface
 {
-    const CACHE_TAG = 'ecinternet_sage300account_poporl';
+    private const CACHE_TAG = 'ecinternet_sage300account_poporl';
 
     protected $_cacheTag    = 'ecinternet_sage300account_poporl';
 

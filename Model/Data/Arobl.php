@@ -21,7 +21,7 @@ use ECInternet\Sage300Account\Api\Data\AroblInterface;
  */
 class Arobl extends AbstractModel implements IdentityInterface, AroblInterface
 {
-    const CACHE_TAG = 'ecinternet_sage300account_arobl';
+    private const CACHE_TAG = 'ecinternet_sage300account_arobl';
 
     protected $_cacheTag    = 'ecinternet_sage300account_arobl';
 

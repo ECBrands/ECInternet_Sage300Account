@@ -12,21 +12,21 @@ namespace ECInternet\Sage300Account\Api\Data;
  */
 interface PoporloInterface
 {
-    const COLUMN_ID         = 'entity_id';
+    public const COLUMN_ID         = 'entity_id';
 
-    const COLUMN_STORE_ID   = 'store_id';
+    public const COLUMN_STORE_ID   = 'store_id';
 
-    const COLUMN_CREATED_AT = 'created_at';
+    public const COLUMN_CREATED_AT = 'created_at';
 
-    const COLUMN_UPDATED_AT = 'updated_at';
+    public const COLUMN_UPDATED_AT = 'updated_at';
 
-    const COLUMN_PORHSEQ    = 'PORHSEQ';
+    public const COLUMN_PORHSEQ    = 'PORHSEQ';
 
-    const COLUMN_PORLREV    = 'PORLREV';
+    public const COLUMN_PORLREV    = 'PORLREV';
 
-    const COLUMN_OPTFIELD   = 'OPTFIELD';
+    public const COLUMN_OPTFIELD   = 'OPTFIELD';
 
-    const COLUMN_VALUE      = 'VALUE';
+    public const COLUMN_VALUE      = 'VALUE';
 
     /**
      * Get ID

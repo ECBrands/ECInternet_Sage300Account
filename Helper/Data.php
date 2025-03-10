@@ -25,8 +25,6 @@ use Exception;
  */
 class Data extends AbstractHelper
 {
-    const INVOICE_PAYMENT_ORDER_STATUS          = 'invoice_payment';
-
     /**
      * @var \Magento\Customer\Api\GroupRepositoryInterface
      */

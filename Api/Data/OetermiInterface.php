@@ -9,19 +9,19 @@ namespace ECInternet\Sage300Account\Api\Data;
 
 interface OetermiInterface
 {
-    const COLUMN_ID         = 'entity_id';
+    public const COLUMN_ID         = 'entity_id';
 
-    const COLUMN_UPDATED_AT = 'updated_at';
+    public const COLUMN_UPDATED_AT = 'updated_at';
 
-    const COLUMN_INVUNIQ    = 'INVUNIQ';
+    public const COLUMN_INVUNIQ    = 'INVUNIQ';
 
-    const COLUMN_PAYMENT    = 'PAYMENT';
+    public const COLUMN_PAYMENT    = 'PAYMENT';
 
-    const COLUMN_DISCDATE   = 'DISCDATE';
+    public const COLUMN_DISCDATE   = 'DISCDATE';
 
-    const COLUMN_DISCAMT    = 'DISCAMT';
+    public const COLUMN_DISCAMT    = 'DISCAMT';
 
-    const COLUMN_DUEDATE    = 'DUEDATE';
+    public const COLUMN_DUEDATE    = 'DUEDATE';
 
     /**
      * Get ID

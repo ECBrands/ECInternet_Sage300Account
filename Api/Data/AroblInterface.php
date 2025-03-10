@@ -9,15 +9,15 @@ namespace ECInternet\Sage300Account\Api\Data;
 
 interface AroblInterface
 {
-    const COLUMN_ID         = 'entity_id';
+    public const COLUMN_ID         = 'entity_id';
 
-    const COLUMN_UPDATED_AT = 'updated_at';
+    public const COLUMN_UPDATED_AT = 'updated_at';
 
-    const COLUMN_IDCUST     = 'IDCUST';
+    public const COLUMN_IDCUST     = 'IDCUST';
 
-    const COLUMN_IDINVC     = 'IDINVC';
+    public const COLUMN_IDINVC     = 'IDINVC';
 
-    const COLUMN_SWPAID     = 'SWPAID';
+    public const COLUMN_SWPAID     = 'SWPAID';
 
     /**
      * Get ID

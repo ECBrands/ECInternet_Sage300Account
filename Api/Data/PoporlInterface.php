@@ -14,29 +14,29 @@ use Magento\Framework\Api\ExtensibleDataInterface;
  */
 interface PoporlInterface extends ExtensibleDataInterface
 {
-    const COLUMN_ID         = 'entity_id';
+    public const COLUMN_ID         = 'entity_id';
 
-    const COLUMN_UPDATED_AT = 'updated_at';
+    public const COLUMN_UPDATED_AT = 'updated_at';
 
-    const COLUMN_IS_ACTIVE  = 'is_active';
+    public const COLUMN_IS_ACTIVE  = 'is_active';
 
-    const COLUMN_PORHSEQ    = 'PORHSEQ';
+    public const COLUMN_PORHSEQ    = 'PORHSEQ';
 
-    const COLUMN_PORLREV    = 'PORLREV';
+    public const COLUMN_PORLREV    = 'PORLREV';
 
-    const COLUMN_PORLSEQ    = 'PORLSEQ';
+    public const COLUMN_PORLSEQ    = 'PORLSEQ';
 
-    const COLUMN_ITEMNO     = 'ITEMNO';
+    public const COLUMN_ITEMNO     = 'ITEMNO';
 
-    const COLUMN_OQORDERED  = 'OQORDERED';
+    public const COLUMN_OQORDERED  = 'OQORDERED';
 
-    const COLUMN_OQRECEIVED = 'OQRECEIVED';
+    public const COLUMN_OQRECEIVED = 'OQRECEIVED';
 
-    const COLUMN_OQCANCELED = 'OQCANCELED';
+    public const COLUMN_OQCANCELED = 'OQCANCELED';
 
-    const COLUMN_OQOUTSTAND = 'OQOUTSTAND';
+    public const COLUMN_OQOUTSTAND = 'OQOUTSTAND';
 
-    const COLUMN_DETAILNUM  = 'DETAILNUM';
+    public const COLUMN_DETAILNUM  = 'DETAILNUM';
 
     /**
      * Get ID

@@ -21,7 +21,7 @@ use ECInternet\Sage300Account\Api\Data\OeshdtInterface;
  */
 class Oeshdt extends AbstractModel implements IdentityInterface, OeshdtInterface
 {
-    const CACHE_TAG = 'ecinternet_sage300account_oeshdt';
+    private const CACHE_TAG = 'ecinternet_sage300account_oeshdt';
 
     protected $_cacheTag    = 'ecinternet_sage300account_oeshdt';
 

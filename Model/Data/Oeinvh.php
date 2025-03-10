@@ -30,7 +30,7 @@ use ECInternet\Sage300Account\Model\ResourceModel\Oetermi\CollectionFactory as O
  */
 class Oeinvh extends AbstractModel implements IdentityInterface, OeinvhInterface
 {
-    const CACHE_TAG = 'ecinternet_sage300account_oeinvh';
+    private const CACHE_TAG = 'ecinternet_sage300account_oeinvh';
 
     protected $_cacheTag    = 'ecinternet_sage300account_oeinvh';
 

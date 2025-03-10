@@ -21,7 +21,7 @@ use ECInternet\Sage300Account\Api\Data\ArtcpInterface;
  */
 class Artcp extends AbstractModel implements IdentityInterface, ArtcpInterface
 {
-    const CACHE_TAG = 'ecinternet_sage300account_artcp';
+    private const CACHE_TAG = 'ecinternet_sage300account_artcp';
 
     protected $_cacheTag    = 'ecinternet_sage300account_artcp';
 

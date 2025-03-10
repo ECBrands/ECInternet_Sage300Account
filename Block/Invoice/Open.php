@@ -14,6 +14,7 @@ use Magento\Framework\View\Element\Template;
 use Magento\Sales\Api\Data\OrderItemInterface;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory as OrderCollectionFactory;
 use Magento\Theme\Block\Html\Pager;
+use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Config;
 use ECInternet\Sage300Account\Model\Data\Oeinvh;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\CollectionFactory as OeinvhCollectionFactory;
@@ -41,6 +42,11 @@ class Open extends Template
     private $orderCollectionFactory;
 
     /**
+     * @var \ECInternet\Sage300Account\Logger\Logger
+     */
+    private $logger;
+
+    /**
      * @var \ECInternet\Sage300Account\Model\Config
      */
     private $config;
@@ -57,6 +63,7 @@ class Open extends Template
      * @param \Magento\Customer\Model\Session                                         $customerSession
      * @param \Magento\Framework\Pricing\PriceCurrencyInterface                       $priceCurrency
      * @param \Magento\Sales\Model\ResourceModel\Order\CollectionFactory              $orderCollectionFactory
+     * @param \ECInternet\Sage300Account\Logger\Logger                                $logger
      * @param \ECInternet\Sage300Account\Model\Config                                 $config
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\CollectionFactory $oeinvhCollectionFactory
      * @param array                                                                   $data
@@ -66,6 +73,7 @@ class Open extends Template
         CustomerSession $customerSession,
         PriceCurrencyInterface $priceCurrency,
         OrderCollectionFactory $orderCollectionFactory,
+        Logger $logger,
         Config $config,
         OeinvhCollectionFactory $oeinvhCollectionFactory,
         array $data = []
@@ -73,6 +81,7 @@ class Open extends Template
         $this->customerSession         = $customerSession;
         $this->priceCurrency           = $priceCurrency;
         $this->orderCollectionFactory  = $orderCollectionFactory;
+        $this->logger                  = $logger;
         $this->config                  = $config;
         $this->oeinvhCollectionFactory = $oeinvhCollectionFactory;
 
@@ -239,7 +248,7 @@ class Open extends Template
      */
     public function isInvoicePaymentAllowed(string $invoiceNumber)
     {
-        $this->_logger->info('isInvoicePaymentAllowed()', ['invoiceNumber' => $invoiceNumber]);
+        $this->log('isInvoicePaymentAllowed()', ['invoiceNumber' => $invoiceNumber]);
 
         // Cache customer email
         $customerEmail = $this->getCurrentCustomerEmail();
@@ -252,7 +261,7 @@ class Open extends Template
         // Check to see if we have a non-completed invoice payment for this invoice.
         // We look at previous orders to see if we have a matching invoice payment product option.
         $invoiceOrders = $this->getInvoicePaymentOrdersByCustomerEmail($customerEmail);
-        $this->_logger->info('isInvoicePaymentAllowed()', [
+        $this->log('isInvoicePaymentAllowed()', [
             'email'         => $customerEmail,
             'invoiceOrders' => $invoiceOrders->getSize()
         ]);
@@ -364,5 +373,10 @@ class Open extends Template
     private function format(float $value)
     {
         return $this->priceCurrency->convertAndFormat($value, false);
+    }
+
+    private function log(string $message, array $extra = [])
+    {
+        $this->logger->info('Block/Invoice/Open - ' . $message, $extra);
     }
 }

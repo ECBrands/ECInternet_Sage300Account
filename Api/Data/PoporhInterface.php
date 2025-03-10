@@ -12,21 +12,21 @@ namespace ECInternet\Sage300Account\Api\Data;
  */
 interface PoporhInterface
 {
-    const COLUMN_ID         = 'entity_id';
+    public const COLUMN_ID         = 'entity_id';
 
-    const COLUMN_UPDATED_AT = 'updated_at';
+    public const COLUMN_UPDATED_AT = 'updated_at';
 
-    const COLUMN_PORHSEQ    = 'PORHSEQ';
+    public const COLUMN_PORHSEQ    = 'PORHSEQ';
 
-    const COLUMN_PONUMBER   = 'PONUMBER';
+    public const COLUMN_PONUMBER   = 'PONUMBER';
 
-    const COLUMN_VDCODE     = 'VDCODE';
+    public const COLUMN_VDCODE     = 'VDCODE';
 
-    const COLUMN_VDNAME     = 'VDNAME';
+    public const COLUMN_VDNAME     = 'VDNAME';
 
-    const COLUMN_EXPARRIVAL = 'EXPARRIVAL';
+    public const COLUMN_EXPARRIVAL = 'EXPARRIVAL';
 
-    const COLUMN_VIACODE    = 'VIACODE';
+    public const COLUMN_VIACODE    = 'VIACODE';
 
     /**
      * Get ID

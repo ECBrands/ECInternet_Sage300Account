@@ -12,29 +12,29 @@ use Magento\Store\Model\ScopeInterface;
 
 class Config
 {
-    const CONFIG_PATH_ENABLED                    = 'sage300account/general/enable';
+    private const CONFIG_PATH_ENABLED                    = 'sage300account/general/enable';
 
-    const CONFIG_PATH_ENABLE_PRODUCT_FILTERING   = 'sage300account/general/product_filtering';
+    private const CONFIG_PATH_ENABLE_PRODUCT_FILTERING   = 'sage300account/general/product_filtering';
 
-    const CONFIG_PATH_SHOW_UOM                   = 'sage300account/uom/show_uom';
+    private const CONFIG_PATH_SHOW_UOM                   = 'sage300account/uom/show_uom';
 
-    const CONFIG_PATH_DEFAULT_UOM_CUSTOMER_GROUP = 'sage300account/uom/default_customer_group';
+    private const CONFIG_PATH_DEFAULT_UOM_CUSTOMER_GROUP = 'sage300account/uom/default_customer_group';
 
-    const CONFIG_PATH_HIDE_CUSTOMER_DASHBOARD    = 'sage300account/customer_account_display/hide_customer_dashboard';
+    private const CONFIG_PATH_HIDE_CUSTOMER_DASHBOARD    = 'sage300account/customer_account_display/hide_customer_dashboard';
 
-    const CONFIG_PATH_SHOW_SIDENAV_LINKS         = 'sage300account/customer_account_display/show_sidenav_links';
+    private const CONFIG_PATH_SHOW_SIDENAV_LINKS         = 'sage300account/customer_account_display/show_sidenav_links';
 
-    const CONFIG_PATH_REORDER_ENABLED            = 'sage300account/reorder/enable';
+    private const CONFIG_PATH_REORDER_ENABLED            = 'sage300account/reorder/enable';
 
-    const CONFIG_PATH_REORDER_SKIP_SKUS          = 'sage300account/reorder/skip_skus';
+    private const CONFIG_PATH_REORDER_SKIP_SKUS          = 'sage300account/reorder/skip_skus';
 
-    const CONFIG_PATH_INVOICE_PAYMENT_ALLOW      = 'sage300account/invoice_payments/allow_invoice_payments';
+    private const CONFIG_PATH_INVOICE_PAYMENT_ALLOW      = 'sage300account/invoice_payments/allow_invoice_payments';
 
-    const CONFIG_PATH_INVOICE_PAYMENT_SKU        = 'sage300account/invoice_payments/virtual_product_sku';
+    private const CONFIG_PATH_INVOICE_PAYMENT_SKU        = 'sage300account/invoice_payments/virtual_product_sku';
 
-    const INVOICE_PAYMENT_ORDER_STATUS           = 'invoice_payment';
+    public const  INVOICE_PAYMENT_ORDER_STATUS           = 'invoice_payment';
 
-    const ORDER_ITEM_INVOICE_ADDITIONAL_OPTION   = 'invoice_payment';
+    public const  ORDER_ITEM_INVOICE_ADDITIONAL_OPTION   = 'invoice_payment';
 
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface

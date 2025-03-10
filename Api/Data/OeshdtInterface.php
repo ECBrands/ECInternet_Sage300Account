@@ -9,17 +9,17 @@ namespace ECInternet\Sage300Account\Api\Data;
 
 interface OeshdtInterface
 {
-    const COLUMN_ID         = 'entity_id';
+    public const COLUMN_ID         = 'entity_id';
 
-    const COLUMN_UPDATED_AT = 'updated_at';
+    public const COLUMN_UPDATED_AT = 'updated_at';
 
-    const COLUMN_IS_ACTIVE  = 'is_active';
+    public const COLUMN_IS_ACTIVE  = 'is_active';
 
-    const COLUMN_CUSTOMER   = 'CUSTOMER';
+    public const COLUMN_CUSTOMER   = 'CUSTOMER';
 
-    const COLUMN_ITEM       = 'ITEM';
+    public const COLUMN_ITEM       = 'ITEM';
 
-    const COLUMN_SHIPDATE   = 'SHIPDATE';
+    public const COLUMN_SHIPDATE   = 'SHIPDATE';
 
     /**
      * Get ID

@@ -39,7 +39,7 @@ use Exception;
  */
 class ReorderList extends View
 {
-    const ATTRIBUTE_CUSTOMER_NUMBER = 'customer_number';
+    private const ATTRIBUTE_CUSTOMER_NUMBER = 'customer_number';
 
     /**
      * @var \Magento\Catalog\Helper\Output

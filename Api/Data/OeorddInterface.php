@@ -9,31 +9,31 @@ namespace ECInternet\Sage300Account\Api\Data;
 
 interface OeorddInterface
 {
-    const COLUMN_ID         = 'entity_id';
+    public const COLUMN_ID         = 'entity_id';
 
-    const COLUMN_UPDATED_AT = 'updated_at';
+    public const COLUMN_UPDATED_AT = 'updated_at';
 
-    const COLUMN_ORDUNIQ    = 'ORDUNIQ';
+    public const COLUMN_ORDUNIQ    = 'ORDUNIQ';
 
-    const COLUMN_LINENUM    = 'LINENUM';
+    public const COLUMN_LINENUM    = 'LINENUM';
 
-    const COLUMN_LINETYPE   = 'LINETYPE';
+    public const COLUMN_LINETYPE   = 'LINETYPE';
 
-    const COLUMN_ITEM       = 'ITEM';
+    public const COLUMN_ITEM       = 'ITEM';
 
-    const COLUMN_DESC       = 'DESC';
+    public const COLUMN_DESC       = 'DESC';
 
-    const COLUMN_QTYORDERED = 'QTYORDERED';
+    public const COLUMN_QTYORDERED = 'QTYORDERED';
 
-    const COLUMN_QTYSHIPPED = 'QTYSHIPPED';
+    public const COLUMN_QTYSHIPPED = 'QTYSHIPPED';
 
-    const COLUMN_QTYBACKORD = 'QTYBACKORD';
+    public const COLUMN_QTYBACKORD = 'QTYBACKORD';
 
-    const COLUMN_ORDUNIT    = 'ORDUNIT';
+    public const COLUMN_ORDUNIT    = 'ORDUNIT';
 
-    const COLUMN_UNITPRICE  = 'UNITPRICE';
+    public const COLUMN_UNITPRICE  = 'UNITPRICE';
 
-    const COLUMN_EXTINVMISC = 'EXTINVMISC';
+    public const COLUMN_EXTINVMISC = 'EXTINVMISC';
 
     /**
      * Get ID

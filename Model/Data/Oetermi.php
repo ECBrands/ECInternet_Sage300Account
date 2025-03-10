@@ -21,7 +21,7 @@ use ECInternet\Sage300Account\Api\Data\OetermiInterface;
  */
 class Oetermi extends AbstractModel implements IdentityInterface, OetermiInterface
 {
-    const CACHE_TAG = 'ecinternet_sage300account_oetermi';
+    private const CACHE_TAG = 'ecinternet_sage300account_oetermi';
 
     protected $_cacheTag    = 'ecinternet_sage300account_oetermi';
 

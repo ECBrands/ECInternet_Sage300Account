@@ -21,7 +21,7 @@ use ECInternet\Sage300Account\Api\Data\UomInterface;
  */
 class Uom extends AbstractModel implements IdentityInterface, UomInterface
 {
-    const CACHE_TAG = 'ecinternet_sage300account_uom';
+    private const CACHE_TAG = 'ecinternet_sage300account_uom';
 
     protected $_cacheTag    = 'ecinternet_sage300account_uom';
 
