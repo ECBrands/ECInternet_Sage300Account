@@ -143,7 +143,7 @@ class Open extends Template
                     $collection->getSelect()->join(
                         ['arobl' => $collection->getTable('ecinternet_sage300account_arobl')],
                         'main_table.INVNUMBER = arobl.IDINVC',
-                        ['arobl.SWPAID']
+                        []
                     )->where("(arobl.SWPAID = '0') AND main_table.CUSTOMER = '$customerNumber'");
 
                     // Get value of current page
