@@ -11,7 +11,7 @@ define([
     'Magento_Catalog/js/product/view/product-info-resolver',
     'Magento_Customer/js/customer-data',
     'jquery/jquery-storageapi',
-    'jquery-ui-modules/widget'
+    'jquery/ui-modules/widget'
 ], function ($, $t, _, idsResolver, productInfoResolver, customerData) {
     'use strict';
 
