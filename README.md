@@ -26,23 +26,51 @@ Sage300Account module adds Sage invoice and order history information to the Mag
 ## Configuration
 
 ## Specifications
-### Data Changes
-#### order
+### Database Changes
+#### Sales Order
 - `is_invoice_payment`
 - `uom`
-#### order_item
-- `invoice_docnumber`
-#### sales_order_status
+#### Sales Order Status
 - `invoice_payment_complete`
-#### quote_item
-- `invoice_docnumber`
-- `uom`
 
 ## Attributes
-#### Product
+#### Catalog Product
+- `invoice_docnumber`
+- `uom`
+### Quote Item
+- `invoice_docnumber`
 - `uom`
 
+
+
 ## Features
+### Events
+`sales_order_place_after`
+- Checks if order is invoice payment, and if so, sets order status and status to `invoice_payment`, and sets `is_invoice_payment` to `1`.
+
+`sales_quote_product_add_after`
+- Sets `uom` on quote item.
+
+`layout_generate_blocks_after` (frontend)
+- Removes sidenav links from Customer Account page.
+
+### Plugins
+`Magento\Catalog\Block\Product\ListProduct`
+- Adds uom template to product list display.
+
+`Magento\CatalogSearch\Block\Result`
+- Redirects the Customer to the custom 'reorder' page if they are searching for a product they've previously purchased.
+
+`Magento\Framework\View\Result\Layout`
+- Empties the Customer's cart if they have an invoice payment in their cart, but they navigate away from the checkout page.
+
+`Magento\Quote\Model\Quote\Item\ToOrderItem.convert()`
+- Extracts `invoice_docnumber` and `uom` from quote item and set them on order item.
+
+`Magento\Sales\Api\OrderRepositoryInterfacePlugin.get()`
+- Sets `is_invoice_payment` and `uom` on order item for API response.
+
+
 
 ## Notes
 - Adding an invoice payment to the cart will empty the existing cart.
