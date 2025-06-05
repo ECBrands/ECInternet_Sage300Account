@@ -10,8 +10,7 @@ declare(strict_types=1);
 <?php /** @var \Magento\Framework\Escaper $escaper */ ?>
 
 <?php /** @var \ECInternet\Sage300Account\Model\Data\Oeordh $order */ ?>
-<?php $order = $block->getOrder(); ?>
-<?php if ($order) { ?>
+<?php if ($order = $block->getOrder()) { ?>
     <div class="order-head">
         <div class="pull-right">
             <table class="table-order-head">
