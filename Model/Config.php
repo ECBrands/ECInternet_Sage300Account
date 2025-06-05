@@ -14,8 +14,6 @@ class Config
 {
     private const CONFIG_PATH_ENABLED                    = 'sage300account/general/enable';
 
-    private const CONFIG_PATH_ENABLE_PRODUCT_FILTERING   = 'sage300account/general/product_filtering';
-
     private const CONFIG_PATH_SHOW_UOM                   = 'sage300account/uom/show_uom';
 
     private const CONFIG_PATH_DEFAULT_UOM_CUSTOMER_GROUP = 'sage300account/uom/default_customer_group';
@@ -60,16 +58,6 @@ class Config
     public function isModuleEnabled()
     {
         return $this->scopeConfig->isSetFlag(self::CONFIG_PATH_ENABLED);
-    }
-
-    /**
-     * Is product filtering enabled?
-     *
-     * @return bool
-     */
-    public function isProductFilteringEnabled()
-    {
-        return $this->scopeConfig->isSetFlag(self::CONFIG_PATH_ENABLE_PRODUCT_FILTERING);
     }
 
     /**
