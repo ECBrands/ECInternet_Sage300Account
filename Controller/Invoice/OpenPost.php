@@ -100,17 +100,17 @@ class OpenPost extends Invoice implements HttpPostActionInterface
      *
      * @return float|null
      */
-    private function getAmount($value)
+    private function getAmount(mixed $value)
     {
         // Cache and then check to see if it's valid by cleaning first
         $cleanedAmount = $this->cleanAmount($value);
+        $this->log('getAmount()', ['value' => $value, 'cleanedAmount' => $cleanedAmount]);
+
         if (is_numeric($cleanedAmount)) {
             return (float)$cleanedAmount;
-        } else {
-            $this->log('getAmount() - cleanedAmount is not numeric');
         }
 
-        // If cleaning fails, check value to see if numeric
+        // If cleanedAmount fails for some reason, check dirty value to see if numeric
         if (is_numeric($value)) {
             return (float)$value;
         }
@@ -124,7 +124,7 @@ class OpenPost extends Invoice implements HttpPostActionInterface
      *
      * @return array|string|string[]|null
      */
-    private function cleanAmount($amountData)
+    private function cleanAmount(mixed $amountData)
     {
         try {
             return preg_replace('([^0-9 + .])', '', (string)$amountData);
