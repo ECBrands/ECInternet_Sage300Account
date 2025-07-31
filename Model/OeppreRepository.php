@@ -12,11 +12,11 @@ use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use ECInternet\Sage300Account\Api\OeppreRepositoryInterface;
 use ECInternet\Sage300Account\Api\Data\OeppreInterface;
 use ECInternet\Sage300Account\Api\Data\OeppreSearchResultsInterfaceFactory;
-use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Data\Oeppre;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeppre as OeppreResource;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeppre\CollectionFactory as OeppreCollectionFactory;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 /**
  * Oeppre model repository
@@ -34,11 +34,6 @@ class OeppreRepository implements OeppreRepositoryInterface
     protected $searchResultsFactory;
 
     /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
-     */
-    private $logger;
-
-    /**
      * @var \ECInternet\Sage300Account\Model\ResourceModel\Oeppre
      */
     private $resourceModel;
@@ -49,26 +44,31 @@ class OeppreRepository implements OeppreRepositoryInterface
     private $oeppreCollectionFactory;
 
     /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
+
+    /**
      * OeppreRepository constructor.
      *
      * @param \Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface      $collectionProcessor
      * @param \ECInternet\Sage300Account\Api\Data\OeppreSearchResultsInterfaceFactory $oeppreSearchResultsFactory
-     * @param \ECInternet\Sage300Account\Logger\Logger                                $logger
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeppre                   $resourceModel
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeppre\CollectionFactory $oeppreCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                                $logger
      */
     public function __construct(
         CollectionProcessorInterface $collectionProcessor,
         OeppreSearchResultsInterfaceFactory $oeppreSearchResultsFactory,
-        Logger $logger,
         OeppreResource $resourceModel,
-        OeppreCollectionFactory $oeppreCollectionFactory
+        OeppreCollectionFactory $oeppreCollectionFactory,
+        LoggerInterface $logger
     ) {
         $this->collectionProcessor     = $collectionProcessor;
         $this->searchResultsFactory    = $oeppreSearchResultsFactory;
-        $this->logger                  = $logger;
         $this->resourceModel           = $resourceModel;
         $this->oeppreCollectionFactory = $oeppreCollectionFactory;
+        $this->logger                  = $logger;
     }
 
     public function save(

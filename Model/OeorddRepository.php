@@ -12,11 +12,11 @@ use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use ECInternet\Sage300Account\Api\Data\OeorddInterface;
 use ECInternet\Sage300Account\Api\Data\OeorddSearchResultsInterfaceFactory;
 use ECInternet\Sage300Account\Api\OeorddRepositoryInterface;
-use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Data\Oeordd;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeordd as OeorddResource;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeordd\CollectionFactory as OeorddCollectionFactory;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 /**
  * Oeordd model repository
@@ -37,7 +37,7 @@ class OeorddRepository implements OeorddRepositoryInterface
     protected $searchResultsFactory;
 
     /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
@@ -56,22 +56,22 @@ class OeorddRepository implements OeorddRepositoryInterface
      *
      * @param \Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface      $collectionProcessor
      * @param \ECInternet\Sage300Account\Api\Data\OeorddSearchResultsInterfaceFactory $oeorddSearchResultsFactory
-     * @param \ECInternet\Sage300Account\Logger\Logger                                $logger
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeordd                   $resourceModel
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeordd\CollectionFactory $oeorddCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                                $logger
      */
     public function __construct(
         CollectionProcessorInterface $collectionProcessor,
         OeorddSearchResultsInterfaceFactory $oeorddSearchResultsFactory,
-        Logger $logger,
         OeorddResource $resourceModel,
-        OeorddCollectionFactory $oeorddCollectionFactory
+        OeorddCollectionFactory $oeorddCollectionFactory,
+        LoggerInterface $logger
     ) {
         $this->collectionProcessor     = $collectionProcessor;
         $this->searchResultsFactory    = $oeorddSearchResultsFactory;
-        $this->logger                  = $logger;
         $this->resourceModel           = $resourceModel;
         $this->oeorddCollectionFactory = $oeorddCollectionFactory;
+        $this->logger                  = $logger;
     }
 
     public function save(

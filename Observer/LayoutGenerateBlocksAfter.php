@@ -11,8 +11,8 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Store\Model\StoreManagerInterface;
-use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Config;
+use Psr\Log\LoggerInterface;
 
 /**
  * Observer for 'layout_generate_blocks_after' event
@@ -33,26 +33,26 @@ class LayoutGenerateBlocksAfter implements ObserverInterface
     private $storeManager;
 
     /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
-     */
-    private $logger;
-
-    /**
      * @var \ECInternet\Sage300Account\Model\Config
      */
     private $config;
 
     /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
+
+    /**
      * LayoutGenerateBlocksAfter constructor.
      *
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \ECInternet\Sage300Account\Logger\Logger   $logger
      * @param \ECInternet\Sage300Account\Model\Config    $config
+     * @param \Psr\Log\LoggerInterface                   $logger
      */
     public function __construct(
         StoreManagerInterface $storeManager,
-        Logger $logger,
-        Config $config
+        Config $config,
+        LoggerInterface $logger
     ) {
         $this->storeManager = $storeManager;
         $this->logger       = $logger;

@@ -14,10 +14,10 @@ use Magento\Framework\View\Element\Template;
 use Magento\Sales\Api\Data\OrderItemInterface;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory as OrderCollectionFactory;
 use Magento\Theme\Block\Html\Pager;
-use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Config;
 use ECInternet\Sage300Account\Model\Data\Oeinvh;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\CollectionFactory as OeinvhCollectionFactory;
+use Psr\Log\LoggerInterface;
 
 /**
  * Open Invoice Block
@@ -42,7 +42,7 @@ class Open extends Template
     private $orderCollectionFactory;
 
     /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
@@ -63,9 +63,9 @@ class Open extends Template
      * @param \Magento\Customer\Model\Session                                         $customerSession
      * @param \Magento\Framework\Pricing\PriceCurrencyInterface                       $priceCurrency
      * @param \Magento\Sales\Model\ResourceModel\Order\CollectionFactory              $orderCollectionFactory
-     * @param \ECInternet\Sage300Account\Logger\Logger                                $logger
      * @param \ECInternet\Sage300Account\Model\Config                                 $config
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\CollectionFactory $oeinvhCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                                $logger
      * @param array                                                                   $data
      */
     public function __construct(
@@ -73,17 +73,17 @@ class Open extends Template
         CustomerSession $customerSession,
         PriceCurrencyInterface $priceCurrency,
         OrderCollectionFactory $orderCollectionFactory,
-        Logger $logger,
         Config $config,
         OeinvhCollectionFactory $oeinvhCollectionFactory,
+        LoggerInterface $logger,
         array $data = []
     ) {
         $this->customerSession         = $customerSession;
         $this->priceCurrency           = $priceCurrency;
         $this->orderCollectionFactory  = $orderCollectionFactory;
-        $this->logger                  = $logger;
         $this->config                  = $config;
         $this->oeinvhCollectionFactory = $oeinvhCollectionFactory;
+        $this->logger                  = $logger;
 
         parent::__construct($context, $data);
     }

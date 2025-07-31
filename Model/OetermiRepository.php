@@ -13,11 +13,11 @@ use Magento\Framework\Exception\LocalizedException;
 use ECInternet\Sage300Account\Api\Data\OetermiInterface;
 use ECInternet\Sage300Account\Api\Data\OetermiSearchResultsInterfaceFactory;
 use ECInternet\Sage300Account\Api\OetermiRepositoryInterface;
-use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Data\Oetermi;
 use ECInternet\Sage300Account\Model\ResourceModel\Oetermi as OetermiResource;
 use ECInternet\Sage300Account\Model\ResourceModel\Oetermi\CollectionFactory as OetermiCollectionFactory;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 /**
  * Oetermi Model Repository
@@ -37,11 +37,6 @@ class OetermiRepository implements OetermiRepositoryInterface
     protected $searchResultsFactory;
 
     /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
-     */
-    private $logger;
-
-    /**
      * @var \ECInternet\Sage300Account\Model\ResourceModel\Oetermi
      */
     private $resourceModel;
@@ -52,26 +47,31 @@ class OetermiRepository implements OetermiRepositoryInterface
     private $oetermiCollectionFactory;
 
     /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
+
+    /**
      * OetermiRepository constructor.
      *
      * @param \Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface       $collectionProcessor
      * @param \ECInternet\Sage300Account\Api\Data\OetermiSearchResultsInterfaceFactory $oetermiSearchResultsFactory
-     * @param \ECInternet\Sage300Account\Logger\Logger                                 $logger
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oetermi                   $resourceModel
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oetermi\CollectionFactory $oetermiCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                                 $logger
      */
     public function __construct(
         CollectionProcessorInterface $collectionProcessor,
         OetermiSearchResultsInterfaceFactory $oetermiSearchResultsFactory,
-        Logger $logger,
         OetermiResource $resourceModel,
-        OetermiCollectionFactory $oetermiCollectionFactory
+        OetermiCollectionFactory $oetermiCollectionFactory,
+        LoggerInterface $logger
     ) {
         $this->collectionProcessor      = $collectionProcessor;
         $this->searchResultsFactory     = $oetermiSearchResultsFactory;
-        $this->logger                   = $logger;
         $this->resourceModel            = $resourceModel;
         $this->oetermiCollectionFactory = $oetermiCollectionFactory;
+        $this->logger                   = $logger;
     }
 
     public function save(

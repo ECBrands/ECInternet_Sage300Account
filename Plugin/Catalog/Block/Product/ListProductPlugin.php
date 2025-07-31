@@ -11,8 +11,8 @@ use Magento\Catalog\Block\Product\ListProduct;
 use Magento\Catalog\Model\Product;
 use Magento\Framework\View\Element\BlockFactory;
 use ECInternet\Sage300Account\Helper\Data;
-use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Config;
+use Psr\Log\LoggerInterface;
 
 /**
  * Plugin for Magento\Catalog\Model\Product
@@ -30,33 +30,33 @@ class ListProductPlugin
     private $helper;
 
     /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
-     */
-    private $logger;
-
-    /**
      * @var \ECInternet\Sage300Account\Model\Config
      */
     private $config;
+
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
 
     /**
      * ListProductPlugin constructor.
      *
      * @param \Magento\Framework\View\Element\BlockFactory $blockFactory
      * @param \ECInternet\Sage300Account\Helper\Data       $helper
-     * @param \ECInternet\Sage300Account\Logger\Logger     $logger
      * @param \ECInternet\Sage300Account\Model\Config      $config
+     * @param \Psr\Log\LoggerInterface                     $logger
      */
     public function __construct(
         BlockFactory $blockFactory,
         Data $helper,
-        Logger $logger,
-        Config $config
+        Config $config,
+        LoggerInterface $logger
     ) {
         $this->blockFactory = $blockFactory;
         $this->helper       = $helper;
-        $this->logger       = $logger;
         $this->config       = $config;
+        $this->logger       = $logger;
     }
 
     /**

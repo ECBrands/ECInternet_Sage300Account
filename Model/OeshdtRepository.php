@@ -13,11 +13,11 @@ use Magento\Framework\Exception\LocalizedException;
 use ECInternet\Sage300Account\Api\Data\OeshdtInterface;
 use ECInternet\Sage300Account\Api\Data\OeshdtSearchResultsInterfaceFactory;
 use ECInternet\Sage300Account\Api\OeshdtRepositoryInterface;
-use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Data\Oeshdt;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeshdt as OeshdtResource;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeshdt\CollectionFactory as OeshdtCollectionFactory;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 /**
  * Oeshdt model repository
@@ -38,7 +38,7 @@ class OeshdtRepository implements OeshdtRepositoryInterface
     protected $searchResultsFactory;
 
     /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
@@ -57,22 +57,22 @@ class OeshdtRepository implements OeshdtRepositoryInterface
      *
      * @param \Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface      $collectionProcessor
      * @param \ECInternet\Sage300Account\Api\Data\OeshdtSearchResultsInterfaceFactory $oeshdtSearchResultsFactory
-     * @param \ECInternet\Sage300Account\Logger\Logger                                $logger
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeshdt                   $resourceModel
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeshdt\CollectionFactory $oeshdtCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                                $logger
      */
     public function __construct(
         CollectionProcessorInterface $collectionProcessor,
         OeshdtSearchResultsInterfaceFactory $oeshdtSearchResultsFactory,
-        Logger $logger,
         OeshdtResource $resourceModel,
-        OeshdtCollectionFactory $oeshdtCollectionFactory
+        OeshdtCollectionFactory $oeshdtCollectionFactory,
+        LoggerInterface $logger
     ) {
         $this->collectionProcessor     = $collectionProcessor;
         $this->searchResultsFactory    = $oeshdtSearchResultsFactory;
-        $this->logger                  = $logger;
         $this->resourceModel           = $resourceModel;
         $this->oeshdtCollectionFactory = $oeshdtCollectionFactory;
+        $this->logger                  = $logger;
     }
 
     public function save(

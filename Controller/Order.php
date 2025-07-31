@@ -16,9 +16,9 @@ use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Quote\Api\CartRepositoryInterface;
 use ECInternet\Sage300Account\Api\OeordhRepositoryInterface;
-use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Config;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeordh\CollectionFactory as OeordhCollectionFactory;
+use Psr\Log\LoggerInterface;
 
 /**
  * @SuppressWarnings(PHPMD.CookieAndSessionMisuse)
@@ -78,11 +78,6 @@ abstract class Order
     protected $helper;
 
     /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
-     */
-    protected $logger;
-
-    /**
      * @var \ECInternet\Sage300Account\Model\Config
      */
     protected $config;
@@ -91,6 +86,11 @@ abstract class Order
      * @var \ECInternet\Sage300Account\Model\ResourceModel\Oeordh\CollectionFactory
      */
     protected $oeordhCollectionFactory;
+
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    protected $logger;
 
     /**
      * Order constructor.
@@ -104,9 +104,9 @@ abstract class Order
      * @param \Magento\Framework\View\Result\PageFactory                              $resultPageFactory
      * @param \Magento\Quote\Api\CartRepositoryInterface                              $cartRepository
      * @param \ECInternet\Sage300Account\Api\OeordhRepositoryInterface                $oeordhRepository
-     * @param \ECInternet\Sage300Account\Logger\Logger                                $logger
      * @param \ECInternet\Sage300Account\Model\Config                                 $config
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeordh\CollectionFactory $oeordhCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                                $logger
      */
     public function __construct(
         ProductRepositoryInterface $productRepository,
@@ -118,9 +118,9 @@ abstract class Order
         PageFactory $resultPageFactory,
         CartRepositoryInterface $cartRepository,
         OeordhRepositoryInterface $oeordhRepository,
-        Logger $logger,
         Config $config,
-        OeordhCollectionFactory $oeordhCollectionFactory
+        OeordhCollectionFactory $oeordhCollectionFactory,
+        LoggerInterface $logger
     ) {
         $this->productRepository       = $productRepository;
         $this->customerSession         = $customerSession;

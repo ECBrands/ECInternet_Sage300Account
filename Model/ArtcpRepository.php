@@ -12,11 +12,11 @@ use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use ECInternet\Sage300Account\Api\ArtcpRepositoryInterface;
 use ECInternet\Sage300Account\Api\Data\ArtcpInterface;
 use ECInternet\Sage300Account\Api\Data\ArtcpSearchResultsInterfaceFactory;
-use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Data\Artcp;
 use ECInternet\Sage300Account\Model\ResourceModel\Artcp as ArtcpResource;
 use ECInternet\Sage300Account\Model\ResourceModel\Artcp\CollectionFactory as ArtcpCollectionFactory;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 /**
  * Artcp model repository
@@ -34,11 +34,6 @@ class ArtcpRepository implements ArtcpRepositoryInterface
     protected $searchResultsFactory;
 
     /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
-     */
-    private $logger;
-
-    /**
      * @var \ECInternet\Sage300Account\Model\ResourceModel\Artcp
      */
     private $resourceModel;
@@ -49,26 +44,31 @@ class ArtcpRepository implements ArtcpRepositoryInterface
     private $artcpCollectionFactory;
 
     /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
+
+    /**
      * ArtcpRepository constructor.
      *
      * @param \Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface     $collectionProcessor
      * @param \ECInternet\Sage300Account\Api\Data\ArtcpSearchResultsInterfaceFactory $artcpSearchResultsFactory
-     * @param \ECInternet\Sage300Account\Logger\Logger                               $logger
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Artcp                   $resourceModel
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Artcp\CollectionFactory $artcpCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                               $logger
      */
     public function __construct(
         CollectionProcessorInterface $collectionProcessor,
         ArtcpSearchResultsInterfaceFactory $artcpSearchResultsFactory,
-        Logger $logger,
         ArtcpResource $resourceModel,
-        ArtcpCollectionFactory $artcpCollectionFactory
+        ArtcpCollectionFactory $artcpCollectionFactory,
+        LoggerInterface $logger
     ) {
         $this->collectionProcessor    = $collectionProcessor;
         $this->searchResultsFactory   = $artcpSearchResultsFactory;
-        $this->logger                 = $logger;
         $this->resourceModel          = $resourceModel;
         $this->artcpCollectionFactory = $artcpCollectionFactory;
+        $this->logger                 = $logger;
     }
 
     public function save(

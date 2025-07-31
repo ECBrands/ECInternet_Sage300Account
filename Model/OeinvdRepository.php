@@ -12,11 +12,11 @@ use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use ECInternet\Sage300Account\Api\OeinvdRepositoryInterface;
 use ECInternet\Sage300Account\Api\Data\OeinvdInterface;
 use ECInternet\Sage300Account\Api\Data\OeinvdSearchResultsInterfaceFactory;
-use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Data\Oeinvd;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeinvd as OeinvdResource;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeinvd\CollectionFactory as OeinvdCollectionFactory;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 /**
  * Oeinvd model repository
@@ -37,7 +37,7 @@ class OeinvdRepository implements OeinvdRepositoryInterface
     protected $searchResultsFactory;
 
     /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
@@ -56,22 +56,22 @@ class OeinvdRepository implements OeinvdRepositoryInterface
      *
      * @param \Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface      $collectionProcessor
      * @param \ECInternet\Sage300Account\Api\Data\OeinvdSearchResultsInterfaceFactory $oeinvdSearchResultsFactory
-     * @param \ECInternet\Sage300Account\Logger\Logger                                $logger
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeinvd                   $resourceModel
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeinvd\CollectionFactory $oeinvdCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                                $logger
      */
     public function __construct(
         CollectionProcessorInterface $collectionProcessor,
         OeinvdSearchResultsInterfaceFactory $oeinvdSearchResultsFactory,
-        Logger $logger,
         OeinvdResource $resourceModel,
-        OeinvdCollectionFactory $oeinvdCollectionFactory
+        OeinvdCollectionFactory $oeinvdCollectionFactory,
+        LoggerInterface $logger
     ) {
         $this->collectionProcessor     = $collectionProcessor;
         $this->searchResultsFactory    = $oeinvdSearchResultsFactory;
-        $this->logger                  = $logger;
         $this->resourceModel           = $resourceModel;
         $this->oeinvdCollectionFactory = $oeinvdCollectionFactory;
+        $this->logger                  = $logger;
     }
 
     public function save(

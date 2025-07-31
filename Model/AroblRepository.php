@@ -13,11 +13,11 @@ use Magento\Framework\Exception\LocalizedException;
 use ECInternet\Sage300Account\Api\Data\AroblInterface;
 use ECInternet\Sage300Account\Api\Data\AroblSearchResultsInterfaceFactory;
 use ECInternet\Sage300Account\Api\AroblRepositoryInterface;
-use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Data\Arobl;
 use ECInternet\Sage300Account\Model\ResourceModel\Arobl as AroblResource;
 use ECInternet\Sage300Account\Model\ResourceModel\Arobl\CollectionFactory as AroblCollectionFactory;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 /**
  * Arobl model repository
@@ -37,7 +37,7 @@ class AroblRepository implements AroblRepositoryInterface
     protected $searchResultsFactory;
 
     /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
@@ -56,22 +56,22 @@ class AroblRepository implements AroblRepositoryInterface
      *
      * @param \Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface     $collectionProcessor
      * @param \ECInternet\Sage300Account\Api\Data\AroblSearchResultsInterfaceFactory $aroblSearchResultsFactory
-     * @param \ECInternet\Sage300Account\Logger\Logger                               $logger
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Arobl                   $resourceModel
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Arobl\CollectionFactory $aroblCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                               $logger
      */
     public function __construct(
         CollectionProcessorInterface $collectionProcessor,
         AroblSearchResultsInterfaceFactory $aroblSearchResultsFactory,
-        Logger $logger,
         AroblResource $resourceModel,
-        AroblCollectionFactory $aroblCollectionFactory
+        AroblCollectionFactory $aroblCollectionFactory,
+        LoggerInterface $logger
     ) {
         $this->collectionProcessor    = $collectionProcessor;
         $this->searchResultsFactory   = $aroblSearchResultsFactory;
-        $this->logger                 = $logger;
         $this->resourceModel          = $resourceModel;
         $this->aroblCollectionFactory = $aroblCollectionFactory;
+        $this->logger                 = $logger;
     }
 
     public function save(

@@ -18,9 +18,9 @@ use Magento\Framework\View\Result\PageFactory;
 use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Quote\Api\CartItemRepositoryInterface;
 use ECInternet\Sage300Account\Helper\Data as Helper;
-use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Config;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\CollectionFactory as OeinvhCollectionFactory;
+use Psr\Log\LoggerInterface;
 
 /**
  * @SuppressWarnings(PHPMD.CookieAndSessionMisuse)
@@ -85,11 +85,6 @@ abstract class Invoice
     protected $helper;
 
     /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
-     */
-    protected $logger;
-
-    /**
      * @var \ECInternet\Sage300Account\Model\Config
      */
     protected $config;
@@ -98,6 +93,11 @@ abstract class Invoice
      * @var \ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\CollectionFactory
      */
     protected $oeinvhCollectionFactory;
+
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    protected $logger;
 
     /**
      * Invoice constructor.
@@ -113,9 +113,9 @@ abstract class Invoice
      * @param \Magento\Quote\Api\CartItemRepositoryInterface                          $cartItemRepository
      * @param \Magento\Quote\Api\CartRepositoryInterface                              $cartRepository
      * @param \ECInternet\Sage300Account\Helper\Data                                  $helper
-     * @param \ECInternet\Sage300Account\Logger\Logger                                $logger
      * @param \ECInternet\Sage300Account\Model\Config                                 $config
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeinvh\CollectionFactory $oeinvhCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                                $logger
      */
     public function __construct(
         ProductRepositoryInterface $productRepository,
@@ -129,9 +129,9 @@ abstract class Invoice
         CartItemRepositoryInterface $cartItemRepository,
         CartRepositoryInterface $cartRepository,
         Helper $helper,
-        Logger $logger,
         Config $config,
-        OeinvhCollectionFactory $oeinvhCollectionFactory
+        OeinvhCollectionFactory $oeinvhCollectionFactory,
+        LoggerInterface $logger
     ) {
         $this->productRepository       = $productRepository;
         $this->checkoutSession         = $checkoutSession;

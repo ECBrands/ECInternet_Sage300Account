@@ -13,11 +13,11 @@ use Magento\Framework\Exception\AlreadyExistsException;
 use ECInternet\Sage300Account\Api\Data\PoporloInterface;
 use ECInternet\Sage300Account\Api\Data\PoporloSearchResultsInterfaceFactory;
 use ECInternet\Sage300Account\Api\PoporloRepositoryInterface;
-use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Data\Poporlo;
 use ECInternet\Sage300Account\Model\ResourceModel\Poporlo as PoporloResource;
 use ECInternet\Sage300Account\Model\ResourceModel\Poporlo\CollectionFactory as PoporloCollectionFactory;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 /**
  * Poporlo Model Repository
@@ -37,11 +37,6 @@ class PoporloRepository implements PoporloRepositoryInterface
     protected $searchResultsFactory;
 
     /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
-     */
-    private $logger;
-
-    /**
      * @var \ECInternet\Sage300Account\Model\ResourceModel\Poporlo
      */
     private $resourceModel;
@@ -52,26 +47,31 @@ class PoporloRepository implements PoporloRepositoryInterface
     private $poporloCollectionFactory;
 
     /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
+
+    /**
      * PoporloRepository constructor.
      *
      * @param \Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface       $collectionProcessor
      * @param \ECInternet\Sage300Account\Api\Data\PoporloSearchResultsInterfaceFactory $poporloSearchResultsFactory
-     * @param \ECInternet\Sage300Account\Logger\Logger                                 $logger
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Poporlo                   $resourceModel
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Poporlo\CollectionFactory $poporloCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                                 $logger
      */
     public function __construct(
         CollectionProcessorInterface $collectionProcessor,
         PoporloSearchResultsInterfaceFactory $poporloSearchResultsFactory,
-        Logger $logger,
         PoporloResource $resourceModel,
-        PoporloCollectionFactory $poporloCollectionFactory
+        PoporloCollectionFactory $poporloCollectionFactory,
+        LoggerInterface $logger
     ) {
         $this->collectionProcessor      = $collectionProcessor;
         $this->searchResultsFactory     = $poporloSearchResultsFactory;
-        $this->logger                   = $logger;
         $this->resourceModel            = $resourceModel;
         $this->poporloCollectionFactory = $poporloCollectionFactory;
+        $this->logger                   = $logger;
     }
 
     public function save(

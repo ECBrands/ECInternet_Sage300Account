@@ -12,9 +12,9 @@ use Magento\Framework\App\Request\Http;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\View\Result\Layout;
 use Magento\Quote\Api\CartRepositoryInterface;
-use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Config;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 /**
  * Plugin for Magento\Framework\View\Result\Layout
@@ -37,14 +37,14 @@ class ViewResultLayoutPlugin
     private $cartRepository;
 
     /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
-     */
-    private $logger;
-
-    /**
      * @var \ECInternet\Sage300Account\Model\Config
      */
     private $config;
+
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
 
     /**
      * @var array
@@ -60,21 +60,21 @@ class ViewResultLayoutPlugin
      * @param \Magento\Checkout\Model\Session            $checkoutSession
      * @param \Magento\Framework\App\Request\Http        $request
      * @param \Magento\Quote\Api\CartRepositoryInterface $cartRepository
-     * @param \ECInternet\Sage300Account\Logger\Logger   $logger
      * @param \ECInternet\Sage300Account\Model\Config    $config
+     * @param \Psr\Log\LoggerInterface                   $logger
      */
     public function __construct(
         CheckoutSession $checkoutSession,
         Http $request,
         CartRepositoryInterface $cartRepository,
-        Logger $logger,
-        Config $config
+        Config $config,
+        LoggerInterface $logger
     ) {
         $this->checkoutSession = $checkoutSession;
         $this->request         = $request;
         $this->cartRepository  = $cartRepository;
-        $this->logger          = $logger;
         $this->config          = $config;
+        $this->logger          = $logger;
     }
 
     /**
