@@ -128,16 +128,6 @@
 		</arguments>
 	</type>
 
-	<!-- Custom Logger -->
-	<type name="ECInternet\Sage300Account\Logger\Logger">
-		<arguments>
-			<argument name="name" xsi:type="string">Sage300Account</argument>
-			<argument name="handlers" xsi:type="array">
-				<item name="system" xsi:type="object">ECInternet\Sage300Account\Logger\Handler</item>
-			</argument>
-		</arguments>
-	</type>
-
 	<!-- Oeshdt grid collection -->
 	<virtualType name="ReorderCollection"
 	             type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
