@@ -48,8 +48,8 @@ class Oeinvd extends AbstractModel implements IdentityInterface, OeinvdInterface
         Context $context,
         Registry $registry,
         DateTime $dateTime,
-        AbstractResource $resource = null,
-        AbstractDb $resourceCollection = null,
+        ?AbstractResource $resource = null,
+        ?AbstractDb $resourceCollection = null,
         array $data = []
     ) {
         $this->_dateTime = $dateTime;

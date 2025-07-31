@@ -59,8 +59,8 @@ class Oeordh extends AbstractModel implements IdentityInterface, OeordhInterface
         Registry $registry,
         DateTime $dateTime,
         OeorddCollectionFactory $oeorddCollectionFactory,
-        AbstractResource $resource = null,
-        AbstractDb $resourceCollection = null,
+        ?AbstractResource $resource = null,
+        ?AbstractDb $resourceCollection = null,
         array $data = []
     ) {
         $this->oeorddCollectionFactory = $oeorddCollectionFactory;
