@@ -11,10 +11,10 @@ use Magento\CatalogSearch\Block\Result as SearchResult;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\App\Response\Http as HttpResponse;
 use Magento\Framework\UrlInterface;
-use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Config;
 use ECInternet\Sage300Account\Model\Data\Oeshdt;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeshdt\CollectionFactory as OeshdtCollection;
+use Psr\Log\LoggerInterface;
 
 /**
  * Plugin for Magento\CatalogSearch\Block\Result
@@ -37,7 +37,7 @@ class ResultPlugin
     private $url;
 
     /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
@@ -57,24 +57,24 @@ class ResultPlugin
      * @param \Magento\Customer\Model\Session                                         $customerSession
      * @param \Magento\Framework\App\Response\Http                                    $response
      * @param \Magento\Framework\UrlInterface                                         $url
-     * @param \ECInternet\Sage300Account\Logger\Logger                                $logger
      * @param \ECInternet\Sage300Account\Model\Config                                 $config
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeshdt\CollectionFactory $oeshdtCollection
+     * @param \Psr\Log\LoggerInterface                                                $logger
      */
     public function __construct(
         CustomerSession $customerSession,
         HttpResponse $response,
         UrlInterface $url,
-        Logger $logger,
         Config $config,
-        OeshdtCollection $oeshdtCollection
+        OeshdtCollection $oeshdtCollection,
+        LoggerInterface $logger
     ) {
         $this->customerSession  = $customerSession;
         $this->response         = $response;
         $this->url              = $url;
-        $this->logger           = $logger;
         $this->config           = $config;
         $this->oeshdtCollection = $oeshdtCollection;
+        $this->logger           = $logger;
     }
 
     public function afterGetResultCount(
