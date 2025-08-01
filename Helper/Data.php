@@ -11,6 +11,7 @@ use Magento\Customer\Api\GroupRepositoryInterface;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
+use Magento\Framework\Pricing\PriceCurrencyInterface;
 use ECInternet\Sage300Account\Helper\Uom as UomHelper;
 use ECInternet\Sage300Account\Model\Config;
 use Exception;
@@ -34,6 +35,11 @@ class Data extends AbstractHelper
     private $customerSession;
 
     /**
+     * @var \Magento\Framework\Pricing\PriceCurrencyInterface
+     */
+    private $priceCurrency;
+
+    /**
      * @var \ECInternet\Sage300Account\Helper\Uom
      */
     private $uomHelper;
@@ -51,28 +57,36 @@ class Data extends AbstractHelper
     /**
      * Data constructor.
      *
-     * @param \Magento\Framework\App\Helper\Context          $context
-     * @param \Magento\Customer\Api\GroupRepositoryInterface $groupRepository
-     * @param \Magento\Customer\Model\Session                $customerSession
-     * @param \ECInternet\Sage300Account\Helper\Uom          $uomHelper
-     * @param \ECInternet\Sage300Account\Model\Config        $config
-     * @param \Psr\Log\LoggerInterface                       $logger
+     * @param \Magento\Framework\App\Helper\Context             $context
+     * @param \Magento\Customer\Api\GroupRepositoryInterface    $groupRepository
+     * @param \Magento\Customer\Model\Session                   $customerSession
+     * @param \Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency
+     * @param \ECInternet\Sage300Account\Helper\Uom             $uomHelper
+     * @param \ECInternet\Sage300Account\Model\Config           $config
+     * @param \Psr\Log\LoggerInterface                          $logger
      */
     public function __construct(
         Context $context,
         GroupRepositoryInterface $groupRepository,
         CustomerSession $customerSession,
+        PriceCurrencyInterface $priceCurrency,
         Uomhelper $uomHelper,
         Config $config,
         LoggerInterface $logger
     ) {
-        parent::__construct($context);
-
         $this->groupRepository = $groupRepository;
         $this->customerSession = $customerSession;
+        $this->priceCurrency   = $priceCurrency;
         $this->uomHelper       = $uomHelper;
         $this->config          = $config;
         $this->logger          = $logger;
+
+        parent::__construct($context);
+    }
+
+    public function convertAndFormat($value, $includeInContainer = true)
+    {
+        return $this->priceCurrency->convertAndFormat($value, $includeInContainer);
     }
 
     /**
