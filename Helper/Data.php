@@ -12,13 +12,11 @@ use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use ECInternet\Sage300Account\Helper\Uom as UomHelper;
-use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Config;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 /**
- * Helper
- *
  * @SuppressWarnings(PHPMD.CookieAndSessionMisuse)
  * @SuppressWarnings(PHPMD.ExcessiveParameterList)
  * @SuppressWarnings(PHPMD.LongVariable)
@@ -41,14 +39,14 @@ class Data extends AbstractHelper
     private $uomHelper;
 
     /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
-     */
-    private $logger;
-
-    /**
      * @var \ECInternet\Sage300Account\Model\Config
      */
     private $config;
+
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
 
     /**
      * Data constructor.
@@ -57,24 +55,24 @@ class Data extends AbstractHelper
      * @param \Magento\Customer\Api\GroupRepositoryInterface $groupRepository
      * @param \Magento\Customer\Model\Session                $customerSession
      * @param \ECInternet\Sage300Account\Helper\Uom          $uomHelper
-     * @param \ECInternet\Sage300Account\Logger\Logger       $logger
      * @param \ECInternet\Sage300Account\Model\Config        $config
+     * @param \Psr\Log\LoggerInterface                       $logger
      */
     public function __construct(
         Context $context,
         GroupRepositoryInterface $groupRepository,
         CustomerSession $customerSession,
         Uomhelper $uomHelper,
-        Logger $logger,
-        Config $config
+        Config $config,
+        LoggerInterface $logger
     ) {
         parent::__construct($context);
 
         $this->groupRepository = $groupRepository;
         $this->customerSession = $customerSession;
         $this->uomHelper       = $uomHelper;
-        $this->logger          = $logger;
         $this->config          = $config;
+        $this->logger          = $logger;
     }
 
     /**
@@ -85,7 +83,7 @@ class Data extends AbstractHelper
      *
      * @return string
      */
-    public function getUomDisplayValue(string $sku, string $pricelist = null)
+    public function getUomDisplayValue(string $sku, ?string $pricelist = null)
     {
         $this->log('getUomDisplayValue()', ['sku' => $sku, 'pricelist' => $pricelist]);
 
@@ -119,7 +117,7 @@ class Data extends AbstractHelper
      * @throws \Magento\Framework\Exception\LocalizedException
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getCustomerGroupCode(int $customerGroupId = null)
+    public function getCustomerGroupCode(?int $customerGroupId = null)
     {
         $this->log('getCustomerGroupCode()', ['customerGroupId' => $customerGroupId]);
 
@@ -127,7 +125,7 @@ class Data extends AbstractHelper
             $customerGroupId = $this->customerSession->getCustomerGroupId();
         }
 
-        if (!empty($customerGroupId)) {
+        if ($customerGroupId !== null) {
             if ($customerGroup = $this->getCustomerGroup($customerGroupId)) {
                 return $customerGroup->getCode();
             }
