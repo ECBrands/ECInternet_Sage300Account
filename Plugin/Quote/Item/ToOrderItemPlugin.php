@@ -39,7 +39,7 @@ class ToOrderItemPlugin
         $additionalOptions = $item->getOptionByCode('additional_options');
 
         // Check if there is any additional options in Quote Item
-        if (!empty($additionalOptions)) {
+        if ($additionalOptions === null) {
             // Get Order Item's existing options
             $options = $orderItem->getProductOptions();
 

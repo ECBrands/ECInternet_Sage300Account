@@ -29,10 +29,10 @@ use Magento\Framework\Pricing\PriceCurrencyInterface;
 use Magento\Framework\Stdlib\StringUtils;
 use Magento\Framework\Url\EncoderInterface as UrlEncoder;
 use Magento\Framework\Url\Helper\Data as UrlHelper;
-use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Data\Oeshdt;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeshdt\CollectionFactory as OeshdtCollection;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 /**
  * @SuppressWarnings(PHPMD.LongVariable)
@@ -44,52 +44,52 @@ class ReorderList extends View
     /**
      * @var \Magento\Catalog\Helper\Output
      */
-    private $_outputHelper;
+    private $outputHelper;
 
     /**
      * @var \Magento\Catalog\Model\ResourceModel\Product\Collection
      */
-    private $_productCollection;
+    private $productCollection;
 
     /**
      * @var \Magento\Checkout\Model\Session
      */
-    private $_checkoutSession;
+    private $checkoutSession;
 
     /**
      * @var \Magento\Customer\Api\CustomerRepositoryInterface
      */
-    private $_customerRepository;
+    private $customerRepository;
 
     /**
      * @var \Magento\Customer\Model\SessionFactory
      */
-    private $_customerSessionFactory;
+    private $customerSessionFactory;
 
     /**
      * @var \Magento\Framework\Pricing\Helper\Data
      */
-    private $_pricingHelper;
+    private $pricingHelper;
 
     /**
      * @var \Magento\Framework\Url\Helper\Data
      */
-    private $_urlHelper;
-
-    /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
-     */
-    private $logger;
+    private $urlHelper;
 
     /**
      * @var \ECInternet\Sage300Account\Model\ResourceModel\Oeshdt\CollectionFactory
      */
-    private $_oeshdtCollectionFactory;
+    private $oeshdtCollectionFactory;
 
     /**
      * @var \ECInternet\Sage300Account\Model\ResourceModel\Oeshdt\Collection
      */
-    private $_oeshdtCollection;
+    private $oeshdtCollection;
+
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
 
     /**
      * @param \Magento\Catalog\Block\Product\Context                                  $context
@@ -109,8 +109,8 @@ class ReorderList extends View
      * @param \Magento\Customer\Api\CustomerRepositoryInterface                       $customerRepository
      * @param \Magento\Framework\Pricing\Helper\Data                                  $pricingHelper
      * @param \Magento\Framework\Url\Helper\Data                                      $urlHelper
-     * @param \ECInternet\Sage300Account\Logger\Logger                                $logger
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeshdt\CollectionFactory $oeshdtCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                                $logger
      * @param array                                                                   $data
      */
     public function __construct(
@@ -131,19 +131,19 @@ class ReorderList extends View
         CustomerRepository $customerRepository,
         PricingHelper $pricingHelper,
         UrlHelper $urlHelper,
-        Logger $logger,
         OeshdtCollection $oeshdtCollectionFactory,
+        LoggerInterface $logger,
         array $data = []
     ) {
-        $this->_outputHelper            = $outputHelper;
-        $this->_productCollection       = $productCollection->create();
-        $this->_checkoutSession         = $checkoutSession->create();
-        $this->_customerSessionFactory  = $customerSessionFactory;
-        $this->_customerRepository      = $customerRepository;
-        $this->_pricingHelper           = $pricingHelper;
-        $this->_urlHelper               = $urlHelper;
-        $this->logger                   = $logger;
-        $this->_oeshdtCollectionFactory = $oeshdtCollectionFactory;
+        $this->outputHelper            = $outputHelper;
+        $this->productCollection       = $productCollection->create();
+        $this->checkoutSession         = $checkoutSession->create();
+        $this->customerSessionFactory  = $customerSessionFactory;
+        $this->customerRepository      = $customerRepository;
+        $this->pricingHelper           = $pricingHelper;
+        $this->urlHelper               = $urlHelper;
+        $this->oeshdtCollectionFactory = $oeshdtCollectionFactory;
+        $this->logger                  = $logger;
 
         parent::__construct(
             $context,
@@ -180,7 +180,7 @@ class ReorderList extends View
 
                     // Limit to previously purchased SKUs
                     // Add 'short_description' and 'default_price_list_code' data
-                    $this->_productCollection
+                    $this->productCollection
                         ->addAttributeToFilter('sku', ['in' => $previouslyPurchasedSkus])
                         ->addAttributeToSelect('short_description')
                         ->addAttributeToSelect('default_price_list_code');
@@ -194,9 +194,9 @@ class ReorderList extends View
             $this->log('getProductCollection() - CustomerSession did not return valid Customer.');
         }
 
-        $this->log('getProductCollection()', ['query' => $this->_productCollection->getSelect()]);
+        $this->log('getProductCollection()', ['query' => $this->productCollection->getSelect()]);
 
-        return $this->_productCollection;
+        return $this->productCollection;
     }
 
     /**
@@ -271,7 +271,7 @@ class ReorderList extends View
     {
         $price = $this->getPrice($product);
 
-        return $this->_pricingHelper->currency($price, true, false);
+        return $this->pricingHelper->currency($price, true, false);
     }
 
     /**
@@ -332,13 +332,13 @@ class ReorderList extends View
         if ($modulo === 0) {
             // minAllowed is a quantity increment
             return $minAllowed;
-        } else {
-            // TODO: Why didn't I use ceiling?
-            // minAllowed is not a quantity increment.  Get the floor, add one, and multiply by qtyIncrements
-            $floor = $this->getFloor($minAllowed, $qtyIncrements);
-            if ($floor !== null) {
-                return $qtyIncrements * ++$floor;
-            }
+        }
+
+        // TODO: Why didn't I use ceiling?
+        // minAllowed is not a quantity increment.  Get the floor, add one, and multiply by qtyIncrements
+        $floor = $this->getFloor($minAllowed, $qtyIncrements);
+        if ($floor !== null) {
+            return $qtyIncrements * ++$floor;
         }
 
         return null;
@@ -402,7 +402,7 @@ class ReorderList extends View
             'action' => $url,
             'data'   => [
                 'product' => (int)$product->getEntityId(),
-                ActionInterface::PARAM_NAME_URL_ENCODED => $this->_urlHelper->getEncodedUrl($url)
+                ActionInterface::PARAM_NAME_URL_ENCODED => $this->urlHelper->getEncodedUrl($url)
             ]
         ];
     }
@@ -452,7 +452,7 @@ class ReorderList extends View
         string $attributeCode
     ) {
         try {
-            return $this->_outputHelper->productAttribute($product, $product->getData($attributeCode), $attributeCode);
+            return $this->outputHelper->productAttribute($product, $product->getData($attributeCode), $attributeCode);
         } catch (LocalizedException $e) {
             $this->log('getProductAttributeData()', [
                 'product'       => $product->getSku(),
@@ -486,17 +486,19 @@ class ReorderList extends View
      */
     private function getCustomerNumber(CustomerInterface $customer)
     {
-        if ($customerNumberAttribute = $customer->getCustomAttribute(self::ATTRIBUTE_CUSTOMER_NUMBER)) {
-            if ($customerNumberValue = $customerNumberAttribute->getValue()) {
-                return (string)$customerNumberValue;
-            } else {
-                $this->log("getCustomerNumber() - Customer does not have '".self::ATTRIBUTE_CUSTOMER_NUMBER."' attribute set.");
-            }
-        } else {
-            $this->log("getCustomerNumber() - Customer does not have '".self::ATTRIBUTE_CUSTOMER_NUMBER."' attribute.");
+        $customerNumberAttribute = $customer->getCustomAttribute(self::ATTRIBUTE_CUSTOMER_NUMBER);
+        if (!$customerNumberAttribute) {
+            $this->log('getCustomerNumber() - Customer does not have CustomerNumber attribute.');
+            return null;
         }
 
-        return null;
+        $customerNumberValue = $customerNumberAttribute->getValue();
+        if (!$customerNumberValue) {
+            $this->log('getCustomerNumber() - Customer does not have CustomerNumer attribute set.');
+            return null;
+        }
+
+        return (string)$customerNumberValue;
     }
 
     /**
@@ -510,13 +512,13 @@ class ReorderList extends View
     {
         $this->log('getSalesHistoryDetails()', ['customerNumber' => $customerNumber]);
 
-        if ($this->_oeshdtCollection === null) {
-            $this->_oeshdtCollection = $this->_oeshdtCollectionFactory->create()
+        if ($this->oeshdtCollection === null) {
+            $this->oeshdtCollection = $this->oeshdtCollectionFactory->create()
                 ->addFieldToFilter(Oeshdt::COLUMN_CUSTOMER, $customerNumber)
                 ->addFieldToFilter(Oeshdt::COLUMN_IS_ACTIVE, 1);
         }
 
-        return $this->_oeshdtCollection;
+        return $this->oeshdtCollection;
     }
 
     /**
@@ -531,7 +533,9 @@ class ReorderList extends View
 
         if ($minAllowed > $qtyIncrements) {
             return (int)floor($minAllowed / $qtyIncrements);
-        } elseif ($minAllowed < $qtyIncrements) {
+        }
+
+        if ($minAllowed < $qtyIncrements) {
             return (int)floor($qtyIncrements / $minAllowed);
         }
 
@@ -546,7 +550,7 @@ class ReorderList extends View
     private function getCurrentQuote()
     {
         try {
-            return $this->_checkoutSession->getQuote();
+            return $this->checkoutSession->getQuote();
         } catch (Exception $e) {
             $this->log('getCurrentQuote()', ['exception' => $e->getMessage()]);
         }
@@ -561,9 +565,9 @@ class ReorderList extends View
      */
     private function getCurrentCustomer()
     {
-        if ($customerId = $this->_customerSessionFactory->create()->getCustomerId()) {
+        if ($customerId = $this->customerSessionFactory->create()->getCustomerId()) {
             try {
-                return $this->_customerRepository->getById($customerId);
+                return $this->customerRepository->getById($customerId);
             } catch (Exception $e) {
                 $this->log('getCurrentCustomer()', ['exception' => $e->getMessage()]);
             }

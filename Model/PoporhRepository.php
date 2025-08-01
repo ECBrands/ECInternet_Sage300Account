@@ -12,13 +12,14 @@ use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use ECInternet\Sage300Account\Api\Data\PoporhInterface;
 use ECInternet\Sage300Account\Api\Data\PoporhSearchResultsInterfaceFactory;
 use ECInternet\Sage300Account\Api\PoporhRepositoryInterface;
-use ECInternet\Sage300Account\Logger\Logger;
+use ECInternet\Sage300Account\Api\PoporlRepositoryInterface;
 use ECInternet\Sage300Account\Model\Data\Poporh;
 use ECInternet\Sage300Account\Model\Data\Poporl;
 use ECInternet\Sage300Account\Model\ResourceModel\Poporh as PoporhResource;
 use ECInternet\Sage300Account\Model\ResourceModel\Poporh\CollectionFactory as PoporhCollectionFactory;
 use ECInternet\Sage300Account\Model\ResourceModel\Poporl\CollectionFactory as PoporlCollectionFactory;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 /**
  * Poporh Model Repository
@@ -39,9 +40,9 @@ class PoporhRepository implements PoporhRepositoryInterface
     protected $searchResultsFactory;
 
     /**
-     * @var \ECInternet\Sage300Account\Logger\Logger
+     * @var \ECInternet\Sage300Account\Api\PoporlRepositoryInterface
      */
-    protected $logger;
+    protected $poporlRepository;
 
     /**
      * @var \ECInternet\Sage300Account\Model\ResourceModel\Poporh
@@ -59,36 +60,42 @@ class PoporhRepository implements PoporhRepositoryInterface
     private $poporlCollectionFactory;
 
     /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    protected $logger;
+
+    /**
      * PoporhRepository constructor.
      *
      * @param \Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface      $collectionProcessor
      * @param \ECInternet\Sage300Account\Api\Data\PoporhSearchResultsInterfaceFactory $poporhSearchResultsFactory
-     * @param \ECInternet\Sage300Account\Logger\Logger                                $logger
+     * @param \ECInternet\Sage300Account\Api\PoporlRepositoryInterface                $poporlRepository
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Poporh                   $resourceModel
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Poporh\CollectionFactory $poporhCollectionFactory
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Poporl\CollectionFactory $poporlCollectionFactory
+     * @param \Psr\Log\LoggerInterface                                                $logger
      */
     public function __construct(
         CollectionProcessorInterface $collectionProcessor,
         PoporhSearchResultsInterfaceFactory $poporhSearchResultsFactory,
-        Logger $logger,
+        PoporlRepositoryInterface $poporlRepository,
         PoporhResource $resourceModel,
         PoporhCollectionFactory $poporhCollectionFactory,
-        PoporlCollectionFactory $poporlCollectionFactory
+        PoporlCollectionFactory $poporlCollectionFactory,
+        LoggerInterface $logger
     ) {
         $this->collectionProcessor     = $collectionProcessor;
         $this->searchResultsFactory    = $poporhSearchResultsFactory;
-        $this->logger                  = $logger;
+        $this->poporlRepository        = $poporlRepository;
         $this->resourceModel           = $resourceModel;
         $this->poporhCollectionFactory = $poporhCollectionFactory;
         $this->poporlCollectionFactory = $poporlCollectionFactory;
+        $this->logger                  = $logger;
     }
 
     public function save(
         PoporhInterface $poporh
     ) {
-        //$this->log('save()', ['poporh' => $poporh->getData()]);
-
         if (!$this->validate($poporh)) {
             return false;
         }
@@ -117,13 +124,9 @@ class PoporhRepository implements PoporhRepositoryInterface
     public function bulkSave(
         array $poporhArray
     ) {
-        $this->log('bulkSave()');
-
         $results = [];
 
         foreach ($poporhArray as $poporh) {
-            $this->log('bulkSave()', ['poporh' => $poporh->getData()]);
-
             try {
                 $this->save($poporh);
                 $results[] = true;
@@ -139,19 +142,11 @@ class PoporhRepository implements PoporhRepositoryInterface
     public function get(
         $sequenceKey
     ) {
-        //$this->log('get()', ['sequenceKey' => $sequenceKey]);
-
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Poporh\Collection $collection */
         $collection = $this->poporhCollectionFactory->create()
-            ->addFieldToSelect('*')
             ->addFieldToFilter(Poporh::COLUMN_PORHSEQ, $sequenceKey);
 
         $collectionCount = $collection->getSize();
-        $this->log('get()', [
-            'select'          => $collection->getSelect(),
-            'collectionCount' => $collectionCount
-        ]);
-
         if ($collectionCount === 1) {
             $poporh = $collection->getFirstItem();
             if ($poporh instanceof Poporh) {
@@ -165,15 +160,11 @@ class PoporhRepository implements PoporhRepositoryInterface
     public function getById(
         int $poporhId
     ) {
-        $this->log('getById()', ['id' => $poporhId]);
-
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Poporh\Collection $collection */
         $collection = $this->poporhCollectionFactory->create()
             ->addFieldToFilter(Poporh::COLUMN_ID, $poporhId);
 
         $collectionCount = $collection->getSize();
-        //$this->log('get()', ['collectionCount' => $collectionCount]);
-
         if ($collectionCount === 1) {
             $poporh = $collection->getFirstItem();
             if ($poporh instanceof Poporh) {
@@ -193,36 +184,14 @@ class PoporhRepository implements PoporhRepositoryInterface
      */
     public function getByLineId(int $lineId)
     {
-        $this->log('getByLineId()', ['lineId' => $lineId]);
-
-        /** @var \ECInternet\Sage300Account\Model\ResourceModel\Poporl\Collection $poporlCollection */
-        $poporlCollection = $this->poporlCollectionFactory->create()
-            ->addFieldToFilter(Poporl::COLUMN_ID, $lineId);
-
-        $poporlCollectionCount = $poporlCollection->getSize();
-        //$this->log('getByLineId()', ['poporlCollectionCount' => $poporlCollectionCount]);
-
-        if ($poporlCollectionCount === 1) {
-            /** @var \ECInternet\Sage300Account\Model\Data\Poporl $poporl */
-            $poporl = $poporlCollection->getFirstItem();
-
-            $sequenceKey = $poporl->getPurchaseOrderSequenceKey();
-
-            $poporhCollection = $this->poporhCollectionFactory->create()
-                ->addFieldToFilter(Poporh::COLUMN_PORHSEQ, $sequenceKey);
-
-            $poporhCollectionCount = $poporhCollection->getSize();
-            //$this->log('getByLineId()', ['poporhCollectionCount' => $poporhCollectionCount]);
-
-            if ($poporhCollectionCount === 1) {
-                $poporh = $poporhCollection->getFirstItem();
-                if ($poporh instanceof Poporh) {
-                    return $poporh;
-                }
-            }
+        /** @var \ECInternet\Sage300Account\Api\Data\PoporlInterface $poporl */
+        $poporl = $this->poporlRepository->getById($lineId);
+        if (!$poporl) {
+            $this->log('getByLineId() - No POPORL record found for line ID', ['lineId' => $lineId]);
+            return null;
         }
 
-        return null;
+        return $this->get($poporl->getPurchaseOrderSequenceKey());
     }
 
     /**
@@ -285,7 +254,7 @@ class PoporhRepository implements PoporhRepositoryInterface
 
         return false;
     }
-    
+
     /**
      * Validate POPORH record
      *
@@ -296,7 +265,9 @@ class PoporhRepository implements PoporhRepositoryInterface
     protected function validate(
         PoporhInterface $poporh
     ) {
-        return true;
+        return (
+            !empty($poporh->getPurchaseOrderSequenceKey())
+        );
     }
 
     /**
@@ -309,10 +280,6 @@ class PoporhRepository implements PoporhRepositoryInterface
     protected function doesRecordExist(
         PoporhInterface $poporh
     ) {
-        $this->log('doesRecordExist()', [
-            Poporh::COLUMN_PORHSEQ => $poporh->getPurchaseOrderSequenceKey()
-        ]);
-
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Poporh\Collection $collection */
         $collection = $this->poporhCollectionFactory->create()
             ->addFieldToFilter(Poporh::COLUMN_PORHSEQ, $poporh->getPurchaseOrderSequenceKey());
