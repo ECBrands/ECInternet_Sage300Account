@@ -9,8 +9,6 @@ namespace ECInternet\Sage300Account\Helper;
 
 use Magento\Customer\Api\GroupRepositoryInterface;
 use Magento\Customer\Model\Session as CustomerSession;
-use Magento\Framework\App\Helper\AbstractHelper;
-use Magento\Framework\App\Helper\Context;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
 use ECInternet\Sage300Account\Helper\Uom as UomHelper;
 use ECInternet\Sage300Account\Model\Config;
@@ -22,7 +20,7 @@ use Psr\Log\LoggerInterface;
  * @SuppressWarnings(PHPMD.ExcessiveParameterList)
  * @SuppressWarnings(PHPMD.LongVariable)
  */
-class Data extends AbstractHelper
+class Data
 {
     /**
      * @var \Magento\Customer\Api\GroupRepositoryInterface
@@ -57,7 +55,6 @@ class Data extends AbstractHelper
     /**
      * Data constructor.
      *
-     * @param \Magento\Framework\App\Helper\Context             $context
      * @param \Magento\Customer\Api\GroupRepositoryInterface    $groupRepository
      * @param \Magento\Customer\Model\Session                   $customerSession
      * @param \Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency
@@ -66,7 +63,6 @@ class Data extends AbstractHelper
      * @param \Psr\Log\LoggerInterface                          $logger
      */
     public function __construct(
-        Context $context,
         GroupRepositoryInterface $groupRepository,
         CustomerSession $customerSession,
         PriceCurrencyInterface $priceCurrency,
@@ -80,8 +76,6 @@ class Data extends AbstractHelper
         $this->uomHelper       = $uomHelper;
         $this->config          = $config;
         $this->logger          = $logger;
-
-        parent::__construct($context);
     }
 
     public function convertAndFormat($value, $includeInContainer = true)
