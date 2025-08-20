@@ -147,14 +147,10 @@ class Open extends Template
                     )->where("(arobl.SWPAID = '0') AND main_table.CUSTOMER = '$customerNumber'");
 
                     // Get value of current page
-                    $page = ($this->getRequest()->getParam('p'))
-                        ? $this->getRequest()->getParam('p')
-                        : 1;
+                    $page = ($this->getRequest()->getParam('p')) ?: 1;
 
                     // Get value of current limit
-                    $pageSize = ($this->getRequest()->getParam('limit'))
-                        ? $this->getRequest()->getParam('limit')
-                        : 10;
+                    $pageSize = ($this->getRequest()->getParam('limit')) ?: 10;
 
                     return $collection
                         ->setOrder(Oeinvh::COLUMN_ORDDATE, 'DESC')
@@ -356,11 +352,7 @@ class Open extends Template
         /** @var array $productOptions */
         $productOptions = $orderItem->getProductOptions();
 
-        if (isset($productOptions['additional_options']['invoice_payment']['value'])) {
-            return $productOptions['additional_options']['invoice_payment']['value'];
-        }
-
-        return null;
+        return $productOptions['additional_options']['invoice_payment']['value'] ?? null;
     }
 
     /**
