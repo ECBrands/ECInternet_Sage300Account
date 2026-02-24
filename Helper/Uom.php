@@ -8,7 +8,7 @@ declare(strict_types=1);
 namespace ECInternet\Sage300Account\Helper;
 
 use ECInternet\Sage300Account\Api\UomRepositoryInterface;
-use Psr\Log\LoggerInterface;
+use Psr\Log\LoggerInterface as Logger;
 
 class Uom
 {
@@ -32,7 +32,7 @@ class Uom
      */
     public function __construct(
         UomRepositoryInterface $uomRepository,
-        LoggerInterface $logger
+        Logger $logger,
     ) {
         $this->uomRepository = $uomRepository;
         $this->logger        = $logger;

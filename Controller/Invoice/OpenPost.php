@@ -67,7 +67,7 @@ class OpenPost extends Invoice implements HttpPostActionInterface
 
             try {
                 $this->saveAndReplaceQuote($quote);
-            } catch (NoSuchEntityException $e) {
+            } catch (Exception $e) {
                 $this->log('execute()', ['exception' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
 
                 $this->messageManager->addErrorMessage(
@@ -110,12 +110,11 @@ class OpenPost extends Invoice implements HttpPostActionInterface
             return (float)$cleanedAmount;
         }
 
-        // If cleanedAmount fails for some reason, check dirty value to see if numeric
+        // If cleanedAmount is not numeric, test dirty value to see if it's numeric
         if (is_numeric($value)) {
             return (float)$value;
         }
 
-        // Else return null
         return null;
     }
 
@@ -127,7 +126,7 @@ class OpenPost extends Invoice implements HttpPostActionInterface
     private function cleanAmount(mixed $amountData)
     {
         try {
-            return preg_replace('([^0-9 + .])', '', (string)$amountData);
+            return preg_replace('([^0-9 +.])', '', (string)$amountData);
         } catch (Exception $e) {
             $this->log('cleanAmount()', ['exception' => $e->getMessage()]);
         }
