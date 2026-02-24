@@ -23,7 +23,6 @@ use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use ECInternet\Sage300Account\Api\OeordhRepositoryInterface;
 use ECInternet\Sage300Account\Controller\Order;
-use ECInternet\Sage300Account\Helper\Data as Helper;
 use ECInternet\Sage300Account\Logger\Logger;
 use ECInternet\Sage300Account\Model\Config;
 use ECInternet\Sage300Account\Model\ResourceModel\Oeordh\CollectionFactory as OeordhCollectionFactory;
@@ -63,7 +62,6 @@ class Reorder extends Order implements HttpGetActionInterface
      * @param \Magento\Framework\View\Result\PageFactory                              $resultPageFactory
      * @param \Magento\Quote\Api\CartRepositoryInterface                              $cartRepository
      * @param \ECInternet\Sage300Account\Api\OeordhRepositoryInterface                $oeordhRepository
-     * @param \ECInternet\Sage300Account\Helper\Data                                  $helper
      * @param \ECInternet\Sage300Account\Logger\Logger                                $logger
      * @param \ECInternet\Sage300Account\Model\Config                                 $config
      * @param \ECInternet\Sage300Account\Model\ResourceModel\Oeordh\CollectionFactory $oeordhCollectionFactory
@@ -81,13 +79,12 @@ class Reorder extends Order implements HttpGetActionInterface
         PageFactory $resultPageFactory,
         CartRepositoryInterface $cartRepository,
         OeordhRepositoryInterface $oeordhRepository,
-        Helper $helper,
         Logger $logger,
         Config $config,
         OeordhCollectionFactory $oeordhCollectionFactory,
         CustomerRepositoryInterface $customerRepository,
         CartManagementInterface $cartManagement,
-        StoreManagerInterface $storeManager
+        StoreManagerInterface $storeManager,
     ) {
         parent::__construct(
             $productRepository,

@@ -65,7 +65,7 @@ class OeinvdRepository implements OeinvdRepositoryInterface
         OeinvdSearchResultsInterfaceFactory $oeinvdSearchResultsFactory,
         Logger $logger,
         OeinvdResource $resourceModel,
-        OeinvdCollectionFactory $oeinvdCollectionFactory
+        OeinvdCollectionFactory $oeinvdCollectionFactory,
     ) {
         $this->collectionProcessor     = $collectionProcessor;
         $this->searchResultsFactory    = $oeinvdSearchResultsFactory;

@@ -100,7 +100,7 @@ class Config
      *
      * @return bool
      */
-    public function showSidenavLinks(int $storeId = null)
+    public function showSidenavLinks(?int $storeId = null)
     {
         return $this->scopeConfig->isSetFlag(
             self::CONFIG_PATH_SHOW_SIDENAV_LINKS,

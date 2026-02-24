@@ -62,7 +62,7 @@ class ArtcpRepository implements ArtcpRepositoryInterface
         ArtcpSearchResultsInterfaceFactory $artcpSearchResultsFactory,
         Logger $logger,
         ArtcpResource $resourceModel,
-        ArtcpCollectionFactory $artcpCollectionFactory
+        ArtcpCollectionFactory $artcpCollectionFactory,
     ) {
         $this->collectionProcessor    = $collectionProcessor;
         $this->searchResultsFactory   = $artcpSearchResultsFactory;

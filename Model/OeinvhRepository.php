@@ -62,7 +62,7 @@ class OeinvhRepository implements OeinvhRepositoryInterface
         OeinvhSearchResultsInterfaceFactory $oeinvhSearchResultsFactory,
         Logger $logger,
         OeinvhResource $resourceModel,
-        OeinvhCollectionFactory $oeinvhCollectionFactory
+        OeinvhCollectionFactory $oeinvhCollectionFactory,
     ) {
         $this->collectionProcessor     = $collectionProcessor;
         $this->searchResultsFactory    = $oeinvhSearchResultsFactory;

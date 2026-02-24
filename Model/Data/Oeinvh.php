@@ -92,8 +92,8 @@ class Oeinvh extends AbstractModel implements IdentityInterface, OeinvhInterface
         OeinvdCollectionFactory $oeinvdCollectionFactory,
         OeppreCollectionFactory $oeppreCollectionFactory,
         OetermiCollectionFactory $oetermiCollectionFactory,
-        AbstractResource $resource = null,
-        AbstractDb $resourceCollection = null,
+        ?AbstractResource $resource = null,
+        ?AbstractDb $resourceCollection = null,
         array $data = []
     ) {
         $this->dateTime                = $dateTime;

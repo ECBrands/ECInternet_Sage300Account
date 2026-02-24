@@ -62,7 +62,7 @@ class OeppreRepository implements OeppreRepositoryInterface
         OeppreSearchResultsInterfaceFactory $oeppreSearchResultsFactory,
         Logger $logger,
         OeppreResource $resourceModel,
-        OeppreCollectionFactory $oeppreCollectionFactory
+        OeppreCollectionFactory $oeppreCollectionFactory,
     ) {
         $this->collectionProcessor     = $collectionProcessor;
         $this->searchResultsFactory    = $oeppreSearchResultsFactory;

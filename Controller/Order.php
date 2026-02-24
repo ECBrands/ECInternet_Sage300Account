@@ -120,7 +120,7 @@ abstract class Order
         OeordhRepositoryInterface $oeordhRepository,
         Logger $logger,
         Config $config,
-        OeordhCollectionFactory $oeordhCollectionFactory
+        OeordhCollectionFactory $oeordhCollectionFactory,
     ) {
         $this->productRepository       = $productRepository;
         $this->customerSession         = $customerSession;

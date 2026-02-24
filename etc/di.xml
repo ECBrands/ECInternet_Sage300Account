@@ -98,6 +98,8 @@
 	            type="ECInternet\Sage300Account\Model\Data\PoporloSearchResults" />
 
 	<!-- UOM -->
+	<preference for="ECInternet\Sage300Account\Api\UomRepositoryInterface"
+	            type="ECInternet\Sage300Account\Model\UomRepository" />
 	<preference for="ECInternet\Sage300Account\Api\Data\UomInterface"
 	            type="ECInternet\Sage300Account\Model\Data\Uom" />
 

@@ -65,7 +65,7 @@ class OeorddRepository implements OeorddRepositoryInterface
         OeorddSearchResultsInterfaceFactory $oeorddSearchResultsFactory,
         Logger $logger,
         OeorddResource $resourceModel,
-        OeorddCollectionFactory $oeorddCollectionFactory
+        OeorddCollectionFactory $oeorddCollectionFactory,
     ) {
         $this->collectionProcessor     = $collectionProcessor;
         $this->searchResultsFactory    = $oeorddSearchResultsFactory;

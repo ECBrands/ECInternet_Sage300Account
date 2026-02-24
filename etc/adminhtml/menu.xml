@@ -4,6 +4,7 @@
 	<menu>
 		<add id="ECInternet_Sage300Account::menu"
 		     title="Sage 300 Account"
+		     translate="title"
 		     module="ECInternet_Sage300Account"
 		     sortOrder="210"
 		     parent="ECInternet_Base::base"
@@ -12,6 +13,7 @@
 
 		<add id="ECInternet_Sage300Account::settings"
 		     title="Settings"
+		     translate="title"
 		     module="ECInternet_Sage300Account"
 		     sortOrder="1"
 		     parent="ECInternet_Sage300Account::menu"
@@ -21,6 +23,7 @@
 
 		<add id="ECInternet_Sage300Account::reorder"
 		     title="Reorder"
+		     translate="title"
 		     module="ECInternet_Sage300Account"
 		     sortOrder="2"
 		     parent="ECInternet_Sage300Account::menu"
@@ -30,6 +33,7 @@
 
 		<add id="ECInternet_Sage300Account::poporh"
 		     title="POPORH"
+		     translate="title"
 		     module="ECInternet_Sage300Account"
 		     sortOrder="3"
 		     parent="ECInternet_Sage300Account::menu"
@@ -39,6 +43,7 @@
 
 		<add id="ECInternet_Sage300Account::poporl"
 		     title="POPORL"
+		     translate="title"
 		     module="ECInternet_Sage300Account"
 		     sortOrder="4"
 		     parent="ECInternet_Sage300Account::menu"
@@ -48,6 +53,7 @@
 
 		<add id="ECInternet_Sage300Account::poporlo"
 		     title="POPORLO"
+		     translate="title"
 		     module="ECInternet_Sage300Account"
 		     sortOrder="5"
 		     parent="ECInternet_Sage300Account::menu"

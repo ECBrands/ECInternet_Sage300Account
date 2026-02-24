@@ -94,31 +94,37 @@ class SalesQuoteProductAddAfter implements ObserverInterface
     ) {
         $this->log('getUom()');
 
-        if ($product = $item->getProduct()) {
-            if ($quote = $item->getQuote()) {
-                if ($customer = $quote->getCustomer()) {
-                    $customerGroupId = $customer->getGroupId();
-                    if (is_numeric($customerGroupId)) {
-                        $customerGroupCode = $this->getCustomerGroupCode((int)$customerGroupId);
-                        if ($customerGroupCode !== null) {
-                            return $this->uom->getUomText($product->getSku(), $customerGroupCode);
-                        } else {
-                            $this->log('getUom() - Unable to get customer group code');
-                        }
-                    } else {
-                        $this->log('getUom() - Customer group id is not numeric');
-                    }
-                } else {
-                    $this->log('getUom() - Quote does not have a customer');
-                }
-            } else {
-                $this->log('getUom() - Item does not have a quote');
-            }
-        } else {
+        $product = $item->getProduct();
+        if (!$product) {
             $this->log('getUom() - Item does not have a product');
+            return null;
         }
 
-        return null;
+        $quote = $item->getQuote();
+        if (!$quote) {
+            $this->log('getUom() - Item does not have a quote');
+            return null;
+        }
+
+        $customer = $quote->getCustomer();
+        if (!$customer) {
+            $this->log('getUom() - Quote does not have a customer');
+            return null;
+        }
+
+        $customerGroupId = $customer->getGroupId();
+        if (!is_numeric($customerGroupId)) {
+            $this->log('getUom() - Customer group id is not numeric');
+            return null;
+        }
+
+        $customerGroupCode = $this->getCustomerGroupCode((int)$customerGroupId);
+        if ($customerGroupCode === null) {
+            $this->log('getUom() - Unable to get customer group code');
+            return null;
+        }
+
+        return $this->uom->getUomText($product->getSku(), $customerGroupCode);
     }
 
     private function getCustomerGroupCode(int $customerGroupId)

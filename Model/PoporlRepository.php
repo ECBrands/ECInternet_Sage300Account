@@ -77,8 +77,6 @@ class PoporlRepository implements PoporlRepositoryInterface
     public function save(
         PoporlInterface $poporl
     ) {
-        $this->log('save()', ['poporl' => $poporl->getData()]);
-
         if (!$this->validate($poporl)) {
             $this->log('save() - Failed validation.');
             return false;
@@ -108,13 +106,9 @@ class PoporlRepository implements PoporlRepositoryInterface
     public function bulkSave(
         array $poporlArray
     ) {
-        $this->log('bulkSave()');
-
         $results = [];
 
         foreach ($poporlArray as $poporl) {
-            //$this->log('bulkSave()', ['poporl' => $poporl->getData()]);
-
             try {
                 $this->save($poporl);
                 $results[] = true;
@@ -131,19 +125,12 @@ class PoporlRepository implements PoporlRepositoryInterface
         $sequenceKey,
         $lineNumber
     ) {
-        $this->log('get()', ['sequenceKey' => $sequenceKey, 'lineNumber' => $lineNumber]);
-
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Poporl\Collection $collection */
         $collection = $this->poporlCollectionFactory->create()
             ->addFieldToFilter(Poporl::COLUMN_PORHSEQ, $sequenceKey)
             ->addFieldToFilter(Poporl::COLUMN_PORLREV, $lineNumber);
 
         $collectionCount = $collection->getSize();
-        $this->log('get()', [
-            'select'          => $collection->getSelect(),
-            'collectionCount' => $collectionCount
-        ]);
-
         if ($collectionCount === 1) {
             $poporl = $collection->getFirstItem();
             if ($poporl instanceof Poporl) {
@@ -157,18 +144,11 @@ class PoporlRepository implements PoporlRepositoryInterface
     public function getById(
         int $poporlId
     ) {
-        $this->log('getById()', ['poporlId' => $poporlId]);
-
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Poporl\Collection $collection */
         $collection = $this->poporlCollectionFactory->create()
             ->addFieldToFilter(Poporl::COLUMN_ID, $poporlId);
 
         $collectionCount = $collection->getSize();
-        $this->log('getById()', [
-            'select'          => $collection->getSelect(),
-            'collectionCount' => $collectionCount
-        ]);
-
         if ($collectionCount === 1) {
             $poporl = $collection->getFirstItem();
             if ($poporl instanceof Poporl) {
@@ -182,8 +162,6 @@ class PoporlRepository implements PoporlRepositoryInterface
     public function getList(
         SearchCriteriaInterface $searchCriteria
     ) {
-        $this->log('getList()');
-
         /** @var \ECInternet\Sage300Account\Api\Data\PoporlSearchResultsInterface $searchResults */
         $searchResults = $this->searchResultsFactory->create();
 
@@ -210,7 +188,7 @@ class PoporlRepository implements PoporlRepositoryInterface
 
                 return true;
             } catch (Exception $e) {
-                $this->log('deleteById()', ['error' => $e->getMessage()]);
+                $this->log('deleteById()', ['exception' => $e->getMessage()]);
             }
         }
 
@@ -219,8 +197,6 @@ class PoporlRepository implements PoporlRepositoryInterface
 
     public function deactivateById($poporlId)
     {
-        $this->log('deactivateById()', ['poporlId' => $poporlId]);
-
         if ($poporl = $this->getById($poporlId)) {
             $poporl->setIsActive(false);
 
@@ -228,7 +204,10 @@ class PoporlRepository implements PoporlRepositoryInterface
                 $this->resourceModel->save($poporl);
                 return true;
             } catch (Exception $e) {
-                $this->log('deactivateById()', ['poporlId' => $poporlId, 'error' => $e->getMessage()]);
+                $this->log('deactivateById()', [
+                    'poporlId'  => $poporlId,
+                    'exception' => $e->getMessage()
+                ]);
             }
         }
 
@@ -245,7 +224,10 @@ class PoporlRepository implements PoporlRepositoryInterface
     protected function validate(
         PoporlInterface $poporl
     ) {
-        return true;
+        return (
+            !empty($poporl->getPurchaseOrderSequenceKey()) &&
+            !empty($poporl->getPurchaseOrderLineSequenceKey())
+        );
     }
 
     /**
@@ -258,11 +240,6 @@ class PoporlRepository implements PoporlRepositoryInterface
     protected function doesRecordExist(
         PoporlInterface $poporl
     ) {
-        $this->log('doesRecordExist()', [
-            Poporl::COLUMN_PORHSEQ => $poporl->getPurchaseOrderSequenceKey(),
-            Poporl::COLUMN_PORLREV => $poporl->getLineNumber()
-        ]);
-
         /** @var \ECInternet\Sage300Account\Model\ResourceModel\Poporh\Collection $collection */
         $collection = $this->poporlCollectionFactory->create()
             ->addFieldToFilter(Poporl::COLUMN_PORHSEQ, $poporl->getPurchaseOrderSequenceKey())

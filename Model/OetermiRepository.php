@@ -65,7 +65,7 @@ class OetermiRepository implements OetermiRepositoryInterface
         OetermiSearchResultsInterfaceFactory $oetermiSearchResultsFactory,
         Logger $logger,
         OetermiResource $resourceModel,
-        OetermiCollectionFactory $oetermiCollectionFactory
+        OetermiCollectionFactory $oetermiCollectionFactory,
     ) {
         $this->collectionProcessor      = $collectionProcessor;
         $this->searchResultsFactory     = $oetermiSearchResultsFactory;
