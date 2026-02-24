@@ -131,7 +131,7 @@ abstract class Invoice
         Helper $helper,
         Logger $logger,
         Config $config,
-        OeinvhCollectionFactory $oeinvhCollectionFactory
+        OeinvhCollectionFactory $oeinvhCollectionFactory,
     ) {
         $this->productRepository       = $productRepository;
         $this->checkoutSession         = $checkoutSession;

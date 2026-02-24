@@ -66,7 +66,7 @@ class OeshdtRepository implements OeshdtRepositoryInterface
         OeshdtSearchResultsInterfaceFactory $oeshdtSearchResultsFactory,
         Logger $logger,
         OeshdtResource $resourceModel,
-        OeshdtCollectionFactory $oeshdtCollectionFactory
+        OeshdtCollectionFactory $oeshdtCollectionFactory,
     ) {
         $this->collectionProcessor     = $collectionProcessor;
         $this->searchResultsFactory    = $oeshdtSearchResultsFactory;

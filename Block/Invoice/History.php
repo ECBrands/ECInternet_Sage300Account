@@ -122,14 +122,10 @@ class History extends Template
 
                 if ($customerNumber = $customer->getData('customer_number')) {
                     // Get value of current page
-                    $page = $this->getRequest()->getParam('p')
-                        ? $this->getRequest()->getParam('p')
-                        : 1;
+                    $page = $this->getRequest()->getParam('p') ?: 1;
 
                     // Get value of current limit
-                    $pageSize = $this->getRequest()->getParam('limit')
-                        ? $this->getRequest()->getParam('limit')
-                        : 10;
+                    $pageSize = $this->getRequest()->getParam('limit') ?: 10;
 
                     return $this->oeinvhCollectionFactory->create()
                         ->addFieldToFilter(Oeinvh::COLUMN_CUSTOMER, ['eq' => $customerNumber])

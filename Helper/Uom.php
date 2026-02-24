@@ -7,37 +7,35 @@ declare(strict_types=1);
 
 namespace ECInternet\Sage300Account\Helper;
 
-use Magento\Framework\App\Helper\AbstractHelper;
-use Magento\Framework\App\Helper\Context;
+use ECInternet\Sage300Account\Api\UomRepositoryInterface;
 use ECInternet\Sage300Account\Logger\Logger;
-use ECInternet\Sage300Account\Model\ResourceModel\Uom\CollectionFactory as UomCollectionFactory;
 
-class Uom extends AbstractHelper
+class Uom
 {
+    private const SINGLE_ITEM_DEFAULT_TEXT = 'Each';
+
+    /**
+     * @var \ECInternet\Sage300Account\Api\UomRepositoryInterface
+     */
+    private $uomRepository;
+
     /**
      * @var \ECInternet\Sage300Account\Logger\Logger
      */
     private $logger;
 
     /**
-     * @var \ECInternet\Sage300Account\Model\ResourceModel\Uom\CollectionFactory
-     */
-    private $uomCollectionFactory;
-
-    /**
-     * @param \Magento\Framework\App\Helper\Context                                $context
-     * @param \ECInternet\Sage300Account\Logger\Logger                             $logger
-     * @param \ECInternet\Sage300Account\Model\ResourceModel\Uom\CollectionFactory $uomCollectionFactory
+     * Uom constructor.
+     *
+     * @param \ECInternet\Sage300Account\Api\UomRepositoryInterface $uomRepository
+     * @param \ECInternet\Sage300Account\Logger\Logger              $logger
      */
     public function __construct(
-        Context $context,
+        UomRepositoryInterface $uomRepository,
         Logger $logger,
-        UomCollectionFactory $uomCollectionFactory
     ) {
-        parent::__construct($context);
-
-        $this->logger               = $logger;
-        $this->uomCollectionFactory = $uomCollectionFactory;
+        $this->uomRepository = $uomRepository;
+        $this->logger        = $logger;
     }
 
     /**
@@ -94,54 +92,38 @@ class Uom extends AbstractHelper
     /**
      * Get UOM display value
      *
-     * @param string $sku
-     * @param string $pricelist
+     * @param string      $sku
+     * @param string|null $pricelist
      *
      * @return string
      */
-    public function getUomDisplayValue(string $sku, string $pricelist)
+    public function getUomDisplayValue(string $sku, ?string $pricelist)
     {
         $this->log('getUomDisplayValue()', ['sku' => $sku, 'pricelist' => $pricelist]);
 
         $uomConversionFactor = $this->getUomConversionFactor($sku, $pricelist);
         $this->log('getUomDisplayValue()', ['uomConversionFactory' => $uomConversionFactor]);
 
-        if ($uomConversionFactor !== null) {
-            if ($uomConversionFactor === 1.0) {
-                return 'Each';
-            } else {
-                return "Set of $uomConversionFactor";
-            }
-        } else {
-            $this->log('getUomDisplayValue() - Failed to lookup UOM value.', [
-                'sku'       => $sku,
-                'pricelist' => $pricelist
-            ]);
-
-            return 'Each';
+        if ($uomConversionFactor === null) {
+            return self::SINGLE_ITEM_DEFAULT_TEXT;
         }
+
+        if ($uomConversionFactor === 1.0) {
+            return self::SINGLE_ITEM_DEFAULT_TEXT;
+        }
+
+        return "Set of $uomConversionFactor";
     }
 
     /**
      * @param string $sku
      * @param string $pricelist
      *
-     * @return \ECInternet\Sage300Account\Model\Data\Uom|null
+     * @return \ECInternet\Sage300Account\Api\Data\UomInterface|null
      */
     private function getUomRecord(string $sku, string $pricelist)
     {
-        /** @var \ECInternet\Sage300Account\Model\ResourceModel\Uom\Collection $uomCollection */
-        $uomCollection = $this->uomCollectionFactory->create()
-            ->addFieldToFilter(\ECInternet\Sage300Account\Model\Data\Uom::COLUMN_ITEMNO, ['eq' => $sku])
-            ->addFieldToFilter(\ECInternet\Sage300Account\Model\Data\Uom::COLUMN_PRICELIST, ['eq' => $pricelist])
-            ->addFieldToSelect(\ECInternet\Sage300Account\Model\Data\Uom::COLUMN_UNIT);
-
-        if ($uom = $uomCollection->getFirstItem()) {
-            /** @var \ECInternet\Sage300Account\Model\Data\Uom $uom */
-            return $uom;
-        }
-
-        return null;
+        return $this->uomRepository->get($sku, $pricelist);
     }
 
     /**

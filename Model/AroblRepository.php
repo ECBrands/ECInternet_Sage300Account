@@ -65,7 +65,7 @@ class AroblRepository implements AroblRepositoryInterface
         AroblSearchResultsInterfaceFactory $aroblSearchResultsFactory,
         Logger $logger,
         AroblResource $resourceModel,
-        AroblCollectionFactory $aroblCollectionFactory
+        AroblCollectionFactory $aroblCollectionFactory,
     ) {
         $this->collectionProcessor    = $collectionProcessor;
         $this->searchResultsFactory   = $aroblSearchResultsFactory;
