@@ -24,10 +24,13 @@ class ToOrderItemPlugin
      * @param array                                                                   $data
      *
      * @return \Magento\Sales\Api\Data\OrderItemInterface
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      * @noinspection PhpMissingParamTypeInspection
+     * @noinspection PhpUnusedParameterInspection
      */
     public function aroundConvert(
-        /** @noinspection PhpUnusedParameterInspection */ ToOrderItem $subject,
+        ToOrderItem $subject,
         callable $proceed,
         $item,
         $data = []

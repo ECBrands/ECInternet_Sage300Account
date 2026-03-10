@@ -84,10 +84,13 @@ class ViewResultLayoutPlugin
      * @param \Magento\Framework\App\ResponseInterface $response
      *
      * @return mixed
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @noinspection PhpUnusedParameterInspection
      */
     public function beforeRenderResult(
-        /** @noinspection PhpUnusedParameterInspection */ Layout $subject,
-        /** @noinspection PhpUnusedParameterInspection */ ResponseInterface $response
+        Layout $subject,
+        ResponseInterface $response
     ) {
         if ($this->isInvoicePaymentInCart()) {
             $this->log('beforeRenderResult() - Invoice Payment is in cart');
