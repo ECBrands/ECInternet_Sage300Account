@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace ECInternet\Sage300Account\Block\Reorder;
 
-use Magento\Customer\Api\Data\CustomerInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Block\Product\View;
@@ -16,9 +15,10 @@ use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\ProductTypes\ConfigInterface;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollection;
 use Magento\Checkout\Model\SessionFactory as CheckoutSessionFactory;
+use Magento\Customer\Api\CustomerRepositoryInterface as CustomerRepository;
+use Magento\Customer\Api\Data\CustomerInterface;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Customer\Model\SessionFactory as CustomerSessionFactory;
-use Magento\Customer\Api\CustomerRepositoryInterface as CustomerRepository;
 use Magento\Framework\App\ActionInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;

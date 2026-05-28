@@ -83,7 +83,7 @@ declare(strict_types=1);
                 <?php $colspan = $allowed ? 6 : 4; ?>
 
                 <tr>
-                    <td colspan="<?= $escaper->escapeHtmlAttr($colspan) ?>" class="total_due_header a-right">
+                    <td colspan="<?= $escaper->escapeHtmlAttr((string)$colspan) ?>" class="total_due_header a-right">
                         <?= $escaper->escapeHtml(__('Total Invoice Balance')) ?>
                     </td>
                     <td colspan="1" class="total_text a-right">
@@ -92,7 +92,7 @@ declare(strict_types=1);
                 </tr>
                 <?php if ($allowed) { ?>
                     <tr>
-                        <td colspan="<?= $escaper->escapeHtmlAttr($colspan) ?>" class="total_header a-right">
+                        <td colspan="<?= $escaper->escapeHtmlAttr((string)$colspan) ?>" class="total_header a-right">
                             <?= $escaper->escapeHtml(__('Pay Today')) ?>
                         </td>
                         <td colspan="1" class="total_value a-right">$0.00</td>

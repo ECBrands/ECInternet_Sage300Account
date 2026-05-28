@@ -102,7 +102,7 @@ class PoporhRepository implements PoporhRepositoryInterface
 
         // If we find existing, grab the ID and set on incoming record
         if ($this->doesRecordExist($poporh)) {
-            $model = $this->get($poporh->getPurchaseOrderSequenceKey());
+            $model = $this->get((int)$poporh->getPurchaseOrderSequenceKey());
             $poporh->setId($model->getId());
         }
 
@@ -191,7 +191,7 @@ class PoporhRepository implements PoporhRepositoryInterface
             return null;
         }
 
-        return $this->get($poporl->getPurchaseOrderSequenceKey());
+        return $this->get((int)$poporl->getPurchaseOrderSequenceKey());
     }
 
     /**

@@ -83,7 +83,7 @@ class PoporloRepository implements PoporloRepositoryInterface
 
         if ($this->doesRecordExist($poporlo)) {
             $model = $this->get(
-                $poporlo->getPurchaseOrderSequenceKey(),
+                (int)$poporlo->getPurchaseOrderSequenceKey(),
                 $poporlo->getLineNumber(),
                 $poporlo->getOptionalField()
             );

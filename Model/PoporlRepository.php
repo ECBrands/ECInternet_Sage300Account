@@ -84,7 +84,7 @@ class PoporlRepository implements PoporlRepositoryInterface
 
         // If we find existing, grab the ID and set on incoming record
         if ($this->doesRecordExist($poporl)) {
-            $model = $this->get((int)$poporl->getPurchaseOrderSequenceKey(), $poporl->getLineNumber());
+            $model = $this->get((int)$poporl->getPurchaseOrderSequenceKey(), (int)$poporl->getLineNumber());
             $poporl->setId($model->getId());
         }
 
