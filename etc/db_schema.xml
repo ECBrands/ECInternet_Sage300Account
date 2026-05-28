@@ -1,6 +1,20 @@
 <?xml version="1.0"?>
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="quote_item" resource="default">
+		<column xsi:type="varchar" name="invoice_docnumber" nullable="true" length="22" comment="Invoice Document Number" />
+		<column xsi:type="varchar" name="uom" nullable="true" length="12" comment="Unit of Measure" />
+	</table>
+
+	<table name="sales_order_item" resource="default">
+		<column xsi:type="varchar" name="invoice_docnumber" nullable="true" length="22" comment="Invoice Document Number" />
+		<column xsi:type="varchar" name="uom" nullable="true" length="12" comment="Unit of Measure" />
+	</table>
+
+	<table name="sales_order" resource="default">
+		<column xsi:type="int" name="is_invoice_payment" nullable="false" default="0" comment="Is Invoice Payment" />
+	</table>
+
 	<table name="ecinternet_sage300account_arobl" resource="default" engine="innodb" comment="Documents">
 		<column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
 		<column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="true" identity="false" default="0" comment="Store Id" />
