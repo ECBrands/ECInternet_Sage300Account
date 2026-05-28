@@ -75,6 +75,9 @@ class Poporl extends AbstractExtensibleModel implements IdentityInterface, Popor
         parent::__construct($context, $registry, $extensionFactory, $customAttributeFactory, $resource, $resourceCollection, $data);
     }
 
+    /**
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
     protected function _construct()
     {
         $this->_init('ECInternet\Sage300Account\Model\ResourceModel\Poporl');

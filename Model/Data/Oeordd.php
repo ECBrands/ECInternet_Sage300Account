@@ -43,6 +43,8 @@ class Oeordd extends AbstractModel implements IdentityInterface, OeorddInterface
      * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
      * @param \Magento\Framework\Data\Collection\AbstractDb|null           $resourceCollection
      * @param array                                                        $data
+     *
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function __construct(
         Context $context,
@@ -57,6 +59,9 @@ class Oeordd extends AbstractModel implements IdentityInterface, OeorddInterface
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
     }
 
+    /**
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
     protected function _construct()
     {
         $this->_init('ECInternet\Sage300Account\Model\ResourceModel\Oeordd');
