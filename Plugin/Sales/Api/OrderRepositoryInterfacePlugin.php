@@ -42,9 +42,12 @@ class OrderRepositoryInterfacePlugin
      * @param \Magento\Sales\Api\Data\OrderInterface      $resultOrder
      *
      * @return \Magento\Sales\Api\Data\OrderInterface
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @noinspection PhpUnusedParameterInspection
      */
     public function afterGet(
-        /** @noinspection PhpUnusedParameterInspection */ OrderRepositoryInterface $subject,
+        OrderRepositoryInterface $subject,
         OrderInterface $resultOrder
     ) {
         return $this->setOrderItemExtensionAttributes($resultOrder);
@@ -57,9 +60,12 @@ class OrderRepositoryInterfacePlugin
      * @param \Magento\Sales\Api\Data\OrderSearchResultInterface $searchResult
      *
      * @return \Magento\Sales\Api\Data\OrderSearchResultInterface
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @noinspection PhpUnusedParameterInspection
      */
     public function afterGetList(
-        /** @noinspection PhpUnusedParameterInspection */ OrderRepositoryInterface $subject,
+        OrderRepositoryInterface $subject,
         OrderSearchResultInterface $searchResult
     ) {
         /** @var \Magento\Sales\Api\Data\OrderInterface[] $orders */
