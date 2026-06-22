@@ -215,7 +215,7 @@ class OetermiRepository implements OetermiRepositoryInterface
 
         return false;
     }
-    
+
     /**
      * Validate OETERMI record
      *
