@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace ECInternet\Sage300Account\Plugin\Sales\Api;
+namespace ECInternet\Sage300Account\Plugin\Magento\Sales\Api;
 
 use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\Data\OrderItemExtensionFactory;
@@ -42,9 +42,12 @@ class OrderRepositoryInterfacePlugin
      * @param \Magento\Sales\Api\Data\OrderInterface      $resultOrder
      *
      * @return \Magento\Sales\Api\Data\OrderInterface
+     *
+     * @noinspection PhpUnusedParameterInspection
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function afterGet(
-        /** @noinspection PhpUnusedParameterInspection */ OrderRepositoryInterface $subject,
+        OrderRepositoryInterface $subject,
         OrderInterface $resultOrder
     ) {
         return $this->setOrderItemExtensionAttributes($resultOrder);

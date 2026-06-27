@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace ECInternet\Sage300Account\Plugin\Quote\Item;
+namespace ECInternet\Sage300Account\Plugin\Magento\Quote\Item;
 
 use Magento\Quote\Model\Quote\Item\ToOrderItem;
 use Magento\Sales\Model\Order\Item as OrderItem;

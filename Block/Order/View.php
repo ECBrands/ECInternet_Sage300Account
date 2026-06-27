@@ -46,7 +46,7 @@ class View extends Template
         array $data = []
     ) {
         parent::__construct($context, $data);
-    
+
         $this->priceCurrency           = $priceCurrency;
         $this->oeordhCollectionFactory = $oeordhCollectionFactory;
     }

@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace ECInternet\Sage300Account\Plugin\Framework;
+namespace ECInternet\Sage300Account\Plugin\Magento\Framework\View\Result;
 
 use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Framework\App\Request\Http;
@@ -19,7 +19,7 @@ use Psr\Log\LoggerInterface;
 /**
  * Plugin for Magento\Framework\View\Result\Layout
  */
-class ViewResultLayoutPlugin
+class LayoutPlugin
 {
     /**
      * @var \Magento\Checkout\Model\Session

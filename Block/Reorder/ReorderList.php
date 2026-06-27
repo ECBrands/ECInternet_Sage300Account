@@ -185,10 +185,10 @@ class ReorderList extends View
                         ->addAttributeToSelect('short_description')
                         ->addAttributeToSelect('default_price_list_code');
                 } else {
-                    $this->log("getProductCollection() - Customer does not have '".self::ATTRIBUTE_CUSTOMER_NUMBER."' attribute set.");
+                    $this->log("getProductCollection() - Customer does not have '" . self::ATTRIBUTE_CUSTOMER_NUMBER . "' attribute set.");
                 }
             } else {
-                $this->log("getProductCollection() - Customer does not have '".self::ATTRIBUTE_CUSTOMER_NUMBER."' attribute.");
+                $this->log("getProductCollection() - Customer does not have '" . self::ATTRIBUTE_CUSTOMER_NUMBER . "' attribute.");
             }
         } else {
             $this->log('getProductCollection() - CustomerSession did not return valid Customer.');

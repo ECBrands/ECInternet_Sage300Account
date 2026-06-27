@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace ECInternet\Sage300Account\Plugin\Catalog\Block\Product;
+namespace ECInternet\Sage300Account\Plugin\Magento\Catalog\Block\Product;
 
 use Magento\Catalog\Block\Product\ListProduct;
 use Magento\Catalog\Model\Product;
@@ -67,9 +67,12 @@ class ListProductPlugin
      * @param Product                                    $product
      *
      * @return string
+     *
+     * @noinspection PhpUnusedParameterInspection
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function afterGetProductPrice(
-        /* @noinspection PhpUnusedParameterInspection */ ListProduct $subject,
+        ListProduct $subject,
         string $result,
         Product $product
     ) {

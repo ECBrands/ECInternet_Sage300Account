@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace ECInternet\Sage300Account\Plugin\CatalogSearch\Block;
+namespace ECInternet\Sage300Account\Plugin\Magento\CatalogSearch\Block;
 
 use Magento\CatalogSearch\Block\Result as SearchResult;
 use Magento\Customer\Model\Session as CustomerSession;

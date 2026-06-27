@@ -105,14 +105,14 @@
 
 	<!-- aroundConvert() - Set 'invoice_number' and 'uom' on OrderItem -->
 	<type name="Magento\Quote\Model\Quote\Item\ToOrderItem">
-		<plugin name="ecinternet_sage300account-quote_item_toorderitem"
-		        type="ECInternet\Sage300Account\Plugin\Quote\Item\ToOrderItemPlugin" />
+		<plugin name="ecinternet_sage300account-magento_quote_model_quote_item_toorderitem"
+		        type="ECInternet\Sage300Account\Plugin\Magento\Quote\Item\ToOrderItemPlugin" />
 	</type>
 
 	<!-- Add fields to Order API response -->
 	<type name="Magento\Sales\Api\OrderRepositoryInterface">
-		<plugin name="ecinternet_sage300account-sales_api_orderrepositoryinterface"
-		        type="ECInternet\Sage300Account\Plugin\Sales\Api\OrderRepositoryInterfacePlugin" />
+		<plugin name="ecinternet_sage300account-magento_sales_api_orderrepositoryinterface"
+		        type="ECInternet\Sage300Account\Plugin\Magento\Sales\Api\OrderRepositoryInterfacePlugin" />
 	</type>
 
 	<!-- Add reorder collection as 'reorder_listing_data_source -->
@@ -129,6 +129,36 @@
 			</argument>
 		</arguments>
 	</type>
+
+    <!-- Add Logger to ListProductPlugin -->
+	<type name="ECInternet\Sage300Account\Plugin\Magento\Catalog\Block\Product\ListProductPlugin">
+		<arguments>
+			<argument name="logger" xsi:type="object">ECInternetSage300AccountLogger</argument>
+		</arguments>
+	</type>
+
+    <!-- Add Logger to ResultPlugin -->
+	<type name="ECInternet\Sage300Account\Plugin\Magento\CatalogSearch\Block\ResultPlugin">
+		<arguments>
+			<argument name="logger" xsi:type="object">ECInternetSage300AccountLogger</argument>
+		</arguments>
+	</type>
+
+    <!-- Add Logger to LayoutPlugin -->
+	<type name="ECInternet\Sage300Account\Plugin\Magento\Framework\View\Result\LayoutPlugin">
+		<arguments>
+			<argument name="logger" xsi:type="object">ECInternetSage300AccountLogger</argument>
+		</arguments>
+	</type>
+
+	<!-- Custom Logger - Must be injected into each class which needs it -->
+	<virtualType name="ECInternetSage300AccountLogger" type="Magento\Framework\Logger\Monolog">
+		<arguments>
+			<argument name="handlers" xsi:type="array">
+				<item name="info" xsi:type="object">ECInternet\Sage300Account\Logger\Handler</item>
+			</argument>
+		</arguments>
+	</virtualType>
 
 	<!-- Oeshdt grid collection -->
 	<virtualType name="ReorderCollection"
