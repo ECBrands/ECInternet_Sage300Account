@@ -122,10 +122,10 @@
 	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
 		<arguments>
 			<argument name="collections" xsi:type="array">
-				<item name="reorder_listing_data_source" xsi:type="string">ReorderCollection</item>
-				<item name="poporh_listing_data_source" xsi:type="string">PoporhCollection</item>
-				<item name="poporl_listing_data_source" xsi:type="string">PoporlCollection</item>
-				<item name="poporlo_listing_data_source" xsi:type="string">PoporloCollection</item>
+				<item name="reorder_listing_data_source" xsi:type="string">ECInternet\Sage300Account\Model\ResourceModel\Oeshdt\Grid\Collection</item>
+				<item name="poporh_listing_data_source" xsi:type="string">ECInternet\Sage300Account\Model\ResourceModel\Poporh\Grid\Collection</item>
+				<item name="poporl_listing_data_source" xsi:type="string">ECInternet\Sage300Account\Model\ResourceModel\Poporl\Grid\Collection</item>
+				<item name="poporlo_listing_data_source" xsi:type="string">ECInternet\Sage300Account\Model\ResourceModel\Poporlo\Grid\Collection</item>
 			</argument>
 		</arguments>
 	</type>
@@ -161,7 +161,7 @@
 	</virtualType>
 
 	<!-- Oeshdt grid collection -->
-	<virtualType name="ReorderCollection"
+	<virtualType name="ECInternet\Sage300Account\Model\ResourceModel\Oeshdt\Grid\Collection"
 	             type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
 		<arguments>
 			<argument name="mainTable" xsi:type="string">ecinternet_sage300account_oeshdt</argument>
@@ -192,7 +192,7 @@
 
 
 	<!-- Poporh grid collection -->
-	<virtualType name="PoporhCollection"
+	<virtualType name="ECInternet\Sage300Account\Model\ResourceModel\Poporh\Grid\Collection"
 	             type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
 		<arguments>
 			<argument name="mainTable" xsi:type="string">ecinternet_sage300account_poporh</argument>
@@ -223,7 +223,7 @@
 
 
 	<!-- Poporl grid collection -->
-	<virtualType name="PoporlCollection"
+	<virtualType name="ECInternet\Sage300Account\Model\ResourceModel\Poporl\Grid\Collection"
 	             type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
 		<arguments>
 			<argument name="mainTable" xsi:type="string">ecinternet_sage300account_poporl</argument>
@@ -254,7 +254,7 @@
 
 
 	<!-- Poporlo grid collection -->
-	<virtualType name="PoporloCollection"
+	<virtualType name="ECInternet\Sage300Account\Model\ResourceModel\Poporlo\Grid\Collection"
 	             type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
 		<arguments>
 			<argument name="mainTable" xsi:type="string">ecinternet_sage300account_poporlo</argument>
