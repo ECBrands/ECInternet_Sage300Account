@@ -60,9 +60,12 @@ class OrderRepositoryInterfacePlugin
      * @param \Magento\Sales\Api\Data\OrderSearchResultInterface $searchResult
      *
      * @return \Magento\Sales\Api\Data\OrderSearchResultInterface
+     *
+     * @noinspection PhpUnusedParameterInspection
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function afterGetList(
-        /** @noinspection PhpUnusedParameterInspection */ OrderRepositoryInterface $subject,
+        OrderRepositoryInterface $subject,
         OrderSearchResultInterface $searchResult
     ) {
         /** @var \Magento\Sales\Api\Data\OrderInterface[] $orders */

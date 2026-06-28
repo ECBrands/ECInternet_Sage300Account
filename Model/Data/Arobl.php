@@ -18,6 +18,8 @@ use ECInternet\Sage300Account\Api\Data\AroblInterface;
 
 /**
  * Arobl Model
+ *
+ * @SuppressWarnings(PHPMD.CamelCasePropertyName)
  */
 class Arobl extends AbstractModel implements IdentityInterface, AroblInterface
 {

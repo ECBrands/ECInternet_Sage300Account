@@ -134,6 +134,8 @@ interface ArtcpInterface
      * @param float $customerReceiptAmount
      *
      * @return void
+     *
+     * @SuppressWarnings(PHPMD.LongVariable)
      */
     public function setCustomerReceiptAmount(float $customerReceiptAmount);
 }

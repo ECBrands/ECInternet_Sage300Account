@@ -219,7 +219,7 @@ class OeinvhRepository implements OeinvhRepositoryInterface
 
         return false;
     }
-    
+
     /**
      * Validate OEINVH record
      *

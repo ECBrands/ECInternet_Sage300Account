@@ -18,6 +18,8 @@ use ECInternet\Sage300Account\Api\Data\ArtcpInterface;
 
 /**
  * Artcp model
+ *
+ * @SuppressWarnings(PHPMD.CamelCasePropertyName)
  */
 class Artcp extends AbstractModel implements IdentityInterface, ArtcpInterface
 {
@@ -145,6 +147,11 @@ class Artcp extends AbstractModel implements IdentityInterface, ArtcpInterface
         return (float)$this->getData(self::COLUMN_AMTPAYM);
     }
 
+    /**
+     * @inheritDoc
+     *
+     * @SuppressWarnings(PHPMD.LongVariable)
+     */
     public function setCustomerReceiptAmount(float $customerReceiptAmount)
     {
         $this->setData(self::COLUMN_AMTPAYM, $customerReceiptAmount);

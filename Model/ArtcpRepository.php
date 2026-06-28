@@ -20,6 +20,8 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Artcp model repository
+ *
+ * @SuppressWarnings(PHPMD.LongVariable)
  */
 class ArtcpRepository implements ArtcpRepositoryInterface
 {
@@ -247,6 +249,7 @@ class ArtcpRepository implements ArtcpRepositoryInterface
     protected function validate(
         ArtcpInterface $artcp
     ) {
+        $this->log('validate()', ['artcp' => $artcp->getData()]);
     }
 
     /**
