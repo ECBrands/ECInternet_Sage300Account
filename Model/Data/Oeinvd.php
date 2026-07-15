@@ -61,6 +61,8 @@ class Oeinvd extends AbstractModel implements IdentityInterface, OeinvdInterface
 
     /**
      * @throws \Magento\Framework\Exception\LocalizedException
+     *
+     * @noinspection MagicMethodsValidityInspection
      */
     protected function _construct()
     {

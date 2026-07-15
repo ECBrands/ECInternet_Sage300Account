@@ -61,6 +61,8 @@ class Oetermi extends AbstractModel implements IdentityInterface, OetermiInterfa
 
     /**
      * @throws \Magento\Framework\Exception\LocalizedException
+     *
+     * @noinspection MagicMethodsValidityInspection
      */
     protected function _construct()
     {

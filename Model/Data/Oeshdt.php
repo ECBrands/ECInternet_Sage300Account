@@ -61,6 +61,8 @@ class Oeshdt extends AbstractModel implements IdentityInterface, OeshdtInterface
 
     /**
      * @throws \Magento\Framework\Exception\LocalizedException
+     *
+     * @noinspection MagicMethodsValidityInspection
      */
     protected function _construct()
     {

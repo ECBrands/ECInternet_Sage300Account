@@ -63,6 +63,8 @@ class Artcp extends AbstractModel implements IdentityInterface, ArtcpInterface
 
     /**
      * @throws \Magento\Framework\Exception\LocalizedException
+     *
+     * @noinspection MagicMethodsValidityInspection
      */
     protected function _construct()
     {

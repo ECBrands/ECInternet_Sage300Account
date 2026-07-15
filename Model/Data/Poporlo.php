@@ -63,6 +63,8 @@ class Poporlo extends AbstractModel implements IdentityInterface, PoporloInterfa
 
     /**
      * @throws \Magento\Framework\Exception\LocalizedException
+     *
+     * @noinspection MagicMethodsValidityInspection
      */
     protected function _construct()
     {

@@ -73,6 +73,8 @@ class Oeordh extends AbstractModel implements IdentityInterface, OeordhInterface
 
     /**
      * @throws \Magento\Framework\Exception\LocalizedException
+     *
+     * @noinspection MagicMethodsValidityInspection
      */
     protected function _construct()
     {

@@ -77,6 +77,8 @@ class Poporl extends AbstractExtensibleModel implements IdentityInterface, Popor
 
     /**
      * @throws \Magento\Framework\Exception\LocalizedException
+     *
+     * @noinspection MagicMethodsValidityInspection
      */
     protected function _construct()
     {

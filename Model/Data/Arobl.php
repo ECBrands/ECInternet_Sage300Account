@@ -63,6 +63,8 @@ class Arobl extends AbstractModel implements IdentityInterface, AroblInterface
 
     /**
      * @throws \Magento\Framework\Exception\LocalizedException
+     *
+     * @noinspection MagicMethodsValidityInspection
      */
     protected function _construct()
     {

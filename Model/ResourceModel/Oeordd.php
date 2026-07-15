@@ -18,6 +18,8 @@ class Oeordd extends AbstractDb
      * Initialize resource model
      *
      * @return void
+     *
+     * @noinspection MagicMethodsValidityInspection
      */
     public function _construct()
     {

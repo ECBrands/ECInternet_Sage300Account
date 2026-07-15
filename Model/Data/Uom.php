@@ -61,6 +61,8 @@ class Uom extends AbstractModel implements IdentityInterface, UomInterface
 
     /**
      * @throws \Magento\Framework\Exception\LocalizedException
+     *
+     * @noinspection MagicMethodsValidityInspection
      */
     protected function _construct()
     {

@@ -63,6 +63,8 @@ class Poporh extends AbstractModel implements IdentityInterface, PoporhInterface
 
     /**
      * @throws \Magento\Framework\Exception\LocalizedException
+     *
+     * @noinspection MagicMethodsValidityInspection
      */
     protected function _construct()
     {

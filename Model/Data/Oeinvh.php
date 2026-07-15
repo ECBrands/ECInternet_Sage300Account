@@ -110,6 +110,8 @@ class Oeinvh extends AbstractModel implements IdentityInterface, OeinvhInterface
 
     /**
      * @throws \Magento\Framework\Exception\LocalizedException
+     *
+     * @noinspection MagicMethodsValidityInspection
      */
     protected function _construct()
     {

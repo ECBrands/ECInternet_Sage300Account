@@ -61,6 +61,8 @@ class Oeordd extends AbstractModel implements IdentityInterface, OeorddInterface
 
     /**
      * @throws \Magento\Framework\Exception\LocalizedException
+     *
+     * @noinspection MagicMethodsValidityInspection
      */
     protected function _construct()
     {
