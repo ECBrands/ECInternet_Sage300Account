@@ -1,5 +1,5 @@
 # Magento2 Module ECInternet_Sage300Account
-``ecinternet_sage300account - 1.6.9.0``
+``ecinternet/sage300account - 1.6.9.0``
 
 - [Requirements](#requirements-header)
 - [Overview](#overview-header)
@@ -8,10 +8,12 @@
 - [Design Modifications](#design-modifications-header)
 - [Specifications](#specifications-header)
 - [Attributes](#attributes-header)
+- [Testing](#testing-header)
 - [Notes](#notes-header)
 - [Version History](#version-history-header)
 
 ## Requirements
+- Magento 2.4.9
 
 ## Overview
 Sage300Account module adds Sage invoice and order history information to the Magento 2 backend for viewing historical invoices and orders.
@@ -41,7 +43,7 @@ Sage300Account module adds Sage invoice and order history information to the Mag
 - `invoice_docnumber`
 - `uom`
 
-
+## Testing
 
 ## Features
 ### Events

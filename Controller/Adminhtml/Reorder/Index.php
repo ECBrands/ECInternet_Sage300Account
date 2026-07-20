@@ -50,7 +50,7 @@ class Index extends Action implements HttpGetActionInterface
         $resultPage = $this->_resultPageFactory->create();
 
         // Active menu
-        $resultPage->setActiveMenu(static::MENU_ID);
+        $resultPage->setActiveMenu(self::MENU_ID);
 
         // Page title
         $resultPage->getConfig()->getTitle()->prepend(__('Reorder Custom Products'));
