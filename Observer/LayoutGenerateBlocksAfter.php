@@ -113,6 +113,6 @@ class LayoutGenerateBlocksAfter implements ObserverInterface
      */
     private function log(string $message, array $extra = [])
     {
-        $this->logger->info('Observer/LayoutGenerateBlocksAfter - ' . $message, $extra);
+        $this->logger->info('[ECInternet_Sage300Account] Observer/LayoutGenerateBlocksAfter - ' . $message, $extra);
     }
 }
